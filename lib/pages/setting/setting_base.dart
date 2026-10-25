@@ -77,9 +77,11 @@ class RadioDialogListTile<T> extends StatelessWidget {
               content: RadioGroup<T>(
                 groupValue: groupValue,
                 onChanged: onChanged,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: children,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: children,
+                  ),
                 ),
               ),
               actions: [
