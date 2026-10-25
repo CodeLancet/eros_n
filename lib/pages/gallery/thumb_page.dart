@@ -4,7 +4,7 @@ import 'package:eros_n/component/models/image.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/component/widget/eros_cached_network_image.dart';
 import 'package:eros_n/component/widget/scrolling_fab.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/enum.dart';
 import 'package:eros_n/pages/gallery/gallery_provider.dart';
 import 'package:eros_n/routes/routes.dart';
@@ -34,7 +34,7 @@ class ThumbPage extends HookConsumerWidget {
             appBar: adaptiveAppBar(
               context: context,
               ref: ref,
-              title: Text(L10n.of(context).thumbs),
+              title: Text(AppLocalizations.of(context).thumbs),
             ),
             floatingActionButton: ScrollingFab(
               onPressed: () {
@@ -48,8 +48,8 @@ class ThumbPage extends HookConsumerWidget {
                     galleryProvider(gid).select((g) => g.currentPageIndex),
                   );
                   final label = currentPageIndex == 0
-                      ? L10n.of(context).read
-                      : '${L10n.of(context).resume} ${currentPageIndex + 1}';
+                      ? AppLocalizations.of(context).read
+                      : '${AppLocalizations.of(context).resume} ${currentPageIndex + 1}';
                   return Text(label);
                 },
               ),

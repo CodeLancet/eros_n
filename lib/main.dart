@@ -8,7 +8,8 @@ import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/theme/theme.dart';
 import 'package:eros_n/component/widget/desktop.dart';
 import 'package:eros_n/component/widget/system_ui_overlay.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
+import 'package:eros_n/l10n/l10n.dart';
 import 'package:eros_n/network/webview_proxy/hidden_webview_proxy.dart';
 import 'package:eros_n/routes/routes.dart';
 import 'package:eros_n/utils/logger.dart';
@@ -200,12 +201,13 @@ class _MyAppState extends ConsumerState<MyApp> with WidgetsBindingObserver {
           //   return widget;
           // },
           locale: locale(localeCode),
-          onGenerateTitle: (BuildContext context) => L10n.of(context).app_title,
+          onGenerateTitle: (BuildContext context) =>
+              AppLocalizations.of(context).app_title,
           // debugShowCheckedModeBanner: false,
           theme: ThemeConfig.lightTheme,
           darkTheme: ThemeConfig.darkTheme,
           themeMode: themeMode,
-          supportedLocales: [...L10n.delegate.supportedLocales],
+          supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: const [
             L10n.delegate,
             GlobalMaterialLocalizations.delegate,

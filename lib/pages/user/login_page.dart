@@ -5,7 +5,7 @@ import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/global.dart';
 import 'package:eros_n/component/exception/error.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/network/request.dart';
 import 'package:eros_n/pages/user/user_provider.dart';
 import 'package:eros_n/routes/routes.dart';
@@ -85,15 +85,15 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         showDialog(
           context: context,
           builder: (_) => AlertDialog(
-            title: Text(L10n.of(context).login_need_captcha),
-            content: Text(L10n.of(context).please_login_web),
+            title: Text(AppLocalizations.of(context).login_need_captcha),
+            content: Text(AppLocalizations.of(context).please_login_web),
             actions: [
               TextButton(
                 onPressed: () {
                   erosRouter.pop();
                   _loginWithWebView();
                 },
-                child: Text(L10n.of(context).ok),
+                child: Text(AppLocalizations.of(context).ok),
               ),
             ],
           ),
@@ -102,7 +102,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         // log invalid
         logger.e('login invalid');
         if (mounted) {
-          context.showSnackBar(L10n.of(context).login_invalid);
+          context.showSnackBar(AppLocalizations.of(context).login_invalid);
         }
       } else {
         logger.e(e);
@@ -146,7 +146,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       appBar: adaptiveAppBar(
         context: context,
         ref: ref,
-        title: Text(L10n.of(context).login),
+        title: Text(AppLocalizations.of(context).login),
       ),
       body: SingleChildScrollView(
         padding: glass ? glassBodyPadding(context) : null,
@@ -164,7 +164,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 controller: _usernameController,
                 focusNode: _usernameFocusNode,
                 decoration: InputDecoration(
-                  labelText: L10n.of(context).username,
+                  labelText: AppLocalizations.of(context).username,
                   border: const OutlineInputBorder(),
                   // hintText: 'Enter your username',
                 ),
@@ -179,7 +179,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 focusNode: _passwordFocusNode,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
-                  labelText: L10n.of(context).password,
+                  labelText: AppLocalizations.of(context).password,
                   // hintText: 'Enter your password',
                   suffixIcon: Container(
                     padding: const EdgeInsets.only(right: 8),
@@ -225,7 +225,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             color: Theme.of(context).colorScheme.onPrimary,
                           ),
                         )
-                      : Text(L10n.of(context).login),
+                      : Text(AppLocalizations.of(context).login),
                 ),
               ),
               Row(
@@ -234,7 +234,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   TextButton(
                     onPressed: _loginWithWebView,
                     child: Text(
-                      L10n.of(context).login_by_web,
+                      AppLocalizations.of(context).login_by_web,
                       style: const TextStyle(
                         decoration: TextDecoration.underline,
                       ),
@@ -245,12 +245,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       erosRouter.push(
                         NhWebViewRoute(
                           initialUrl: NHConst.registerUrl,
-                          title: L10n.of(context).register,
+                          title: AppLocalizations.of(context).register,
                         ),
                       );
                     },
                     child: Text(
-                      L10n.of(context).register,
+                      AppLocalizations.of(context).register,
                       style: const TextStyle(
                         decoration: TextDecoration.underline,
                       ),

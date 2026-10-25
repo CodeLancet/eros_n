@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eros_n/common/global.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/nav/index/index_provider.dart';
 import 'package:eros_n/pages/user/user_provider.dart';
 import 'package:eros_n/routes/routes.dart';
@@ -38,7 +38,7 @@ class _MorePageState extends ConsumerState<MorePage>
       appBar: adaptiveAppBar(
         context: context,
         ref: ref,
-        title: Row(children: [Text(L10n.of(context).more)]),
+        title: Row(children: [Text(AppLocalizations.of(context).more)]),
       ),
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
@@ -60,7 +60,7 @@ class _MorePageState extends ConsumerState<MorePage>
                           color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
-                      title: Text(L10n.of(context).login),
+                      title: Text(AppLocalizations.of(context).login),
                       onTap: () {
                         erosRouter.push(const LoginRoute());
                       },
@@ -81,17 +81,17 @@ class _MorePageState extends ConsumerState<MorePage>
                           builder: (context) {
                             logger.d('logout $user');
                             return AlertDialog(
-                              title: Text(L10n.of(context).logout),
-                              content: Text(L10n.of(context).logout_confirm),
+                              title: Text(AppLocalizations.of(context).logout),
+                              content: Text(AppLocalizations.of(context).logout_confirm),
                               actions: <Widget>[
                                 TextButton(
-                                  child: Text(L10n.of(context).cancel),
+                                  child: Text(AppLocalizations.of(context).cancel),
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
                                 ),
                                 TextButton(
-                                  child: Text(L10n.of(context).logout),
+                                  child: Text(AppLocalizations.of(context).logout),
                                   onPressed: () {
                                     ref.read(userProvider.notifier).logout();
                                     Navigator.of(context).pop();
@@ -111,7 +111,7 @@ class _MorePageState extends ConsumerState<MorePage>
             ListTile(
               leading: const Icon(Icons.download_outlined),
               iconColor: Theme.of(context).colorScheme.primary,
-              title: Text(L10n.of(context).download),
+              title: Text(AppLocalizations.of(context).download),
               onTap: () {
                 erosRouter.push(const DownloadsRoute());
               },
@@ -120,7 +120,7 @@ class _MorePageState extends ConsumerState<MorePage>
             ListTile(
               leading: const Icon(Icons.settings_outlined),
               iconColor: Theme.of(context).colorScheme.primary,
-              title: Text(L10n.of(context).settings),
+              title: Text(AppLocalizations.of(context).settings),
               onTap: () {
                 erosRouter.push(const SettingsRoute());
               },
@@ -128,7 +128,7 @@ class _MorePageState extends ConsumerState<MorePage>
             ListTile(
               leading: const Icon(Icons.info_outline),
               iconColor: Theme.of(context).colorScheme.primary,
-              title: Text(L10n.of(context).about),
+              title: Text(AppLocalizations.of(context).about),
               onTap: () {
                 erosRouter.push(const AboutRoute());
               },

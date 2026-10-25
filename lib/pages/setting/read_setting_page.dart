@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/read/read_provider.dart';
 import 'package:eros_n/pages/setting/setting_base.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +20,12 @@ class ReadSettingPage extends ConsumerWidget {
       appBar: adaptiveAppBar(
         context: context,
         ref: ref,
-        title: Text(L10n.of(context).read),
+        title: Text(AppLocalizations.of(context).read),
       ),
       body: ListView(
         padding: glass ? glassBodyPadding(context) : null,
         children: <Widget>[
-          SmallTitle(title: L10n.of(context).display),
+          SmallTitle(title: AppLocalizations.of(context).display),
           // Switch full screen reader
           const FullScreenListTile(),
           // switch read model
@@ -35,14 +35,14 @@ class ReadSettingPage extends ConsumerWidget {
                 settingsProvider.select((settings) => settings.readModel),
               );
               return RadioDialogListTile<ReadModel>(
-                title: Text(L10n.of(context).read_model),
+                title: Text(AppLocalizations.of(context).read_model),
                 groupValue: readModel,
                 radioTitleMap: {
-                  ReadModel.leftToRight: Text(L10n.of(context).left_to_right),
-                  ReadModel.rightToLeft: Text(L10n.of(context).right_to_left),
-                  ReadModel.webtoon: Text(L10n.of(context).webtoon),
-                  ReadModel.curlVertical: Text(L10n.of(context).curl_vertical),
-                  ReadModel.vertical: Text(L10n.of(context).vertical),
+                  ReadModel.leftToRight: Text(AppLocalizations.of(context).left_to_right),
+                  ReadModel.rightToLeft: Text(AppLocalizations.of(context).right_to_left),
+                  ReadModel.webtoon: Text(AppLocalizations.of(context).webtoon),
+                  ReadModel.curlVertical: Text(AppLocalizations.of(context).curl_vertical),
+                  ReadModel.vertical: Text(AppLocalizations.of(context).vertical),
                 },
                 onChanged: (value) {
                   ref.read(settingsProvider.notifier).setReadModel(value);
@@ -73,7 +73,7 @@ class VolumeKeyTurnPageListTile extends StatelessWidget {
           settingsProvider.select((settings) => settings.volumeKeyTurnPage),
         );
         return ListTile(
-          title: Text(L10n.of(context).volume_key_turn_page),
+          title: Text(AppLocalizations.of(context).volume_key_turn_page),
           trailing: Switch(
             activeThumbColor: Theme.of(context).colorScheme.primary,
             value: volumeKeyTurnPage,
@@ -105,7 +105,7 @@ class FullScreenListTile extends HookConsumerWidget {
       settingsProvider.select((settings) => settings.fullScreenReader),
     );
     return ListTile(
-      title: Text(L10n.of(context).full_screen),
+      title: Text(AppLocalizations.of(context).full_screen),
       trailing: Switch(
         activeThumbColor: Theme.of(context).colorScheme.primary,
         value: fullScreenReader,
@@ -134,7 +134,7 @@ class PreloadPagesCountListTile extends HookConsumerWidget {
       settingsProvider.select((settings) => settings.preloadPagesCount),
     );
     return ListTile(
-      title: Text(L10n.of(context).preload_pages_count),
+      title: Text(AppLocalizations.of(context).preload_pages_count),
       subtitle: Row(
         children: [
           Container(
@@ -171,7 +171,7 @@ class AutoReadIntervalListTile extends HookConsumerWidget {
     );
 
     return ListTile(
-      title: Text(L10n.of(context).auto_read_interval),
+      title: Text(AppLocalizations.of(context).auto_read_interval),
       subtitle: Row(
         children: [
           Container(

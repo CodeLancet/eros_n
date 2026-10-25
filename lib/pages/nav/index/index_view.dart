@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/nav/favorite/favorite_view.dart';
 import 'package:eros_n/pages/nav/front/front_view.dart';
 import 'package:eros_n/pages/nav/history/history_view.dart';
@@ -56,7 +56,7 @@ class _IndexPageState extends ConsumerState<IndexPage> {
     }
     _lastBackPress = now;
     showSimpleToast(
-      L10n.of(context).press_back_again_to_exit,
+      AppLocalizations.of(context).press_back_again_to_exit,
       onBack: () async {
         SystemNavigator.pop();
         return true;
@@ -142,21 +142,21 @@ class _IndexPageState extends ConsumerState<IndexPage> {
                             ),
                             tabs: [
                               GlassBottomBarTab(
-                                label: L10n.of(context).home,
+                                label: AppLocalizations.of(context).home,
                                 icon: const Icon(Icons.home_outlined),
                                 activeIcon: const Icon(Icons.home),
                               ),
                               GlassBottomBarTab(
-                                label: L10n.of(context).favorites,
+                                label: AppLocalizations.of(context).favorites,
                                 icon: const Icon(Icons.favorite_outline),
                                 activeIcon: const Icon(Icons.favorite),
                               ),
                               GlassBottomBarTab(
-                                label: L10n.of(context).history,
+                                label: AppLocalizations.of(context).history,
                                 icon: const Icon(Icons.history),
                               ),
                               GlassBottomBarTab(
-                                label: L10n.of(context).more,
+                                label: AppLocalizations.of(context).more,
                                 icon: const Icon(Icons.more_horiz),
                               ),
                             ],
@@ -196,20 +196,20 @@ class _IndexPageState extends ConsumerState<IndexPage> {
               NavigationDestination(
                 icon: const Icon(Icons.home_outlined),
                 selectedIcon: const Icon(Icons.home),
-                label: L10n.of(context).home,
+                label: AppLocalizations.of(context).home,
               ),
               NavigationDestination(
                 icon: const Icon(Icons.favorite_outline),
                 selectedIcon: const Icon(Icons.favorite),
-                label: L10n.of(context).favorites,
+                label: AppLocalizations.of(context).favorites,
               ),
               NavigationDestination(
                 icon: const Icon(Icons.history),
-                label: L10n.of(context).history,
+                label: AppLocalizations.of(context).history,
               ),
               NavigationDestination(
                 icon: const Icon(Icons.more_horiz),
-                label: L10n.of(context).more,
+                label: AppLocalizations.of(context).more,
               ),
             ],
             onDestinationSelected: (index) {

@@ -11,7 +11,7 @@ import 'package:eros_n/component/widget/blur_image.dart';
 import 'package:eros_n/component/widget/cover_aspect.dart';
 import 'package:eros_n/component/widget/eros_cached_network_image.dart';
 import 'package:eros_n/component/widget/scrolling_fab.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/network/request.dart';
 import 'package:eros_n/pages/enum.dart';
 import 'package:eros_n/pages/gallery/gallery_provider.dart';
@@ -338,7 +338,7 @@ class GalleryPageBody extends HookConsumerWidget {
                           items: [
                             PopupMenuItem(
                               value: 'open_in_browser',
-                              child: Text(L10n.of(context).open_in_browser),
+                              child: Text(AppLocalizations.of(context).open_in_browser),
                             ),
                           ],
                         );
@@ -409,7 +409,7 @@ class GalleryPageBody extends HookConsumerWidget {
                   itemBuilder: (context) => [
                     PopupMenuItem(
                       value: 'open_in_browser',
-                      child: Text(L10n.of(context).open_in_browser),
+                      child: Text(AppLocalizations.of(context).open_in_browser),
                     ),
                   ],
                 ),
@@ -427,8 +427,8 @@ class GalleryPageBody extends HookConsumerWidget {
               galleryProvider(gid).select((g) => g.currentPageIndex),
             );
             final label = currentPageIndex == 0
-                ? L10n.of(context).read
-                : '${L10n.of(context).resume} ${currentPageIndex + 1}';
+                ? AppLocalizations.of(context).read
+                : '${AppLocalizations.of(context).resume} ${currentPageIndex + 1}';
             return Text(label);
           },
         ),
@@ -1121,28 +1121,28 @@ String _getTagTypeTranslate(BuildContext context, String tagType) {
   switch (tagType) {
     case 'Parodies':
     case 'parody':
-      return L10n.of(context).tag_type_parodies;
+      return AppLocalizations.of(context).tag_type_parodies;
     case 'Characters':
     case 'character':
-      return L10n.of(context).tag_type_characters;
+      return AppLocalizations.of(context).tag_type_characters;
     case 'Tags':
     case 'tag':
     case 'male':
     case 'female':
     case 'mixed':
-      return L10n.of(context).tag_type_tags;
+      return AppLocalizations.of(context).tag_type_tags;
     case 'Artists':
     case 'artist':
-      return L10n.of(context).tag_type_artists;
+      return AppLocalizations.of(context).tag_type_artists;
     case 'Groups':
     case 'group':
-      return L10n.of(context).tag_type_groups;
+      return AppLocalizations.of(context).tag_type_groups;
     case 'Languages':
     case 'language':
-      return L10n.of(context).tag_type_languages;
+      return AppLocalizations.of(context).tag_type_languages;
     case 'Categories':
     case 'category':
-      return L10n.of(context).tag_type_categories;
+      return AppLocalizations.of(context).tag_type_categories;
     default:
       return tagType;
   }
@@ -1165,9 +1165,9 @@ class ThumbListView extends HookConsumerWidget {
     return MultiSliver(
       children: [
         ListTile(
-          title: Text(L10n.of(context).thumbs),
+          title: Text(AppLocalizations.of(context).thumbs),
           trailing: Text(
-            '${L10n.of(context).more} ${pages.length}',
+            '${AppLocalizations.of(context).more} ${pages.length}',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -1241,7 +1241,7 @@ class MoreLikeListView extends HookConsumerWidget {
     final heroTag = useMemoized(() => 'more_like_$gid');
     return MultiSliver(
       children: [
-        ListTile(title: Text(L10n.of(context).more_like_this)),
+        ListTile(title: Text(AppLocalizations.of(context).more_like_this)),
         SizedBox(
           height: 280,
           child: ListView.separated(
@@ -1341,9 +1341,9 @@ class CommentsListView extends HookConsumerWidget {
     return MultiSliver(
       children: [
         ListTile(
-          title: Text(L10n.of(context).comments),
+          title: Text(AppLocalizations.of(context).comments),
           trailing: Text(
-            '${L10n.of(context).more} ${comments.length}',
+            '${AppLocalizations.of(context).more} ${comments.length}',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),

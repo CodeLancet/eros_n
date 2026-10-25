@@ -5,7 +5,7 @@ import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/global.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/component/widget/web_view.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -49,7 +49,7 @@ class _WebLoginPageState extends ConsumerState<WebLoginPage> {
       appBar: adaptiveAppBar(
         context: context,
         ref: ref,
-        title: Text(L10n.of(context).login),
+        title: Text(AppLocalizations.of(context).login),
       ),
       body: GetCookieWebView(
         url: NHConst.loginUrl,
@@ -131,7 +131,7 @@ class WebLoginPage extends HookConsumerWidget {
       appBar: adaptiveAppBar(
         context: context,
         ref: ref,
-        title: Text(L10n.of(context).login),
+        title: Text(AppLocalizations.of(context).login),
       ),
       body: FutureBuilder<void>(
           future: setCookies(),

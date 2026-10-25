@@ -6,7 +6,7 @@ import 'package:eros_n/component/models/gallery.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/component/widget/buttons.dart';
 import 'package:eros_n/component/widget/pinch_grid_zoom.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/list_view/item/item_base.dart';
 import 'package:eros_n/pages/list_view/list_view.dart';
 import 'package:eros_n/pages/nav/front/front_provider.dart';
@@ -154,11 +154,11 @@ class SliverGalleryListView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sortMap = <SearchSort, String>{
-      SearchSort.recent: L10n.of(context).recent,
-      SearchSort.popularToday: L10n.of(context).popular_today,
-      SearchSort.popularWeek: L10n.of(context).popular_week,
-      SearchSort.popularMonth: L10n.of(context).popular_month,
-      SearchSort.popular: L10n.of(context).popular,
+      SearchSort.recent: AppLocalizations.of(context).recent,
+      SearchSort.popularToday: AppLocalizations.of(context).popular_today,
+      SearchSort.popularWeek: AppLocalizations.of(context).popular_week,
+      SearchSort.popularMonth: AppLocalizations.of(context).popular_month,
+      SearchSort.popular: AppLocalizations.of(context).popular,
     };
 
     return SliverSafeArea(
@@ -235,7 +235,7 @@ class SliverGalleryListView extends HookConsumerWidget {
 
                       final sortText =
                           sortMap[searchSortOnFrontPage] ??
-                          L10n.of(context).recent;
+                          AppLocalizations.of(context).recent;
 
                       const dur = Duration(milliseconds: 300);
                       const curve = Curves.easeInOut;
@@ -386,7 +386,7 @@ class PopularListView extends ConsumerWidget {
                         opacity: pinned ? 0.0 : 1.0,
                         duration: dur,
                         child: Text(
-                          L10n.of(context).popular,
+                          AppLocalizations.of(context).popular,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
@@ -409,7 +409,7 @@ class PopularListView extends ConsumerWidget {
                                 settings: glassButtonSettings(context),
                                 child: Center(
                                   child: Text(
-                                    L10n.of(context).popular,
+                                    AppLocalizations.of(context).popular,
                                     style: Theme.of(context)
                                         .textTheme
                                         .titleLarge

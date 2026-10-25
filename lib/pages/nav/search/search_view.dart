@@ -8,7 +8,7 @@ import 'package:eros_n/component/models/index.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/component/widget/buttons.dart';
 import 'package:eros_n/component/widget/pinch_grid_zoom.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/network/request.dart';
 import 'package:eros_n/pages/list_view/list_view.dart';
 import 'package:eros_n/pages/nav/index/index_provider.dart';
@@ -203,7 +203,7 @@ class _SearchPageState extends ConsumerState<SearchPage>
                 filled: true,
                 contentPadding: const EdgeInsets.only(),
                 isDense: false,
-                hintText: L10n.of(context).search,
+                hintText: AppLocalizations.of(context).search,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(100),
                   borderSide: BorderSide.none,
@@ -598,7 +598,7 @@ class _SearchHistoryPanel extends ConsumerWidget {
           Row(
             children: [
               Text(
-                L10n.of(context).recent_searches,
+                AppLocalizations.of(context).recent_searches,
                 style: theme.textTheme.titleSmall?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
@@ -606,7 +606,7 @@ class _SearchHistoryPanel extends ConsumerWidget {
               const Spacer(),
               TextButton.icon(
                 icon: const Icon(Icons.delete_sweep_outlined, size: 18),
-                label: Text(L10n.of(context).clear_history),
+                label: Text(AppLocalizations.of(context).clear_history),
                 onPressed: () => _confirmClear(context, ref),
               ),
             ],
@@ -637,16 +637,16 @@ class _SearchHistoryPanel extends ConsumerWidget {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(L10n.of(ctx).clear_history),
-        content: Text(L10n.of(ctx).clear_search_history_tip),
+        title: Text(AppLocalizations.of(ctx).clear_history),
+        content: Text(AppLocalizations.of(ctx).clear_search_history_tip),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: Text(L10n.of(ctx).cancel),
+            child: Text(AppLocalizations.of(ctx).cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(L10n.of(ctx).ok),
+            child: Text(AppLocalizations.of(ctx).ok),
           ),
         ],
       ),

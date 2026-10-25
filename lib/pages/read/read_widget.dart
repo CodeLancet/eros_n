@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/gallery/gallery_provider.dart';
 import 'package:eros_n/pages/read/read_provider.dart';
 import 'package:eros_n/pages/read/read_view.dart';
@@ -788,11 +788,11 @@ class ReadModelButton extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final itemMap = {
-      ReadModel.leftToRight: Text(L10n.of(context).left_to_right),
-      ReadModel.rightToLeft: Text(L10n.of(context).right_to_left),
-      ReadModel.webtoon: Text(L10n.of(context).webtoon),
-      ReadModel.curlVertical: Text(L10n.of(context).curl_vertical),
-      ReadModel.vertical: Text(L10n.of(context).vertical),
+      ReadModel.leftToRight: Text(AppLocalizations.of(context).left_to_right),
+      ReadModel.rightToLeft: Text(AppLocalizations.of(context).right_to_left),
+      ReadModel.webtoon: Text(AppLocalizations.of(context).webtoon),
+      ReadModel.curlVertical: Text(AppLocalizations.of(context).curl_vertical),
+      ReadModel.vertical: Text(AppLocalizations.of(context).vertical),
     };
 
     final readModelIconMap = <ReadModel, Widget>{

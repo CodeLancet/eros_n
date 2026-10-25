@@ -1,0 +1,12 @@
+# flutter gen-l10n configuration (replaces intl_utils / flutter_intl)
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+# Generate into the project (lib/l10n/generated) instead of the deprecated
+# synthetic package, so imports resolve like any other source file and the
+# code stays reviewable in git.
+output-dir: lib/l10n/generated
+# Keep the non-nullable getter (AppLocalizations.of(context)) so call sites
+# read exactly like the old L10n.of(context).
+nullable-getter: false

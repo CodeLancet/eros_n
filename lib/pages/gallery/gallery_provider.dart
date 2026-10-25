@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:eros_n/component/models/index.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/l10n.dart';
 import 'package:eros_n/network/app_dio/exception.dart';
 import 'package:eros_n/network/app_dio/pdio.dart';
 import 'package:eros_n/network/request.dart';

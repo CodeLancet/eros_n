@@ -8,7 +8,7 @@ import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/models/comment.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/component/widget/eros_cached_network_image.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/network/app_dio/pdio.dart';
 import 'package:eros_n/pages/gallery/comment_translation_provider.dart';
 import 'package:eros_n/pages/gallery/gallery_provider.dart';
@@ -64,7 +64,7 @@ class CommentsPage extends HookConsumerWidget {
             appBar: adaptiveAppBar(
               context: context,
               ref: ref,
-              title: Text(L10n.of(context).comments),
+              title: Text(AppLocalizations.of(context).comments),
             ),
             body: Padding(
               padding: glass ? glassBodyPadding(context) : EdgeInsets.zero,
@@ -136,7 +136,7 @@ class CommentsPage extends HookConsumerWidget {
                                         }
                                       } else {
                                         setState(() {
-                                          errorText = L10n.of(
+                                          errorText = AppLocalizations.of(
                                             context,
                                           ).comment_length_error;
                                         });

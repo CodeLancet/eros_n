@@ -4,7 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/global.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,7 +17,7 @@ class DownloadSettingPage extends ConsumerWidget {
     final glass = isLiquidGlass(ref);
     final settings = ref.watch(settingsProvider);
     final notifier = ref.read(settingsProvider.notifier);
-    final l = L10n.of(context);
+    final l = AppLocalizations.of(context);
 
     return Scaffold(
       extendBodyBehindAppBar: glass,
@@ -132,7 +132,7 @@ class _ConcurrencyWarning extends StatelessWidget {
   Widget build(BuildContext context) {
     final total = galleries * pages;
     final scheme = Theme.of(context).colorScheme;
-    final l = L10n.of(context);
+    final l = AppLocalizations.of(context);
 
     // total <= 4: safe (hidden)  5–8: warning  >= 9: error
     final Color bgColor;
