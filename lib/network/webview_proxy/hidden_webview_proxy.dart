@@ -6,7 +6,7 @@ import 'dart:typed_data';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:zikzak_inappwebview/zikzak_inappwebview.dart';
 
 /// A response returned by [HiddenWebViewProxy.request], roughly mirroring a
 /// `Fetch` response so it can be lifted into a Dio [Response] downstream.

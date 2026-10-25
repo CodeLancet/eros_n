@@ -6,8 +6,8 @@ import 'package:eros_n/generated/l10n.dart';
 import 'package:eros_n/pages/webview/webview.dart' show inAppWebViewSettings;
 import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart' hide Cookie;
-import 'package:webview_windows/webview_windows.dart';
+import 'package:zikzak_inappwebview/zikzak_inappwebview.dart' hide Cookie;
+import 'package:webview_flutter_windows/webview_flutter_windows.dart';
 
 class WebViewCookieInfo {
   const WebViewCookieInfo({
@@ -484,7 +484,19 @@ class _WindowsWebViewState extends State<WindowsWebView> {
 
   Future<List<Cookie>> getCookies() async {
     if (_controller.value.isInitialized) {
-      return await _controller.getCookies([Uri.parse(widget.url)]) ?? [];
+      final cookies = await _controller.getCookies(widget.url);
+
+      return cookies.map((e) {
+        final expires = e.expires;
+        final maxAge = expires?.difference(DateTime.now()).inSeconds;
+        return Cookie(e.name, e.value)
+          ..domain = e.domain
+          ..path = e.path
+          ..httpOnly = e.isHttpOnly
+          ..secure = e.isSecure
+          ..maxAge = maxAge
+          ..expires = expires;
+      }).toList();
     }
     return [];
   }
