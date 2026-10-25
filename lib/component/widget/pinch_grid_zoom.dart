@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/list_view/item/item_grid_card.dart';
 import 'package:eros_n/utils/toast.dart';
 import 'package:flutter/gestures.dart';
@@ -97,7 +97,7 @@ class _PinchGridZoomState extends ConsumerState<PinchGridZoom> {
   }
 
   void _showToast(bool fewer) {
-    final l10n = L10n.of(context);
+    final l10n = AppLocalizations.of(context);
     final message = fewer ? l10n.show_less : l10n.show_more;
     showSimpleToast(message);
   }

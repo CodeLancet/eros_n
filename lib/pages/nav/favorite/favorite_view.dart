@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/component/models/index.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/component/widget/pinch_grid_zoom.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/list_view/list_view.dart';
 import 'package:eros_n/pages/nav/favorite/favorite_provider.dart';
 import 'package:eros_n/pages/nav/index/index_provider.dart';
@@ -90,7 +90,7 @@ class _FavoritePageState extends ConsumerState<FavoritePage>
                         children: [
                           Expanded(
                             child: Text(
-                              L10n.of(context).favorites,
+                              AppLocalizations.of(context).favorites,
                               style: glass
                                   ? glassAppBarTitleStyle(context)
                                   : null,
@@ -151,7 +151,7 @@ class _FavoritePageState extends ConsumerState<FavoritePage>
                 SliverFillRemaining(
                   child: Center(
                     child: Text(
-                      L10n.of(context).please_login_first,
+                      AppLocalizations.of(context).please_login_first,
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),

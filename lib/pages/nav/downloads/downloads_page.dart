@@ -5,7 +5,7 @@ import 'package:eros_n/common/global.dart';
 import 'package:eros_n/common/provider/download_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/component/widget/eros_cached_network_image.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/gallery/gallery_provider.dart';
 import 'package:eros_n/routes/routes.dart';
 import 'package:eros_n/store/db/entity/download_task.dart';
@@ -34,7 +34,7 @@ class DownloadsPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final glass = isLiquidGlass(ref);
     final tasks = ref.watch(downloadProvider);
-    final l = L10n.of(context);
+    final l = AppLocalizations.of(context);
 
     final searchActive = useState(false);
     final searchQuery = useState('');
@@ -246,7 +246,7 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            L10n.of(context).no_downloads,
+            AppLocalizations.of(context).no_downloads,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
@@ -277,7 +277,7 @@ class _NoResultsState extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            L10n.of(context).no_result,
+            AppLocalizations.of(context).no_result,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
               color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
@@ -370,7 +370,7 @@ class _TaskCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final scheme = Theme.of(context).colorScheme;
     final notifier = ref.read(downloadProvider.notifier);
-    final l = L10n.of(context);
+    final l = AppLocalizations.of(context);
 
     final progress = task.totalPages > 0
         ? (task.downloadedPages / task.totalPages).clamp(0.0, 1.0)

@@ -1,5 +1,5 @@
 import 'package:eros_n/common/enum.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/material.dart';
 
@@ -26,11 +26,11 @@ class _SortPopupButtonState extends State<SortPopupButton> {
   @override
   Widget build(BuildContext context) {
     final sortMap = {
-      SearchSort.recent: L10n.of(context).recent,
-      SearchSort.popularToday: L10n.of(context).popular_today,
-      SearchSort.popularWeek: L10n.of(context).popular_week,
-      SearchSort.popularMonth: L10n.of(context).popular_month,
-      SearchSort.popular: L10n.of(context).popular,
+      SearchSort.recent: AppLocalizations.of(context).recent,
+      SearchSort.popularToday: AppLocalizations.of(context).popular_today,
+      SearchSort.popularWeek: AppLocalizations.of(context).popular_week,
+      SearchSort.popularMonth: AppLocalizations.of(context).popular_month,
+      SearchSort.popular: AppLocalizations.of(context).popular,
     };
 
     logger.t('loading $loading');
@@ -99,11 +99,11 @@ class _LanguagesFilterPopupButtonState
   @override
   Widget build(BuildContext context) {
     final languagesMap = {
-      LanguagesFilter.all: L10n.of(context).all,
-      LanguagesFilter.japanese: L10n.of(context).japanese,
-      LanguagesFilter.chinese: L10n.of(context).chinese,
-      LanguagesFilter.english: L10n.of(context).english,
-      LanguagesFilter.translated: L10n.of(context).translated,
+      LanguagesFilter.all: AppLocalizations.of(context).all,
+      LanguagesFilter.japanese: AppLocalizations.of(context).japanese,
+      LanguagesFilter.chinese: AppLocalizations.of(context).chinese,
+      LanguagesFilter.english: AppLocalizations.of(context).english,
+      LanguagesFilter.translated: AppLocalizations.of(context).translated,
     };
 
     final indicatorSize =

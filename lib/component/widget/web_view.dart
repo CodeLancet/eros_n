@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:eros_n/common/const/const.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/webview/webview.dart' show inAppWebViewSettings;
 import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/material.dart';
@@ -566,20 +566,20 @@ class _WindowsWebViewState extends State<WindowsWebView> {
     final decision = await showDialog<WebviewPermissionDecision>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text(L10n.of(context).webview_permission_title),
+        title: Text(AppLocalizations.of(context).webview_permission_title),
         content: Text(
-          L10n.of(context).webview_permission_content(kind.toString()),
+          AppLocalizations.of(context).webview_permission_content(kind.toString()),
         ),
         actions: <Widget>[
           TextButton(
             onPressed: () =>
                 Navigator.pop(context, WebviewPermissionDecision.deny),
-            child: Text(L10n.of(context).deny),
+            child: Text(AppLocalizations.of(context).deny),
           ),
           TextButton(
             onPressed: () =>
                 Navigator.pop(context, WebviewPermissionDecision.allow),
-            child: Text(L10n.of(context).allow),
+            child: Text(AppLocalizations.of(context).allow),
           ),
         ],
       ),
@@ -592,7 +592,7 @@ class _WindowsWebViewState extends State<WindowsWebView> {
   Widget build(BuildContext context) {
     if (!_controller.value.isInitialized) {
       return Text(
-        L10n.of(context).not_initialized,
+        AppLocalizations.of(context).not_initialized,
         style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.w900),
       );
     } else {

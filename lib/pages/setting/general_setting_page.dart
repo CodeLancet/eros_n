@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/setting/setting_base.dart';
 import 'package:eros_n/routes/routes.dart';
 import 'package:flutter/foundation.dart';
@@ -22,7 +22,7 @@ class GeneralSettingPage extends ConsumerWidget {
       appBar: adaptiveAppBar(
         context: context,
         ref: ref,
-        title: Text(L10n.of(context).general),
+        title: Text(AppLocalizations.of(context).general),
       ),
       body: ListView(
         padding: glass ? glassBodyPadding(context) : null,
@@ -33,20 +33,25 @@ class GeneralSettingPage extends ConsumerWidget {
                 settingsProvider.select((settings) => settings.localeCode),
               );
 
-              final radioTitleMap = {'': Text(L10n.of(context).system)};
+              final radioTitleMap = {
+                '': Text(AppLocalizations.of(context).system),
+              };
 
-              final radioTitleMapFromSupported = L10n.delegate.supportedLocales
-                  .asMap()
-                  .map((key, value) {
-                    final code =
-                        '${value.languageCode}_${value.countryCode ?? ''}';
-                    return MapEntry(code, Text(NHConst.localeMap[code]!));
-                  });
+              // gen-l10n adds a base zh locale as fallback for zh_CN/zh_TW;
+              // only offer locales that have an entry in NHConst.localeMap.
+              final selectableLocales = AppLocalizations.supportedLocales
+                  .where((l) => NHConst.localeMap
+                      .containsKey('${l.languageCode}_${l.countryCode ?? ''}'))
+                  .toList()
+                ..sort((a, b) => a.toString().compareTo(b.toString()));
 
-              radioTitleMap.addAll(radioTitleMapFromSupported);
+              for (final locale in selectableLocales) {
+                final code = '${locale.languageCode}_${locale.countryCode ?? ''}';
+                radioTitleMap[code] = Text(NHConst.localeMap[code]!);
+              }
 
               return RadioDialogListTile<String>(
-                title: Text(L10n.of(context).language),
+                title: Text(AppLocalizations.of(context).language),
                 groupValue: localeCode,
                 radioTitleMap: radioTitleMap,
                 onChanged: (value) {
@@ -64,7 +69,7 @@ class GeneralSettingPage extends ConsumerWidget {
               );
 
               return SwitchListTile(
-                title: Text(L10n.of(context).hide_bottom_navigation_on_scroll),
+                title: Text(AppLocalizations.of(context).hide_bottom_navigation_on_scroll),
                 value: hideBottomNavigationOnScroll,
                 onChanged: (value) {
                   ref
@@ -83,7 +88,7 @@ class GeneralSettingPage extends ConsumerWidget {
               );
 
               return SwitchListTile(
-                title: Text(L10n.of(context).clipboard_detection),
+                title: Text(AppLocalizations.of(context).clipboard_detection),
                 value: clipboardDetection,
                 onChanged: (value) {
                   ref
@@ -102,7 +107,7 @@ class GeneralSettingPage extends ConsumerWidget {
               );
 
               return SwitchListTile(
-                title: Text(L10n.of(context).double_back_to_exit),
+                title: Text(AppLocalizations.of(context).double_back_to_exit),
                 value: doubleBackToExit,
                 onChanged: (value) {
                   ref
@@ -116,15 +121,15 @@ class GeneralSettingPage extends ConsumerWidget {
           const Divider(),
 
           ListTile(
-            title: Text(L10n.of(context).translation_settings),
+            title: Text(AppLocalizations.of(context).translation_settings),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => context.pushRoute(const TranslationSettingRoute()),
           ),
 
           if (defaultTargetPlatform == TargetPlatform.android)
             ListTile(
-              title: Text(L10n.of(context).open_supported_links),
-              subtitle: Text(L10n.of(context).open_supported_links_tip),
+              title: Text(AppLocalizations.of(context).open_supported_links),
+              subtitle: Text(AppLocalizations.of(context).open_supported_links_tip),
               onTap: OpenByDefault.open,
             ),
         ],

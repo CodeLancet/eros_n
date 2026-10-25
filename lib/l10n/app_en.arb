@@ -69,6 +69,11 @@
   "list_style": "List Style",
   "tag_translation": "Tag Translation",
   "tag_translation_tip": "need download tag translation data, version: {version}",
+  "@tag_translation_tip": {
+    "placeholders": {
+      "version": {}
+    }
+  },
   "tag_translation_updating": "Downloading translation data...",
   "tag_translation_updated": "Translation data updated",
   "tag_translation_update_failed": "Translation data update failed",

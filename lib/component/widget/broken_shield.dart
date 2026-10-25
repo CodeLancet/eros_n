@@ -6,7 +6,7 @@ import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/global.dart';
 import 'package:eros_n/component/widget/desktop.dart';
 import 'package:eros_n/component/widget/web_view.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/network/app_dio/dio_http_cli.dart';
 import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +69,7 @@ class _BrokenShieldState extends State<BrokenShield> {
           builder: (context, snapshot) {
             final manualRequired = snapshot.data?.manualRequired ?? false;
             final message =
-                snapshot.data?.message ?? L10n.of(context).security_challenge;
+                snapshot.data?.message ?? AppLocalizations.of(context).security_challenge;
             final showWebView = manualRequired;
             double opacity = 0;
             if (showWebView) {
@@ -187,7 +187,7 @@ class _BrokenShieldState extends State<BrokenShield> {
             }
           },
         ),
-        title: Text(L10n.of(context).security_challenge),
+        title: Text(AppLocalizations.of(context).security_challenge),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),

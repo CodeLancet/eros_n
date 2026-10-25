@@ -5,7 +5,7 @@ import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/common/provider/tag_translate_provider.dart';
 import 'package:eros_n/component/theme/theme.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/setting/setting_base.dart';
 import 'package:eros_n/routes/routes.dart';
 import 'package:eros_n/utils/toast.dart';
@@ -24,13 +24,13 @@ class AppearanceSettingPage extends ConsumerWidget {
       appBar: adaptiveAppBar(
         context: context,
         ref: ref,
-        title: Text(L10n.of(context).appearance),
+        title: Text(AppLocalizations.of(context).appearance),
       ),
       body: ListView(
         padding: glass ? glassBodyPadding(context) : null,
         children: <Widget>[
           /// Theme
-          SmallTitle(title: L10n.of(context).theme),
+          SmallTitle(title: AppLocalizations.of(context).theme),
           // ThemeMode
           Consumer(
             builder: (context, ref, child) {
@@ -38,12 +38,12 @@ class AppearanceSettingPage extends ConsumerWidget {
                 settingsProvider.select((settings) => settings.themeMode),
               );
               return RadioDialogListTile<ThemeMode>(
-                title: Text(L10n.of(context).theme_mode),
+                title: Text(AppLocalizations.of(context).theme_mode),
                 groupValue: themeMode,
                 radioTitleMap: {
-                  ThemeMode.system: Text(L10n.of(context).system),
-                  ThemeMode.light: Text(L10n.of(context).light),
-                  ThemeMode.dark: Text(L10n.of(context).dark),
+                  ThemeMode.system: Text(AppLocalizations.of(context).system),
+                  ThemeMode.light: Text(AppLocalizations.of(context).light),
+                  ThemeMode.dark: Text(AppLocalizations.of(context).dark),
                   // TagLayoutOnCard.row: Text('Row'),
                 },
                 onChanged: (value) {
@@ -60,7 +60,7 @@ class AppearanceSettingPage extends ConsumerWidget {
                 settingsProvider.select((settings) => settings.liquidGlass),
               );
               return SwitchListTile(
-                title: Text(L10n.of(context).liquid_glass),
+                title: Text(AppLocalizations.of(context).liquid_glass),
                 value: liquidGlass,
                 onChanged: (value) {
                   ref.read(settingsProvider.notifier).setLiquidGlass(value);
@@ -74,8 +74,8 @@ class AppearanceSettingPage extends ConsumerWidget {
           //   final dynamicColor = ref.watch(
           //       settingsProvider.select((settings) => settings.dynamicColor));
           //   return ListTile(
-          //     title: Text(L10n.of(context).dynamic_color),
-          //     subtitle: Text(L10n.of(context).dynamic_color_tip),
+          //     title: Text(AppLocalizations.of(context).dynamic_color),
+          //     subtitle: Text(AppLocalizations.of(context).dynamic_color_tip),
           //     trailing: Switch(
           //       activeColor: Theme.of(context).colorScheme.primary,
           //       value: dynamicColor,
@@ -114,7 +114,7 @@ class AppearanceSettingPage extends ConsumerWidget {
               return ListTile(
                 title: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(L10n.of(context).theme),
+                  child: Text(AppLocalizations.of(context).theme),
                 ),
                 contentPadding: const EdgeInsets.symmetric(horizontal: 0),
                 subtitle: SizedBox(
@@ -163,8 +163,8 @@ class AppearanceSettingPage extends ConsumerWidget {
                 settingsProvider.select((settings) => settings.useGalleryTint),
               );
               return ListTile(
-                title: Text(L10n.of(context).use_gallery_tint),
-                subtitle: Text(L10n.of(context).use_gallery_tint_tip),
+                title: Text(AppLocalizations.of(context).use_gallery_tint),
+                subtitle: Text(AppLocalizations.of(context).use_gallery_tint_tip),
                 trailing: Switch(
                   activeThumbColor: Theme.of(context).colorScheme.primary,
                   value: useGalleryTint,
@@ -181,7 +181,7 @@ class AppearanceSettingPage extends ConsumerWidget {
           const Divider(height: 1.0),
 
           /// List Style
-          SmallTitle(title: L10n.of(context).list_style),
+          SmallTitle(title: AppLocalizations.of(context).list_style),
           // switch list model
           Consumer(
             builder: (context, ref, child) {
@@ -189,14 +189,14 @@ class AppearanceSettingPage extends ConsumerWidget {
                 settingsProvider.select((settings) => settings.listModel),
               );
               return RadioDialogListTile<ListModel>(
-                title: Text(L10n.of(context).list_model),
+                title: Text(AppLocalizations.of(context).list_model),
                 groupValue: listModel,
                 radioTitleMap: {
-                  ListModel.list: Text(L10n.of(context).list),
-                  ListModel.grid: Text(L10n.of(context).grid),
-                  ListModel.waterfall: Text(L10n.of(context).waterfall),
+                  ListModel.list: Text(AppLocalizations.of(context).list),
+                  ListModel.grid: Text(AppLocalizations.of(context).grid),
+                  ListModel.waterfall: Text(AppLocalizations.of(context).waterfall),
                   ListModel.waterfallCompact: Text(
-                    L10n.of(context).waterfall_compact,
+                    AppLocalizations.of(context).waterfall_compact,
                   ),
                 },
                 onChanged: (value) {
@@ -214,8 +214,8 @@ class AppearanceSettingPage extends ConsumerWidget {
                 return const SizedBox.shrink();
               }
               return ListTile(
-                title: Text(L10n.of(context).custom_layout_width),
-                subtitle: Text(L10n.of(context).pinch_to_zoom_hint),
+                title: Text(AppLocalizations.of(context).custom_layout_width),
+                subtitle: Text(AppLocalizations.of(context).pinch_to_zoom_hint),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () {
                   context.router.push(const ItemWidthSettingRoute());
@@ -230,8 +230,8 @@ class AppearanceSettingPage extends ConsumerWidget {
                 settingsProvider.select((settings) => settings.showTags),
               );
               return ListTile(
-                title: Text(L10n.of(context).show_tags),
-                subtitle: Text(L10n.of(context).show_tags_tip),
+                title: Text(AppLocalizations.of(context).show_tags),
+                subtitle: Text(AppLocalizations.of(context).show_tags_tip),
                 trailing: Switch(
                   activeThumbColor: Theme.of(context).colorScheme.primary,
                   value: showTags,
@@ -248,12 +248,12 @@ class AppearanceSettingPage extends ConsumerWidget {
                 settingsProvider.select((settings) => settings.tagLayoutOnItem),
               );
               return RadioDialogListTile<TagLayoutOnItem>(
-                title: Text(L10n.of(context).tag_layout_on_item),
+                title: Text(AppLocalizations.of(context).tag_layout_on_item),
                 groupValue: tagLayoutOnItem,
                 radioTitleMap: {
-                  TagLayoutOnItem.wrap: Text(L10n.of(context).wrap),
+                  TagLayoutOnItem.wrap: Text(AppLocalizations.of(context).wrap),
                   TagLayoutOnItem.singleLine: Text(
-                    L10n.of(context).single_line,
+                    AppLocalizations.of(context).single_line,
                   ),
                   // TagLayoutOnCard.row: Text('Row'),
                 },
@@ -281,7 +281,7 @@ class AppearanceSettingPage extends ConsumerWidget {
                   if (context.mounted) {
                     showBriefSnackBar(
                       context,
-                      L10n.of(context).tag_translation_updated,
+                      AppLocalizations.of(context).tag_translation_updated,
                       duration: const Duration(seconds: 2),
                     );
                   }
@@ -289,7 +289,7 @@ class AppearanceSettingPage extends ConsumerWidget {
                   if (context.mounted) {
                     showBriefSnackBar(
                       context,
-                      '${L10n.of(context).tag_translation_update_failed}: $e',
+                      '${AppLocalizations.of(context).tag_translation_update_failed}: $e',
                       duration: const Duration(seconds: 4),
                     );
                   }
@@ -297,11 +297,11 @@ class AppearanceSettingPage extends ConsumerWidget {
               }
 
               return ListTile(
-                title: Text(L10n.of(context).tag_translation),
+                title: Text(AppLocalizations.of(context).tag_translation),
                 subtitle: Text(
                   isUpdating
-                      ? L10n.of(context).tag_translation_updating
-                      : L10n.of(
+                      ? AppLocalizations.of(context).tag_translation_updating
+                      : AppLocalizations.of(
                           context,
                         ).tag_translation_tip(tagTranslateInfo.version ?? ''),
                 ),
@@ -336,8 +336,8 @@ class AppearanceSettingPage extends ConsumerWidget {
                 settingsProvider.select((settings) => settings.isCoverBlur),
               );
               return ListTile(
-                title: Text(L10n.of(context).cover_blur),
-                subtitle: Text(L10n.of(context).cover_blur_tip),
+                title: Text(AppLocalizations.of(context).cover_blur),
+                subtitle: Text(AppLocalizations.of(context).cover_blur_tip),
                 trailing: Switch(
                   activeThumbColor: Theme.of(context).colorScheme.primary,
                   value: isCoverBlur,

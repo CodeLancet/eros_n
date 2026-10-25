@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/setting/setting_base.dart';
 import 'package:eros_n/utils/logger.dart';
 import 'package:eros_n/utils/toast.dart';
@@ -24,7 +24,7 @@ class TranslationSettingPage extends ConsumerWidget {
       appBar: adaptiveAppBar(
         context: context,
         ref: ref,
-        title: Text(L10n.of(context).translation_settings),
+        title: Text(AppLocalizations.of(context).translation_settings),
       ),
       body: ListView(
         padding: glass ? glassBodyPadding(context) : null,
@@ -35,7 +35,7 @@ class TranslationSettingPage extends ConsumerWidget {
                 settingsProvider.select((s) => s.commentTranslation),
               );
               return SwitchListTile(
-                title: Text(L10n.of(context).comment_translation),
+                title: Text(AppLocalizations.of(context).comment_translation),
                 value: commentTranslation,
                 onChanged: (value) {
                   ref
@@ -51,7 +51,7 @@ class TranslationSettingPage extends ConsumerWidget {
                 settingsProvider.select((s) => s.autoTranslateComments),
               );
               return SwitchListTile(
-                title: Text(L10n.of(context).auto_translate_comments),
+                title: Text(AppLocalizations.of(context).auto_translate_comments),
                 value: autoTranslate,
                 onChanged: (value) {
                   ref
@@ -67,14 +67,14 @@ class TranslationSettingPage extends ConsumerWidget {
                 settingsProvider.select((s) => s.translationDisplayMode),
               );
               return RadioDialogListTile<TranslationDisplayMode>(
-                title: Text(L10n.of(context).translation_display_mode),
+                title: Text(AppLocalizations.of(context).translation_display_mode),
                 groupValue: displayMode,
                 radioTitleMap: {
                   TranslationDisplayMode.replaceOriginal: Text(
-                    L10n.of(context).replace_original,
+                    AppLocalizations.of(context).replace_original,
                   ),
                   TranslationDisplayMode.bilingual: Text(
-                    L10n.of(context).bilingual_display,
+                    AppLocalizations.of(context).bilingual_display,
                   ),
                 },
                 onChanged: (value) {
@@ -100,7 +100,7 @@ class TranslationSettingPage extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ListTile(
-                    title: Text(L10n.of(context).bilingual_style),
+                    title: Text(AppLocalizations.of(context).bilingual_style),
                     subtitle: _BilingualStyleName(style: bilingualStyle),
                     onTap: () =>
                         _showBilingualStylePicker(context, ref, bilingualStyle),
@@ -117,8 +117,8 @@ class TranslationSettingPage extends ConsumerWidget {
                 settingsProvider.select((s) => s.useGoogleTranslate),
               );
               return SwitchListTile(
-                title: Text(L10n.of(context).use_google_translate),
-                subtitle: Text(L10n.of(context).use_google_translate_tip),
+                title: Text(AppLocalizations.of(context).use_google_translate),
+                subtitle: Text(AppLocalizations.of(context).use_google_translate_tip),
                 value: useGoogle,
                 onChanged: (value) {
                   ref
@@ -140,12 +140,12 @@ class TranslationSettingPage extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SmallTitle(
-                    title: L10n.of(context).translation_service_config,
+                    title: AppLocalizations.of(context).translation_service_config,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
-                      L10n.of(context).translation_hint,
+                      AppLocalizations.of(context).translation_hint,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
@@ -173,7 +173,7 @@ void _showBilingualStylePicker(
     builder: (context) {
       return AlertDialog(
         contentPadding: const EdgeInsets.only(top: 16),
-        title: Text(L10n.of(context).bilingual_style),
+        title: Text(AppLocalizations.of(context).bilingual_style),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: BilingualStyle.values.map((style) {
@@ -194,7 +194,7 @@ void _showBilingualStylePicker(
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text(L10n.of(context).cancel),
+            child: Text(AppLocalizations.of(context).cancel),
           ),
         ],
       );
@@ -208,7 +208,7 @@ class _BilingualStyleName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
+    final l10n = AppLocalizations.of(context);
     switch (style) {
       case BilingualStyle.divider:
         return Text(l10n.bilingual_style_divider);
@@ -227,7 +227,7 @@ class _BilingualPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = L10n.of(context);
+    final l10n = AppLocalizations.of(context);
     final original = l10n.bilingual_preview_original;
     final translated = l10n.bilingual_preview_translated;
 
@@ -276,7 +276,7 @@ class _TranslationCacheTileState extends State<_TranslationCacheTile> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
+    final l10n = AppLocalizations.of(context);
     return ListTile(
       title: Text(l10n.clear_translation_cache),
       subtitle: Text(l10n.translation_cache_entries(_entryCount)),
@@ -376,7 +376,7 @@ class _TranslationConfigFieldsState
     } catch (e) {
       logger.e('fetchModels error: $e');
       if (mounted) {
-        showBriefSnackBar(context, L10n.of(context).fetch_models_failed);
+        showBriefSnackBar(context, AppLocalizations.of(context).fetch_models_failed);
       }
     } finally {
       if (mounted) {
@@ -387,7 +387,7 @@ class _TranslationConfigFieldsState
 
   @override
   Widget build(BuildContext context) {
-    final l10n = L10n.of(context);
+    final l10n = AppLocalizations.of(context);
     final settings = ref.watch(settingsProvider);
     final provider = settings.translationProvider;
     final currentModel = settings.translationModel;

@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/provider/tag_translate_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/setting/cache_size_provider.dart';
 import 'package:eros_n/pages/setting/setting_base.dart';
 import 'package:flutter/material.dart';
@@ -19,17 +19,17 @@ class AdvancedSettingPage extends ConsumerWidget {
       appBar: adaptiveAppBar(
         context: context,
         ref: ref,
-        title: Text(L10n.of(context).advanced),
+        title: Text(AppLocalizations.of(context).advanced),
       ),
       body: ListView(
         padding: glass ? glassBodyPadding(context) : null,
         children: <Widget>[
-          SmallTitle(title: L10n.of(context).tag),
+          SmallTitle(title: AppLocalizations.of(context).tag),
           Consumer(
             builder: (context, ref, child) {
               final allNhTag = ref.watch(allNhTagProvider);
               return ListTile(
-                title: Text(L10n.of(context).tags_data),
+                title: Text(AppLocalizations.of(context).tags_data),
                 subtitle: allNhTag.when(
                   data: (data) => Text('cached: ${data.length}'),
                   loading: () => const Text('loading...'),
@@ -51,7 +51,7 @@ class _CacheTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sizeAsync = ref.watch(cacheSizeProvider);
-    final l10n = L10n.of(context);
+    final l10n = AppLocalizations.of(context);
 
     final subtitle = sizeAsync.when(
       data: (bytes) {
@@ -74,7 +74,7 @@ class _CacheTile extends ConsumerWidget {
   Future<void> _confirmClear(
     BuildContext context,
     WidgetRef ref,
-    L10n l10n,
+    AppLocalizations l10n,
   ) async {
     final ok = await showDialog<bool>(
       context: context,

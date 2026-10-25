@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/global.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -18,7 +18,7 @@ class SettingsPage extends ConsumerWidget {
       appBar: adaptiveAppBar(
         context: context,
         ref: ref,
-        title: Text(L10n.of(context).settings),
+        title: Text(AppLocalizations.of(context).settings),
       ),
       body: ListView(
         padding: glass ? glassBodyPadding(context) : null,
@@ -26,7 +26,7 @@ class SettingsPage extends ConsumerWidget {
           ListTile(
             iconColor: Theme.of(context).colorScheme.primary,
             leading: const Icon(Icons.tune_outlined),
-            title: Text(L10n.of(context).general),
+            title: Text(AppLocalizations.of(context).general),
             onTap: () {
               erosRouter.push(const GeneralSettingRoute());
             },
@@ -34,7 +34,7 @@ class SettingsPage extends ConsumerWidget {
           ListTile(
             iconColor: Theme.of(context).colorScheme.primary,
             leading: const Icon(Icons.color_lens_outlined),
-            title: Text(L10n.of(context).appearance),
+            title: Text(AppLocalizations.of(context).appearance),
             onTap: () {
               erosRouter.push(const AppearanceSettingRoute());
             },
@@ -43,7 +43,7 @@ class SettingsPage extends ConsumerWidget {
           ListTile(
             iconColor: Theme.of(context).colorScheme.primary,
             leading: const Icon(Icons.chrome_reader_mode_outlined),
-            title: Text(L10n.of(context).read),
+            title: Text(AppLocalizations.of(context).read),
             onTap: () {
               erosRouter.push(const ReadSettingRoute());
             },
@@ -52,7 +52,7 @@ class SettingsPage extends ConsumerWidget {
           ListTile(
             iconColor: Theme.of(context).colorScheme.primary,
             leading: const Icon(Icons.data_object_outlined),
-            title: Text(L10n.of(context).advanced),
+            title: Text(AppLocalizations.of(context).advanced),
             onTap: () {
               erosRouter.push(const AdvancedSettingRoute());
             },
@@ -60,7 +60,7 @@ class SettingsPage extends ConsumerWidget {
           ListTile(
             iconColor: Theme.of(context).colorScheme.primary,
             leading: const Icon(Icons.download_outlined),
-            title: Text(L10n.of(context).download),
+            title: Text(AppLocalizations.of(context).download),
             onTap: () {
               erosRouter.push(const DownloadSettingRoute());
             },

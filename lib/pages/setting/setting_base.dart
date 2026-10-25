@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/utils/get_utils/extensions/context_extensions.dart';
 import 'package:flutter/material.dart';
 
@@ -77,9 +77,11 @@ class RadioDialogListTile<T> extends StatelessWidget {
               content: RadioGroup<T>(
                 groupValue: groupValue,
                 onChanged: onChanged,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: children,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: children,
+                  ),
                 ),
               ),
               actions: [
@@ -87,7 +89,7 @@ class RadioDialogListTile<T> extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(L10n.of(context).cancel),
+                  child: Text(AppLocalizations.of(context).cancel),
                 ),
               ],
             );

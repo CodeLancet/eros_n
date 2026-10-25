@@ -5,7 +5,7 @@ import 'package:eros_n/common/extension.dart';
 import 'package:eros_n/component/models/index.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/component/widget/eros_cached_network_image.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/nav/history/history_provider.dart';
 import 'package:eros_n/pages/nav/index/index_provider.dart';
 import 'package:eros_n/routes/routes.dart';
@@ -104,7 +104,7 @@ class _HistoryPageState extends ConsumerState<HistoryPage>
                       ? TextField(
                           autofocus: true,
                           decoration: InputDecoration(
-                            hintText: L10n.of(context).search,
+                            hintText: AppLocalizations.of(context).search,
                             border: InputBorder.none,
                           ),
                           textInputAction: TextInputAction.search,
@@ -115,7 +115,7 @@ class _HistoryPageState extends ConsumerState<HistoryPage>
                       : Row(
                           children: [
                             Text(
-                              L10n.of(context).history,
+                              AppLocalizations.of(context).history,
                               style: glass
                                   ? glassAppBarTitleStyle(context)
                                   : null,
@@ -170,17 +170,17 @@ class _HistoryPageState extends ConsumerState<HistoryPage>
                                   builder: (context) {
                                     return AlertDialog(
                                       title: Text(
-                                        L10n.of(context).clear_history,
+                                        AppLocalizations.of(context).clear_history,
                                       ),
                                       content: Text(
-                                        L10n.of(context).clear_history_tip,
+                                        AppLocalizations.of(context).clear_history_tip,
                                       ),
                                       actions: [
                                         TextButton(
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
-                                          child: Text(L10n.of(context).cancel),
+                                          child: Text(AppLocalizations.of(context).cancel),
                                         ),
                                         TextButton(
                                           onPressed: () {
@@ -189,7 +189,7 @@ class _HistoryPageState extends ConsumerState<HistoryPage>
                                                 .clearHistory();
                                             Navigator.of(context).pop();
                                           },
-                                          child: Text(L10n.of(context).ok),
+                                          child: Text(AppLocalizations.of(context).ok),
                                         ),
                                       ],
                                     );
@@ -216,9 +216,9 @@ class _HistoryPageState extends ConsumerState<HistoryPage>
                       final DateTime date = e.key;
                       // if date is today
                       final String dateStr = date.isToday()
-                          ? L10n.of(context).today
+                          ? AppLocalizations.of(context).today
                           : date.isYesterday()
-                          ? L10n.of(context).yesterday
+                          ? AppLocalizations.of(context).yesterday
                           : date.toLocal().toString().split(' ')[0];
                       final historysInDate = e.value;
                       return MultiSliver(

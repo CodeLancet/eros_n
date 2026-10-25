@@ -90,7 +90,7 @@ Future<void> showInAppWebViewDialog({
       //   configuration: dww.CreateConfiguration(
       //     windowHeight: 600,
       //     windowWidth: 800,
-      //     title: L10n.of(context).app_title,
+      //     title: AppLocalizations.of(context).app_title,
       //     titleBarTopPadding: io.Platform.isMacOS ? 20 : 0,
       //   ),
       // );

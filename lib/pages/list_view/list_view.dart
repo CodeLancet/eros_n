@@ -2,7 +2,7 @@ import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/models/gallery.dart';
-import 'package:eros_n/generated/l10n.dart';
+import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/enum.dart';
 import 'package:eros_n/pages/list_view/item/item_grid_card.dart';
 import 'package:eros_n/pages/list_view/item/item_list_card.dart';
@@ -282,7 +282,7 @@ class EndIndicator extends StatelessWidget {
                   children: <Widget>[
                     const Icon(Icons.error, size: 60),
                     Text(
-                      L10n.of(context).load_more_fail,
+                      AppLocalizations.of(context).load_more_fail,
                       style: const TextStyle(fontSize: 12),
                     ),
                   ],
