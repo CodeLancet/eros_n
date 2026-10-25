@@ -1,11 +1,8 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:eros_n/common/global.dart';
 import 'package:eros_n/routes/routes.dart';
 import 'package:eros_n/utils/get_utils/get_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-@RoutePage()
 class SplashPage extends StatefulHookConsumerWidget {
   const SplashPage({super.key});
 
@@ -19,7 +16,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
     super.initState();
 
     10.milliseconds.delay().then(
-      (value) => erosRouter.replace(const IndexRoute()),
+      (value) => erosRouter.go(NHRoutes.home),
     );
   }
 

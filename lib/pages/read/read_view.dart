@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/provider/download_provider.dart';
@@ -23,6 +21,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+
 
 // 底栏控制栏按钮高度
 const double kBottomBarButtonHeight = 54.0;
@@ -88,11 +87,8 @@ PhotoViewScaleState imageScaleStateCycle(PhotoViewScaleState actual) {
   return desc;
 }
 
-@RoutePage()
 class ReadPage extends HookConsumerWidget {
-  const ReadPage({super.key, this.index, this.colorScheme});
-  final int? index;
-  final ColorScheme? colorScheme;
+  const ReadPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

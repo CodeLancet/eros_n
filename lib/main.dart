@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:eros_n/common/global.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
@@ -15,12 +13,13 @@ import 'package:eros_n/routes/routes.dart';
 import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:zikzak_inappwebview/zikzak_inappwebview.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:window_manager/window_manager.dart';
+import 'package:zikzak_inappwebview/zikzak_inappwebview.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -169,15 +168,7 @@ class _MyAppState extends ConsumerState<MyApp> with WidgetsBindingObserver {
 
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          routeInformationParser: erosRouter.defaultRouteParser(),
-          routeInformationProvider: erosRouter.routeInfoProvider(),
-          routerDelegate: AutoRouterDelegate(
-            erosRouter,
-            navigatorObservers: () => [
-              AppRouteObserver(),
-              FlutterSmartDialog.observer,
-            ],
-          ),
+          routerConfig: erosRouter,
           builder: SystemUIOverlay.init(
             builder: FlutterSmartDialog.init(
               styleBuilder: (child) {

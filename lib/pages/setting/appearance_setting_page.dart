@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
@@ -10,9 +9,9 @@ import 'package:eros_n/pages/setting/setting_base.dart';
 import 'package:eros_n/routes/routes.dart';
 import 'package:eros_n/utils/toast.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-@RoutePage()
 class AppearanceSettingPage extends ConsumerWidget {
   const AppearanceSettingPage({super.key});
 
@@ -218,7 +217,7 @@ class AppearanceSettingPage extends ConsumerWidget {
                 subtitle: Text(AppLocalizations.of(context).pinch_to_zoom_hint),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () {
-                  context.router.push(const ItemWidthSettingRoute());
+                  context.push(const ItemWidthSettingRoute().location);
                 },
               );
             },

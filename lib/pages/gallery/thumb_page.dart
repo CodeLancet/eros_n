@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/component/models/image.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
@@ -14,18 +13,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-@RoutePage()
 class ThumbPage extends HookConsumerWidget {
-  const ThumbPage({super.key, required this.gid, this.colorScheme});
+  const ThumbPage({super.key, required this.gid});
   final int gid;
-  final ColorScheme? colorScheme;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ScrollController scrollController = useScrollController();
 
     return Theme(
-      data: Theme.of(context).copyWith(colorScheme: colorScheme),
+      data: Theme.of(context).copyWith(
+          colorScheme: getGalleryColorScheme(gid) ?? Theme.of(context).colorScheme,
+        ),
       child: Builder(
         builder: (context) {
           final glass = isLiquidGlass(ref);

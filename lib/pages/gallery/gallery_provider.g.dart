@@ -58,7 +58,7 @@ final class GalleryNotifierProvider
   }
 }
 
-String _$galleryNotifierHash() => r'a8326718567c45d893118e980bee3154198917ec';
+String _$galleryNotifierHash() => r'680557f4b89091d90baf8df6fce16cd7bbc0a4fc';
 
 final class GalleryNotifierFamily extends $Family
     with $ClassFamilyOverride<GalleryNotifier, Gallery, Gallery, Gallery, int> {

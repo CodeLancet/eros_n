@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
@@ -12,7 +11,6 @@ import 'package:eros_n/utils/translation/translation_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-@RoutePage()
 class TranslationSettingPage extends ConsumerWidget {
   const TranslationSettingPage({super.key});
 

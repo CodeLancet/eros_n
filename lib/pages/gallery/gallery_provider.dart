@@ -276,6 +276,21 @@ int get currentGalleryGid {
   return _gidList.lastOrNull ?? 0;
 }
 
+// ColorScheme is not serializable as a route parameter under go_router, so
+// gallery-derived pages (thumb/comments) pick it up from this side channel,
+// keyed by gid and set right before the page is pushed.
+final _galleryColorSchemes = <int, ColorScheme>{};
+
+void setGalleryColorScheme(int gid, ColorScheme? colorScheme) {
+  if (colorScheme == null) {
+    _galleryColorSchemes.remove(gid);
+  } else {
+    _galleryColorSchemes[gid] = colorScheme;
+  }
+}
+
+ColorScheme? getGalleryColorScheme(int gid) => _galleryColorSchemes[gid];
+
 String getGalleryImageUrl(String imageKey, int index, String ext) {
   return 'https://i.nhentai.net/galleries/$imageKey/${index + 1}.$ext';
 }

@@ -42,7 +42,7 @@ final class CommentTranslationNotifierProvider
 }
 
 String _$commentTranslationNotifierHash() =>
-    r'f5313b89a9ac73c73a029ab42f246995c4d6c8ed';
+    r'2299d71789aba9c272a484955d44d5a953695d01';
 
 abstract class _$CommentTranslationNotifier extends $Notifier<int> {
   int build();

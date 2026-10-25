@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
@@ -7,10 +6,10 @@ import 'package:eros_n/pages/setting/setting_base.dart';
 import 'package:eros_n/routes/routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:open_by_default/open_by_default.dart';
 
-@RoutePage()
 class GeneralSettingPage extends ConsumerWidget {
   const GeneralSettingPage({super.key});
 
@@ -123,7 +122,7 @@ class GeneralSettingPage extends ConsumerWidget {
           ListTile(
             title: Text(AppLocalizations.of(context).translation_settings),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () => context.pushRoute(const TranslationSettingRoute()),
+            onTap: () => context.push(const TranslationSettingRoute().location),
           ),
 
           if (defaultTargetPlatform == TargetPlatform.android)

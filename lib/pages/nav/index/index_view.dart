@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/nav/favorite/favorite_view.dart';
@@ -14,7 +13,6 @@ import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 
-@RoutePage()
 class IndexPage extends StatefulHookConsumerWidget {
   const IndexPage({super.key});
 

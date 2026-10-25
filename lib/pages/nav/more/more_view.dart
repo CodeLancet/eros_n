@@ -1,6 +1,4 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:eros_n/common/global.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/l10n/generated/app_localizations.dart';
 import 'package:eros_n/pages/nav/index/index_provider.dart';
@@ -10,7 +8,6 @@ import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-@RoutePage()
 class MorePage extends StatefulHookConsumerWidget {
   const MorePage({super.key});
 
@@ -62,7 +59,7 @@ class _MorePageState extends ConsumerState<MorePage>
                       ),
                       title: Text(AppLocalizations.of(context).login),
                       onTap: () {
-                        erosRouter.push(const LoginRoute());
+                        erosRouter.push(const LoginRoute().location);
                       },
                     );
                   } else {
@@ -113,7 +110,7 @@ class _MorePageState extends ConsumerState<MorePage>
               iconColor: Theme.of(context).colorScheme.primary,
               title: Text(AppLocalizations.of(context).download),
               onTap: () {
-                erosRouter.push(const DownloadsRoute());
+                erosRouter.push(const DownloadsRoute().location);
               },
             ),
             const Divider(height: 1.0),
@@ -122,7 +119,7 @@ class _MorePageState extends ConsumerState<MorePage>
               iconColor: Theme.of(context).colorScheme.primary,
               title: Text(AppLocalizations.of(context).settings),
               onTap: () {
-                erosRouter.push(const SettingsRoute());
+                erosRouter.push(const SettingsRoute().location);
               },
             ),
             ListTile(
@@ -130,7 +127,7 @@ class _MorePageState extends ConsumerState<MorePage>
               iconColor: Theme.of(context).colorScheme.primary,
               title: Text(AppLocalizations.of(context).about),
               onTap: () {
-                erosRouter.push(const AboutRoute());
+                erosRouter.push(const AboutRoute().location);
               },
             ),
           ],

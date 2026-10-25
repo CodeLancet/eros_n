@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/global.dart';
@@ -39,7 +38,6 @@ import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-@RoutePage()
 class GalleryPage extends StatefulHookConsumerWidget {
   const GalleryPage({super.key, required this.gid, this.heroTag});
 
@@ -1173,9 +1171,8 @@ class ThumbListView extends HookConsumerWidget {
             ),
           ),
           onTap: () {
-            erosRouter.push(
-              ThumbRoute(gid: gid, colorScheme: Theme.of(context).colorScheme),
-            );
+            setGalleryColorScheme(gid, Theme.of(context).colorScheme);
+            erosRouter.push(ThumbRoute(gid: gid).location);
           },
         ),
         SizedBox(
@@ -1349,12 +1346,8 @@ class CommentsListView extends HookConsumerWidget {
             ),
           ),
           onTap: () {
-            erosRouter.push(
-              CommentsRoute(
-                gid: gid,
-                colorScheme: Theme.of(context).colorScheme,
-              ),
-            );
+            setGalleryColorScheme(gid, Theme.of(context).colorScheme);
+            erosRouter.push(CommentsRoute(gid: gid).location);
           },
         ),
         if (comments.isEmpty)
@@ -1381,12 +1374,8 @@ class CommentsListView extends HookConsumerWidget {
                     clipBehavior: Clip.antiAlias,
                     child: InkWell(
                       onTap: () {
-                        erosRouter.push(
-                          CommentsRoute(
-                            gid: gid,
-                            colorScheme: Theme.of(context).colorScheme,
-                          ),
-                        );
+                        setGalleryColorScheme(gid, Theme.of(context).colorScheme);
+                        erosRouter.push(CommentsRoute(gid: gid).location);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
@@ -1520,7 +1509,8 @@ class ToolBarView extends HookConsumerWidget {
             size: iconSize,
             color: Theme.of(context).colorScheme.outline,
           );
-          downloadOnPressed = () => erosRouter.push(const DownloadsRoute());
+          downloadOnPressed = () =>
+              erosRouter.push(const DownloadsRoute().location);
         case DownloadStatus.downloading:
           final progress = downloadTask.totalPages > 0
               ? downloadTask.downloadedPages / downloadTask.totalPages
@@ -1539,7 +1529,8 @@ class ToolBarView extends HookConsumerWidget {
               const Icon(Icons.download, size: iconSize * 0.65),
             ],
           );
-          downloadOnPressed = () => erosRouter.push(const DownloadsRoute());
+          downloadOnPressed = () =>
+              erosRouter.push(const DownloadsRoute().location);
         case DownloadStatus.paused:
           downloadIcon = Icon(
             Icons.pause_circle_outline,
