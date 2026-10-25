@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/provider/tag_translate_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/generated/l10n.dart';
@@ -7,7 +6,6 @@ import 'package:eros_n/pages/setting/setting_base.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-@RoutePage()
 class AdvancedSettingPage extends ConsumerWidget {
   const AdvancedSettingPage({super.key});
 

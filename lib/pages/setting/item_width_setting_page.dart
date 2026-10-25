@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
@@ -15,7 +14,6 @@ const double _kMinExtent = 80.0;
 const double _kMaxExtent = 300.0;
 const int _kPreviewItemCount = 12;
 
-@RoutePage()
 class ItemWidthSettingPage extends ConsumerStatefulWidget {
   const ItemWidthSettingPage({super.key});
 

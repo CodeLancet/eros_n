@@ -1,7 +1,4 @@
 import 'dart:io';
-
-import 'package:auto_route/auto_route.dart';
-import 'package:eros_n/common/global.dart';
 import 'package:eros_n/common/provider/download_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/component/widget/eros_cached_network_image.dart';
@@ -16,6 +13,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
+
 // ---------------------------------------------------------------------------
 // Sort mode
 // ---------------------------------------------------------------------------
@@ -26,7 +24,6 @@ enum _SortMode { dateNewest, dateOldest, titleAz, titleZa }
 // Page
 // ---------------------------------------------------------------------------
 
-@RoutePage()
 class DownloadsPage extends HookConsumerWidget {
   const DownloadsPage({super.key});
 
@@ -176,7 +173,7 @@ class DownloadsPage extends HookConsumerWidget {
               ),
               IconButton(
                 icon: const Icon(Icons.settings_outlined),
-                onPressed: () => erosRouter.push(const DownloadSettingRoute()),
+                onPressed: () => erosRouter.push(const DownloadSettingRoute().location),
               ),
               const SizedBox(width: 8),
             ],
@@ -425,7 +422,7 @@ class _TaskCard extends ConsumerWidget {
     void openReader() {
       logger.d('openReader gid=${task.gid}');
       pushGalleryPage(task.gid);
-      erosRouter.push(ReadRoute(colorScheme: Theme.of(context).colorScheme));
+      erosRouter.push(const ReadRoute().location);
     }
 
     void openGallery() {

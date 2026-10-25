@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/global.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
@@ -26,7 +25,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-@RoutePage()
 class SearchPage extends StatefulHookConsumerWidget {
   const SearchPage({super.key, required this.query});
   final String query;

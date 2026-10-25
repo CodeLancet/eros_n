@@ -1,6 +1,4 @@
 import 'dart:math' as math;
-
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
@@ -12,9 +10,11 @@ import 'package:eros_n/pages/setting/read_setting_page.dart';
 import 'package:eros_n/utils/get_utils/get_utils.dart';
 import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/material.dart';
-
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
+
+
 
 const _kShowBarGradient = true;
 const _kMaxSliderWidth = 400.0;
@@ -107,7 +107,7 @@ class ViewTopBar extends HookConsumerWidget {
                         Icons.arrow_back,
                         color: isDark ? Colors.white : Colors.black,
                       ),
-                      onPressed: () => context.router.pop(),
+                      onPressed: () => context.pop(),
                     ),
                   ),
                   const Spacer(),
@@ -179,7 +179,7 @@ class ViewTopBar extends HookConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     IconButton(
-                      onPressed: () => context.router.pop(),
+                      onPressed: () => context.pop(),
                       icon: const Icon(Icons.arrow_back),
                     ),
                     if (context.isTablet)

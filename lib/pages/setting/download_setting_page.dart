@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/global.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
@@ -8,7 +7,6 @@ import 'package:eros_n/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-@RoutePage()
 class DownloadSettingPage extends ConsumerWidget {
   const DownloadSettingPage({super.key});
 

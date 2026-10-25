@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/network/api.dart';
 import 'package:eros_n/network/app_dio/app_dio.dart';
-import 'package:eros_n/routes/routes.dart';
 import 'package:eros_n/store/db/db_store.dart';
 import 'package:eros_n/store/db/objectbox_helper.dart';
 import 'package:eros_n/store/kv/hive.dart';
@@ -12,17 +10,17 @@ import 'package:eros_n/utils/clipboard_helper.dart';
 import 'package:eros_n/utils/logger.dart';
 import 'package:eros_n/utils/translation/translation_cache.dart';
 import 'package:flutter/foundation.dart';
-import 'package:zikzak_inappwebview/zikzak_inappwebview.dart' as iaw;
 import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:zikzak_inappwebview/zikzak_inappwebview.dart' as iaw;
+
 
 DioHttpConfig globalDioConfig = nhDioConfig;
 
 final HiveHelper hiveHelper = HiveHelper();
 final DbStore objectBoxHelper = ObjectBoxHelper();
 final ClipboardHelper clipboardHelper = ClipboardHelper();
-final erosRouter = AppRouter();
 
 const DioHttpConfig nhDioConfig = DioHttpConfig(
   baseUrl: NHConst.baseUrl,

@@ -42,7 +42,7 @@ final class TitleTranslationNotifierProvider
 }
 
 String _$titleTranslationNotifierHash() =>
-    r'b346eac07bf179ef49657940be60ef0d6bbc7780';
+    r'449c9eed2f177b5dfc5dfc779fd05ad3a4f552f8';
 
 abstract class _$TitleTranslationNotifier extends $Notifier<int> {
   int build();

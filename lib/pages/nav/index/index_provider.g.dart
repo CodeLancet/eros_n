@@ -41,7 +41,7 @@ final class IndexNotifierProvider
   }
 }
 
-String _$indexNotifierHash() => r'918fcb3f9bc98434cabdef157f11ac88be8a9263';
+String _$indexNotifierHash() => r'83c0d961e28d8d4b45c894a13665c8feb71ae129';
 
 abstract class _$IndexNotifier extends $Notifier<IndexState> {
   IndexState build();

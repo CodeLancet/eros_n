@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/global.dart';
 import 'package:eros_n/component/exception/error.dart';
@@ -15,7 +13,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-@RoutePage()
+
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
@@ -125,7 +123,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   }
 
   Future<void> _loginWithWebView() async {
-    final cookies = await erosRouter.push<List<Cookie>>(const WebLoginRoute());
+    final cookies = await erosRouter.push<List<Cookie>>(NHRoutes.webLogin);
     logger.d('==>> cookies: $cookies');
     if (cookies != null) {
       erosRouter.pop();
@@ -246,7 +244,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         NhWebViewRoute(
                           initialUrl: NHConst.registerUrl,
                           title: L10n.of(context).register,
-                        ),
+                        ).location,
                       );
                     },
                     child: Text(

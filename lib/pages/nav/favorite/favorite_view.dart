@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/component/models/index.dart';
 import 'package:eros_n/component/widget/adaptive_app_bar.dart';
 import 'package:eros_n/component/widget/pinch_grid_zoom.dart';
@@ -12,10 +11,10 @@ import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-@RoutePage()
 class FavoritePage extends StatefulHookConsumerWidget {
   const FavoritePage({super.key});
 
@@ -99,7 +98,7 @@ class _FavoritePageState extends ConsumerState<FavoritePage>
                           IconButton(
                             icon: const Icon(Icons.search),
                             onPressed: () {
-                              context.router.push(SearchRoute(query: ''));
+                              context.push(const SearchRoute(query: '').location);
                             },
                           ),
                         ],

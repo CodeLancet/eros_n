@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/extension.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
@@ -18,12 +17,12 @@ import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:rotated_corner_decoration/rotated_corner_decoration.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-@RoutePage()
 class FrontPage extends StatefulHookConsumerWidget {
   const FrontPage({super.key});
 
@@ -197,7 +196,7 @@ class SliverGalleryListView extends HookConsumerWidget {
                         IconButton(
                           icon: const Icon(Icons.search),
                           onPressed: () {
-                            context.router.push(SearchRoute(query: ''));
+                            context.push(const SearchRoute(query: '').location);
                           },
                         ),
                         LanguagesFilterPopupButton(

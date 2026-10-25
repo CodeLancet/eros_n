@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/common/enum.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
@@ -22,11 +20,10 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-@RoutePage()
+
 class CommentsPage extends HookConsumerWidget {
-  const CommentsPage({super.key, required this.gid, this.colorScheme});
+  const CommentsPage({super.key, required this.gid});
   final int gid;
-  final ColorScheme? colorScheme;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -55,7 +52,9 @@ class CommentsPage extends HookConsumerWidget {
     });
 
     return Theme(
-      data: Theme.of(context).copyWith(colorScheme: colorScheme),
+      data: Theme.of(context).copyWith(
+          colorScheme: getGalleryColorScheme(gid) ?? Theme.of(context).colorScheme,
+        ),
       child: Builder(
         builder: (context) {
           final glass = isLiquidGlass(ref);
