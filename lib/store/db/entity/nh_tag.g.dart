@@ -20,7 +20,8 @@ abstract class _$NhTagCWProxy {
   NhTag translateName(String? translateName);
 
   /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `NhTag(...).copyWith.fieldName(value)`.
+  /// Omitted fields keep their values; explicit `null` clears nullable fields.
+  /// The public API rejects `null` for non-nullable fields. To update a single field use `NhTag(...).copyWith.fieldName(value)`.
   ///
   /// Example:
   /// ```dart
@@ -62,14 +63,15 @@ class _$NhTagCWProxyImpl implements _$NhTagCWProxy {
   NhTag translateName(String? translateName) =>
       call(translateName: translateName);
 
-  @override
   /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `NhTag(...).copyWith.fieldName(value)`.
+  /// Omitted fields keep their values; explicit `null` clears nullable fields.
+  /// The public API rejects `null` for non-nullable fields. To update a single field use `NhTag(...).copyWith.fieldName(value)`.
   ///
   /// Example:
   /// ```dart
   /// NhTag(...).copyWith(id: 12, name: "My name")
   /// ```
+  @override
   NhTag call({
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),

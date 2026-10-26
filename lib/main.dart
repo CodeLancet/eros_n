@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:dynamic_color/dynamic_color.dart';
+import 'package:dynamic_system_colors/dynamic_system_colors.dart';
 import 'package:eros_n/common/global.dart';
 import 'package:eros_n/common/provider/settings_provider.dart';
 import 'package:eros_n/component/theme/theme.dart';
@@ -11,26 +11,18 @@ import 'package:eros_n/l10n/l10n.dart';
 import 'package:eros_n/network/webview_proxy/hidden_webview_proxy.dart';
 import 'package:eros_n/routes/routes.dart';
 import 'package:eros_n/utils/logger.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:window_manager/window_manager.dart';
-import 'package:zikzak_inappwebview/zikzak_inappwebview.dart';
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
     await windowManager.ensureInitialized();
-  }
-
-  // Enable WebView remote debugging on Android (chrome://inspect/#devices)
-  if (kDebugMode && Platform.isAndroid) {
-    await InAppWebViewController.setWebContentsDebuggingEnabled(true);
   }
 
   await Global.init();

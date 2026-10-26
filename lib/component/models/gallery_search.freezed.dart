@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'gallery_search.dart';
@@ -9,6 +9,7 @@ part of 'gallery_search.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -27,23 +28,29 @@ $GallerySearchCopyWith<GallerySearch> get copyWith => _$GallerySearchCopyWithImp
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as GallerySearch;
   properties
     ..add(DiagnosticsProperty('type', 'GallerySearch'))
-    ..add(DiagnosticsProperty('result', result))..add(DiagnosticsProperty('numPages', numPages))..add(DiagnosticsProperty('perPage', perPage));
+    ..add(DiagnosticsProperty('result', _this.result))..add(DiagnosticsProperty('numPages', _this.numPages))..add(DiagnosticsProperty('perPage', _this.perPage));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GallerySearch&&const DeepCollectionEquality().equals(other.result, result)&&(identical(other.numPages, numPages) || other.numPages == numPages)&&(identical(other.perPage, perPage) || other.perPage == perPage));
+  final _this = this as GallerySearch;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GallerySearch&&const DeepCollectionEquality().equals(other.result, _this.result)&&(identical(other.numPages, _this.numPages) || other.numPages == _this.numPages)&&(identical(other.perPage, _this.perPage) || other.perPage == _this.perPage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(result),numPages,perPage);
+int get hashCode {
+  final _this = this as GallerySearch;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.result),_this.numPages,_this.perPage);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'GallerySearch(result: $result, numPages: $numPages, perPage: $perPage)';
+  final _this = this as GallerySearch;
+  return 'GallerySearch(result: ${_this.result}, numPages: ${_this.numPages}, perPage: ${_this.perPage})';
 }
 
 
@@ -72,7 +79,7 @@ class _$GallerySearchCopyWithImpl<$Res>
 /// Create a copy of GallerySearch
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? result = null,Object? numPages = freezed,Object? perPage = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(GallerySearch(
 result: null == result ? _self.result : result // ignore: cast_nullable_to_non_nullable
 as List<Gallery>,numPages: freezed == numPages ? _self.numPages : numPages // ignore: cast_nullable_to_non_nullable
 as int?,perPage: freezed == perPage ? _self.perPage : perPage // ignore: cast_nullable_to_non_nullable
@@ -217,7 +224,7 @@ return $default(_that.result,_that.numPages,_that.perPage);case _:
 @JsonSerializable()
 
 class _GallerySearch with DiagnosticableTreeMixin implements GallerySearch {
-  const _GallerySearch({@JsonKey(name: 'result') final  List<Gallery> result = const <Gallery>[], @JsonKey(name: 'num_pages') this.numPages, @JsonKey(name: 'per_page') this.perPage}): _result = result;
+  const _GallerySearch({@JsonKey(name: 'result')  List<Gallery> result = const <Gallery>[], @JsonKey(name: 'num_pages') this.numPages, @JsonKey(name: 'per_page') this.perPage}): _result = result;
   factory _GallerySearch.fromJson(Map<String, dynamic> json) => _$GallerySearchFromJson(json);
 
  final  List<Gallery> _result;
@@ -242,23 +249,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'GallerySearch'))
     ..add(DiagnosticsProperty('result', result))..add(DiagnosticsProperty('numPages', numPages))..add(DiagnosticsProperty('perPage', perPage));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GallerySearch&&const DeepCollectionEquality().equals(other._result, _result)&&(identical(other.numPages, numPages) || other.numPages == numPages)&&(identical(other.perPage, perPage) || other.perPage == perPage));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GallerySearch&&const DeepCollectionEquality().equals(other.result, _result)&&(identical(other.numPages, numPages) || other.numPages == numPages)&&(identical(other.perPage, perPage) || other.perPage == perPage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_result),numPages,perPage);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_result),numPages,perPage);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'GallerySearch(result: $result, numPages: $numPages, perPage: $perPage)';
+    return 'GallerySearch(result: $result, numPages: $numPages, perPage: $perPage)';
 }
 
 

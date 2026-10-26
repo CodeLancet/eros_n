@@ -122,9 +122,8 @@ PreferredSizeWidget adaptiveAppBar({
         leading: effectiveLeading,
         actions: actions,
         centerTitle: false,
-        useOwnLayer: true,
-        preferredSize: const Size.fromHeight(kGlassAppBarHeight),
-        settings: glassAppBarSettings(context),
+        toolbarHeight: kGlassAppBarHeight,
+        buttonSettings: glassAppBarSettings(context),
       ),
     );
   }

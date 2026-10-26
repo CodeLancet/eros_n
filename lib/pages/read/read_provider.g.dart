@@ -47,7 +47,7 @@ abstract class _$ReadNotifier extends $Notifier<ReadState> {
   ReadState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<ReadState, ReadState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$ReadNotifier extends $Notifier<ReadState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

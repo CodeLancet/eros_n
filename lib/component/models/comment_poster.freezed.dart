@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'comment_poster.dart';
@@ -9,6 +9,7 @@ part of 'comment_poster.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -27,23 +28,29 @@ $CommentPosterCopyWith<CommentPoster> get copyWith => _$CommentPosterCopyWithImp
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as CommentPoster;
   properties
     ..add(DiagnosticsProperty('type', 'CommentPoster'))
-    ..add(DiagnosticsProperty('posterId', posterId))..add(DiagnosticsProperty('username', username))..add(DiagnosticsProperty('avatarUrl', avatarUrl))..add(DiagnosticsProperty('isSuperuser', isSuperuser))..add(DiagnosticsProperty('isStaff', isStaff));
+    ..add(DiagnosticsProperty('posterId', _this.posterId))..add(DiagnosticsProperty('username', _this.username))..add(DiagnosticsProperty('avatarUrl', _this.avatarUrl))..add(DiagnosticsProperty('isSuperuser', _this.isSuperuser))..add(DiagnosticsProperty('isStaff', _this.isStaff));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CommentPoster&&(identical(other.posterId, posterId) || other.posterId == posterId)&&(identical(other.username, username) || other.username == username)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.isSuperuser, isSuperuser) || other.isSuperuser == isSuperuser)&&(identical(other.isStaff, isStaff) || other.isStaff == isStaff));
+  final _this = this as CommentPoster;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CommentPoster&&(identical(other.posterId, _this.posterId) || other.posterId == _this.posterId)&&(identical(other.username, _this.username) || other.username == _this.username)&&(identical(other.avatarUrl, _this.avatarUrl) || other.avatarUrl == _this.avatarUrl)&&(identical(other.isSuperuser, _this.isSuperuser) || other.isSuperuser == _this.isSuperuser)&&(identical(other.isStaff, _this.isStaff) || other.isStaff == _this.isStaff));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,posterId,username,avatarUrl,isSuperuser,isStaff);
+int get hashCode {
+  final _this = this as CommentPoster;
+  return Object.hash(runtimeType,_this.posterId,_this.username,_this.avatarUrl,_this.isSuperuser,_this.isStaff);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CommentPoster(posterId: $posterId, username: $username, avatarUrl: $avatarUrl, isSuperuser: $isSuperuser, isStaff: $isStaff)';
+  final _this = this as CommentPoster;
+  return 'CommentPoster(posterId: ${_this.posterId}, username: ${_this.username}, avatarUrl: ${_this.avatarUrl}, isSuperuser: ${_this.isSuperuser}, isStaff: ${_this.isStaff})';
 }
 
 
@@ -72,7 +79,7 @@ class _$CommentPosterCopyWithImpl<$Res>
 /// Create a copy of CommentPoster
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? posterId = freezed,Object? username = freezed,Object? avatarUrl = freezed,Object? isSuperuser = freezed,Object? isStaff = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(CommentPoster(
 posterId: freezed == posterId ? _self.posterId : posterId // ignore: cast_nullable_to_non_nullable
 as int?,username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
@@ -240,23 +247,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'CommentPoster'))
     ..add(DiagnosticsProperty('posterId', posterId))..add(DiagnosticsProperty('username', username))..add(DiagnosticsProperty('avatarUrl', avatarUrl))..add(DiagnosticsProperty('isSuperuser', isSuperuser))..add(DiagnosticsProperty('isStaff', isStaff));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CommentPoster&&(identical(other.posterId, posterId) || other.posterId == posterId)&&(identical(other.username, username) || other.username == username)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.isSuperuser, isSuperuser) || other.isSuperuser == isSuperuser)&&(identical(other.isStaff, isStaff) || other.isStaff == isStaff));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _CommentPoster&&(identical(other.posterId, posterId) || other.posterId == posterId)&&(identical(other.username, username) || other.username == username)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.isSuperuser, isSuperuser) || other.isSuperuser == isSuperuser)&&(identical(other.isStaff, isStaff) || other.isStaff == isStaff));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,posterId,username,avatarUrl,isSuperuser,isStaff);
+int get hashCode {
+    return Object.hash(runtimeType,posterId,username,avatarUrl,isSuperuser,isStaff);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'CommentPoster(posterId: $posterId, username: $username, avatarUrl: $avatarUrl, isSuperuser: $isSuperuser, isStaff: $isStaff)';
+    return 'CommentPoster(posterId: $posterId, username: $username, avatarUrl: $avatarUrl, isSuperuser: $isSuperuser, isStaff: $isStaff)';
 }
 
 

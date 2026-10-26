@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'gallery_images.dart';
@@ -9,6 +9,7 @@ part of 'gallery_images.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -27,23 +28,29 @@ $GalleryImagesCopyWith<GalleryImages> get copyWith => _$GalleryImagesCopyWithImp
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as GalleryImages;
   properties
     ..add(DiagnosticsProperty('type', 'GalleryImages'))
-    ..add(DiagnosticsProperty('pages', pages))..add(DiagnosticsProperty('cover', cover))..add(DiagnosticsProperty('thumbnail', thumbnail));
+    ..add(DiagnosticsProperty('pages', _this.pages))..add(DiagnosticsProperty('cover', _this.cover))..add(DiagnosticsProperty('thumbnail', _this.thumbnail));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GalleryImages&&const DeepCollectionEquality().equals(other.pages, pages)&&(identical(other.cover, cover) || other.cover == cover)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail));
+  final _this = this as GalleryImages;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GalleryImages&&const DeepCollectionEquality().equals(other.pages, _this.pages)&&(identical(other.cover, _this.cover) || other.cover == _this.cover)&&(identical(other.thumbnail, _this.thumbnail) || other.thumbnail == _this.thumbnail));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(pages),cover,thumbnail);
+int get hashCode {
+  final _this = this as GalleryImages;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.pages),_this.cover,_this.thumbnail);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'GalleryImages(pages: $pages, cover: $cover, thumbnail: $thumbnail)';
+  final _this = this as GalleryImages;
+  return 'GalleryImages(pages: ${_this.pages}, cover: ${_this.cover}, thumbnail: ${_this.thumbnail})';
 }
 
 
@@ -72,7 +79,7 @@ class _$GalleryImagesCopyWithImpl<$Res>
 /// Create a copy of GalleryImages
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? pages = null,Object? cover = null,Object? thumbnail = null,}) {
-  return _then(_self.copyWith(
+  return _then(GalleryImages(
 pages: null == pages ? _self.pages : pages // ignore: cast_nullable_to_non_nullable
 as List<GalleryImage>,cover: null == cover ? _self.cover : cover // ignore: cast_nullable_to_non_nullable
 as GalleryImage,thumbnail: null == thumbnail ? _self.thumbnail : thumbnail // ignore: cast_nullable_to_non_nullable
@@ -235,7 +242,7 @@ return $default(_that.pages,_that.cover,_that.thumbnail);case _:
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _GalleryImages with DiagnosticableTreeMixin implements GalleryImages {
-  const _GalleryImages({@JsonKey(name: 'pages') final  List<GalleryImage> pages = const <GalleryImage>[], @JsonKey(name: 'cover') this.cover = const GalleryImage(), @JsonKey(name: 'thumbnail') this.thumbnail = const GalleryImage()}): _pages = pages;
+  const _GalleryImages({@JsonKey(name: 'pages')  List<GalleryImage> pages = const <GalleryImage>[], @JsonKey(name: 'cover') this.cover = const GalleryImage(), @JsonKey(name: 'thumbnail') this.thumbnail = const GalleryImage()}): _pages = pages;
   factory _GalleryImages.fromJson(Map<String, dynamic> json) => _$GalleryImagesFromJson(json);
 
  final  List<GalleryImage> _pages;
@@ -260,23 +267,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'GalleryImages'))
     ..add(DiagnosticsProperty('pages', pages))..add(DiagnosticsProperty('cover', cover))..add(DiagnosticsProperty('thumbnail', thumbnail));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GalleryImages&&const DeepCollectionEquality().equals(other._pages, _pages)&&(identical(other.cover, cover) || other.cover == cover)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GalleryImages&&const DeepCollectionEquality().equals(other.pages, _pages)&&(identical(other.cover, cover) || other.cover == cover)&&(identical(other.thumbnail, thumbnail) || other.thumbnail == thumbnail));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_pages),cover,thumbnail);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_pages),cover,thumbnail);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'GalleryImages(pages: $pages, cover: $cover, thumbnail: $thumbnail)';
+    return 'GalleryImages(pages: $pages, cover: $cover, thumbnail: $thumbnail)';
 }
 
 

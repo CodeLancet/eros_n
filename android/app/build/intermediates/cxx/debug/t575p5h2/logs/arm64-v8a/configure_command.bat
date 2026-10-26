@@ -1,0 +1,20 @@
+@echo off
+"D:\\Application\\Android\\sdk\\cmake\\3.22.1\\bin\\cmake.exe" ^
+  "-HD:\\Application\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\scripts" ^
+  "-DCMAKE_SYSTEM_NAME=Android" ^
+  "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" ^
+  "-DCMAKE_SYSTEM_VERSION=24" ^
+  "-DANDROID_PLATFORM=android-24" ^
+  "-DANDROID_ABI=arm64-v8a" ^
+  "-DCMAKE_ANDROID_ARCH_ABI=arm64-v8a" ^
+  "-DANDROID_NDK=D:\\Application\\Android\\sdk\\ndk\\30.0.16248370" ^
+  "-DCMAKE_ANDROID_NDK=D:\\Application\\Android\\sdk\\ndk\\30.0.16248370" ^
+  "-DCMAKE_TOOLCHAIN_FILE=D:\\Application\\Android\\sdk\\ndk\\30.0.16248370\\build\\cmake\\android.toolchain.cmake" ^
+  "-DCMAKE_MAKE_PROGRAM=D:\\Application\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+  "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=D:\\Workspaces\\Android\\eros_n\\android\\app\\build\\intermediates\\cxx\\debug\\t575p5h2\\obj\\arm64-v8a" ^
+  "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=D:\\Workspaces\\Android\\eros_n\\android\\app\\build\\intermediates\\cxx\\debug\\t575p5h2\\obj\\arm64-v8a" ^
+  "-BD:\\Workspaces\\Android\\eros_n\\android\\app\\.cxx\\debug\\t575p5h2\\arm64-v8a" ^
+  -GNinja ^
+  -Wno-dev ^
+  --no-warn-unused-cli ^
+  "-DCMAKE_BUILD_TYPE=debug"

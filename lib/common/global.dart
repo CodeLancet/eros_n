@@ -13,8 +13,6 @@ import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:zikzak_inappwebview/zikzak_inappwebview.dart' as iaw;
-
 
 DioHttpConfig globalDioConfig = nhDioConfig;
 
@@ -105,28 +103,32 @@ class Global {
     }
     initLogger();
 
-    if (Platform.isAndroid) {
-      await iaw.InAppWebViewController.setWebContentsDebuggingEnabled(true);
-
-      final swAvailable = await iaw.WebViewFeature.isFeatureSupported(
-        iaw.WebViewFeature.SERVICE_WORKER_BASIC_USAGE,
-      );
-      final swInterceptAvailable = await iaw.WebViewFeature.isFeatureSupported(
-        iaw.WebViewFeature.SERVICE_WORKER_SHOULD_INTERCEPT_REQUEST,
-      );
-
-      if (swAvailable && swInterceptAvailable) {
-        iaw.ServiceWorkerController.instance();
-
-        // await serviceWorkerController
-        //     .setServiceWorkerClient(iaw.AndroidServiceWorkerClient(
-        //   shouldInterceptRequest: (request) async {
-        //     print(request);
-        //     return null;
-        //   },
-        // ));
-      }
-    }
+    // NOTE: the inappwebview Android block that used to live here
+    // (setWebContentsDebuggingEnabled + ServiceWorkerController) has no
+    // webview_all equivalent. Service-worker interference is handled in JS
+    // by WebView's page-finished hook instead.
+    // if (Platform.isAndroid) {
+    //   await iaw.InAppWebViewController.setWebContentsDebuggingEnabled(true);
+    //
+    //   final swAvailable = await iaw.WebViewFeature.isFeatureSupported(
+    //     iaw.WebViewFeature.SERVICE_WORKER_BASIC_USAGE,
+    //   );
+    //   final swInterceptAvailable = await iaw.WebViewFeature.isFeatureSupported(
+    //     iaw.WebViewFeature.SERVICE_WORKER_SHOULD_INTERCEPT_REQUEST,
+    //   );
+    //
+    //   if (swAvailable && swInterceptAvailable) {
+    //     iaw.ServiceWorkerController.instance();
+    //
+    //     // await serviceWorkerController
+    //     //     .setServiceWorkerClient(iaw.AndroidServiceWorkerClient(
+    //     //   shouldInterceptRequest: (request) async {
+    //     //     print(request);
+    //     //     return null;
+    //     //   },
+    //     // ));
+    //   }
+    // }
 
     packageInfo = await PackageInfo.fromPlatform();
 

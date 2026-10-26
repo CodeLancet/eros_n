@@ -92,7 +92,7 @@ abstract class _$SearchGallerys extends $Notifier<List<Gallery>> {
   List<Gallery> build(int depth);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<List<Gallery>, List<Gallery>>;
     final element =
         ref.element
@@ -102,7 +102,7 @@ abstract class _$SearchGallerys extends $Notifier<List<Gallery>> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }
 
@@ -189,7 +189,7 @@ abstract class _$SearchNotifier extends $Notifier<ListViewState> {
   ListViewState build(int depth);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<ListViewState, ListViewState>;
     final element =
         ref.element
@@ -199,6 +199,6 @@ abstract class _$SearchNotifier extends $Notifier<ListViewState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }

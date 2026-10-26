@@ -1,0 +1,9 @@
+[versions]
+minSdk = "24"
+targetSdk = "37"
+compileSdk = "37"
+ndkVersion = "30.0.16248370"
+startupRuntime = "1.2.0"
+
+[libraries]
+startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }

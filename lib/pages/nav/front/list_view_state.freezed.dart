@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'list_view_state.dart';
@@ -9,6 +9,7 @@ part of 'list_view_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $ListViewStateCopyWith<ListViewState> get copyWith => _$ListViewStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ListViewState&&(identical(other.status, status) || other.status == status)&&(identical(other.curPage, curPage) || other.curPage == curPage)&&(identical(other.maxPage, maxPage) || other.maxPage == maxPage)&&(identical(other.floatingAppBar, floatingAppBar) || other.floatingAppBar == floatingAppBar)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.appBarSearch, appBarSearch) || other.appBarSearch == appBarSearch));
+  final _this = this as ListViewState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ListViewState&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.curPage, _this.curPage) || other.curPage == _this.curPage)&&(identical(other.maxPage, _this.maxPage) || other.maxPage == _this.maxPage)&&(identical(other.floatingAppBar, _this.floatingAppBar) || other.floatingAppBar == _this.floatingAppBar)&&(identical(other.errorMessage, _this.errorMessage) || other.errorMessage == _this.errorMessage)&&(identical(other.appBarSearch, _this.appBarSearch) || other.appBarSearch == _this.appBarSearch));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,status,curPage,maxPage,floatingAppBar,errorMessage,appBarSearch);
+int get hashCode {
+  final _this = this as ListViewState;
+  return Object.hash(runtimeType,_this.status,_this.curPage,_this.maxPage,_this.floatingAppBar,_this.errorMessage,_this.appBarSearch);
+}
 
 @override
 String toString() {
-  return 'ListViewState(status: $status, curPage: $curPage, maxPage: $maxPage, floatingAppBar: $floatingAppBar, errorMessage: $errorMessage, appBarSearch: $appBarSearch)';
+  final _this = this as ListViewState;
+  return 'ListViewState(status: ${_this.status}, curPage: ${_this.curPage}, maxPage: ${_this.maxPage}, floatingAppBar: ${_this.floatingAppBar}, errorMessage: ${_this.errorMessage}, appBarSearch: ${_this.appBarSearch})';
 }
 
 
@@ -66,7 +72,7 @@ class _$ListViewStateCopyWithImpl<$Res>
 /// Create a copy of ListViewState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? curPage = null,Object? maxPage = null,Object? floatingAppBar = null,Object? errorMessage = freezed,Object? appBarSearch = null,}) {
-  return _then(_self.copyWith(
+  return _then(ListViewState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as LoadStatus,curPage: null == curPage ? _self.curPage : curPage // ignore: cast_nullable_to_non_nullable
 as int,maxPage: null == maxPage ? _self.maxPage : maxPage // ignore: cast_nullable_to_non_nullable
@@ -237,16 +243,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ListViewState&&(identical(other.status, status) || other.status == status)&&(identical(other.curPage, curPage) || other.curPage == curPage)&&(identical(other.maxPage, maxPage) || other.maxPage == maxPage)&&(identical(other.floatingAppBar, floatingAppBar) || other.floatingAppBar == floatingAppBar)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.appBarSearch, appBarSearch) || other.appBarSearch == appBarSearch));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ListViewState&&(identical(other.status, status) || other.status == status)&&(identical(other.curPage, curPage) || other.curPage == curPage)&&(identical(other.maxPage, maxPage) || other.maxPage == maxPage)&&(identical(other.floatingAppBar, floatingAppBar) || other.floatingAppBar == floatingAppBar)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage)&&(identical(other.appBarSearch, appBarSearch) || other.appBarSearch == appBarSearch));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,status,curPage,maxPage,floatingAppBar,errorMessage,appBarSearch);
+int get hashCode {
+    return Object.hash(runtimeType,status,curPage,maxPage,floatingAppBar,errorMessage,appBarSearch);
+}
 
 @override
 String toString() {
-  return 'ListViewState(status: $status, curPage: $curPage, maxPage: $maxPage, floatingAppBar: $floatingAppBar, errorMessage: $errorMessage, appBarSearch: $appBarSearch)';
+    return 'ListViewState(status: $status, curPage: $curPage, maxPage: $maxPage, floatingAppBar: $floatingAppBar, errorMessage: $errorMessage, appBarSearch: $appBarSearch)';
 }
 
 

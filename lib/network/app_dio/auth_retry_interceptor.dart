@@ -56,7 +56,7 @@ class AuthRetryInterceptor extends Interceptor {
 
   void _invalidateCache(RequestOptions options) {
     try {
-      final cacheKey = CacheOptions.defaultCacheKeyBuilder(options);
+      final cacheKey = CacheOptions.defaultCacheKeyBuilder(url: options.uri);
       Api.sharedCacheStore.delete(cacheKey);
       logger.d('[AuthRetry] cache invalidated for key=$cacheKey');
     } catch (e) {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 
 const String _boxName = 'translation_cache';
 const Duration _defaultTtl = Duration(days: 7);

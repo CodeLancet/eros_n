@@ -1,0 +1,1 @@
+D:\Workspaces\Android\eros_n\android\app\build\intermediates\cxx\debug\t575p5h2\obj\arm64-v8a

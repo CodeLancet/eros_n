@@ -47,7 +47,7 @@ abstract class _$FavoriteGallerys extends $Notifier<List<Gallery>> {
   List<Gallery> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<List<Gallery>, List<Gallery>>;
     final element =
         ref.element
@@ -57,7 +57,7 @@ abstract class _$FavoriteGallerys extends $Notifier<List<Gallery>> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -99,7 +99,7 @@ abstract class _$FavoriteNotifier extends $Notifier<ListViewState> {
   ListViewState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<ListViewState, ListViewState>;
     final element =
         ref.element
@@ -109,6 +109,6 @@ abstract class _$FavoriteNotifier extends $Notifier<ListViewState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

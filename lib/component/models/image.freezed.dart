@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'image.dart';
@@ -9,6 +9,7 @@ part of 'image.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -27,23 +28,29 @@ $GalleryImageCopyWith<GalleryImage> get copyWith => _$GalleryImageCopyWithImpl<G
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as GalleryImage;
   properties
     ..add(DiagnosticsProperty('type', 'GalleryImage'))
-    ..add(DiagnosticsProperty('type', type))..add(DiagnosticsProperty('imgHeight', imgHeight))..add(DiagnosticsProperty('imgWidth', imgWidth))..add(DiagnosticsProperty('imageUrl', imageUrl))..add(DiagnosticsProperty('href', href));
+    ..add(DiagnosticsProperty('type', _this.type))..add(DiagnosticsProperty('imgHeight', _this.imgHeight))..add(DiagnosticsProperty('imgWidth', _this.imgWidth))..add(DiagnosticsProperty('imageUrl', _this.imageUrl))..add(DiagnosticsProperty('href', _this.href));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GalleryImage&&(identical(other.type, type) || other.type == type)&&(identical(other.imgHeight, imgHeight) || other.imgHeight == imgHeight)&&(identical(other.imgWidth, imgWidth) || other.imgWidth == imgWidth)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.href, href) || other.href == href));
+  final _this = this as GalleryImage;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GalleryImage&&(identical(other.type, _this.type) || other.type == _this.type)&&(identical(other.imgHeight, _this.imgHeight) || other.imgHeight == _this.imgHeight)&&(identical(other.imgWidth, _this.imgWidth) || other.imgWidth == _this.imgWidth)&&(identical(other.imageUrl, _this.imageUrl) || other.imageUrl == _this.imageUrl)&&(identical(other.href, _this.href) || other.href == _this.href));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,imgHeight,imgWidth,imageUrl,href);
+int get hashCode {
+  final _this = this as GalleryImage;
+  return Object.hash(runtimeType,_this.type,_this.imgHeight,_this.imgWidth,_this.imageUrl,_this.href);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'GalleryImage(type: $type, imgHeight: $imgHeight, imgWidth: $imgWidth, imageUrl: $imageUrl, href: $href)';
+  final _this = this as GalleryImage;
+  return 'GalleryImage(type: ${_this.type}, imgHeight: ${_this.imgHeight}, imgWidth: ${_this.imgWidth}, imageUrl: ${_this.imageUrl}, href: ${_this.href})';
 }
 
 
@@ -72,7 +79,7 @@ class _$GalleryImageCopyWithImpl<$Res>
 /// Create a copy of GalleryImage
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? type = null,Object? imgHeight = freezed,Object? imgWidth = freezed,Object? imageUrl = freezed,Object? href = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(GalleryImage(
 type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String,imgHeight: freezed == imgHeight ? _self.imgHeight : imgHeight // ignore: cast_nullable_to_non_nullable
 as int?,imgWidth: freezed == imgWidth ? _self.imgWidth : imgWidth // ignore: cast_nullable_to_non_nullable
@@ -240,23 +247,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'GalleryImage'))
     ..add(DiagnosticsProperty('type', type))..add(DiagnosticsProperty('imgHeight', imgHeight))..add(DiagnosticsProperty('imgWidth', imgWidth))..add(DiagnosticsProperty('imageUrl', imageUrl))..add(DiagnosticsProperty('href', href));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GalleryImage&&(identical(other.type, type) || other.type == type)&&(identical(other.imgHeight, imgHeight) || other.imgHeight == imgHeight)&&(identical(other.imgWidth, imgWidth) || other.imgWidth == imgWidth)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.href, href) || other.href == href));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GalleryImage&&(identical(other.type, type) || other.type == type)&&(identical(other.imgHeight, imgHeight) || other.imgHeight == imgHeight)&&(identical(other.imgWidth, imgWidth) || other.imgWidth == imgWidth)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.href, href) || other.href == href));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,imgHeight,imgWidth,imageUrl,href);
+int get hashCode {
+    return Object.hash(runtimeType,type,imgHeight,imgWidth,imageUrl,href);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'GalleryImage(type: $type, imgHeight: $imgHeight, imgWidth: $imgWidth, imageUrl: $imageUrl, href: $href)';
+    return 'GalleryImage(type: $type, imgHeight: $imgHeight, imgWidth: $imgWidth, imageUrl: $imageUrl, href: $href)';
 }
 
 

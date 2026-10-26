@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'read_state.dart';
@@ -9,6 +9,7 @@ part of 'read_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $ReadStateCopyWith<ReadState> get copyWith => _$ReadStateCopyWithImpl<ReadState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReadState&&(identical(other.showAppBar, showAppBar) || other.showAppBar == showAppBar)&&(identical(other.topBarOffset, topBarOffset) || other.topBarOffset == topBarOffset)&&(identical(other.bottomBarOffset, bottomBarOffset) || other.bottomBarOffset == bottomBarOffset)&&(identical(other.bottomBarHeight, bottomBarHeight) || other.bottomBarHeight == bottomBarHeight)&&(identical(other.showThumbList, showThumbList) || other.showThumbList == showThumbList)&&(identical(other.paddingTop, paddingTop) || other.paddingTop == paddingTop)&&(identical(other.paddingBottom, paddingBottom) || other.paddingBottom == paddingBottom)&&(identical(other.autoRead, autoRead) || other.autoRead == autoRead)&&const DeepCollectionEquality().equals(other.loadCompleteIndexSet, loadCompleteIndexSet));
+  final _this = this as ReadState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReadState&&(identical(other.showAppBar, _this.showAppBar) || other.showAppBar == _this.showAppBar)&&(identical(other.topBarOffset, _this.topBarOffset) || other.topBarOffset == _this.topBarOffset)&&(identical(other.bottomBarOffset, _this.bottomBarOffset) || other.bottomBarOffset == _this.bottomBarOffset)&&(identical(other.bottomBarHeight, _this.bottomBarHeight) || other.bottomBarHeight == _this.bottomBarHeight)&&(identical(other.showThumbList, _this.showThumbList) || other.showThumbList == _this.showThumbList)&&(identical(other.paddingTop, _this.paddingTop) || other.paddingTop == _this.paddingTop)&&(identical(other.paddingBottom, _this.paddingBottom) || other.paddingBottom == _this.paddingBottom)&&(identical(other.autoRead, _this.autoRead) || other.autoRead == _this.autoRead)&&const DeepCollectionEquality().equals(other.loadCompleteIndexSet, _this.loadCompleteIndexSet));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,showAppBar,topBarOffset,bottomBarOffset,bottomBarHeight,showThumbList,paddingTop,paddingBottom,autoRead,const DeepCollectionEquality().hash(loadCompleteIndexSet));
+int get hashCode {
+  final _this = this as ReadState;
+  return Object.hash(runtimeType,_this.showAppBar,_this.topBarOffset,_this.bottomBarOffset,_this.bottomBarHeight,_this.showThumbList,_this.paddingTop,_this.paddingBottom,_this.autoRead,const DeepCollectionEquality().hash(_this.loadCompleteIndexSet));
+}
 
 @override
 String toString() {
-  return 'ReadState(showAppBar: $showAppBar, topBarOffset: $topBarOffset, bottomBarOffset: $bottomBarOffset, bottomBarHeight: $bottomBarHeight, showThumbList: $showThumbList, paddingTop: $paddingTop, paddingBottom: $paddingBottom, autoRead: $autoRead, loadCompleteIndexSet: $loadCompleteIndexSet)';
+  final _this = this as ReadState;
+  return 'ReadState(showAppBar: ${_this.showAppBar}, topBarOffset: ${_this.topBarOffset}, bottomBarOffset: ${_this.bottomBarOffset}, bottomBarHeight: ${_this.bottomBarHeight}, showThumbList: ${_this.showThumbList}, paddingTop: ${_this.paddingTop}, paddingBottom: ${_this.paddingBottom}, autoRead: ${_this.autoRead}, loadCompleteIndexSet: ${_this.loadCompleteIndexSet})';
 }
 
 
@@ -66,7 +72,7 @@ class _$ReadStateCopyWithImpl<$Res>
 /// Create a copy of ReadState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? showAppBar = null,Object? topBarOffset = null,Object? bottomBarOffset = null,Object? bottomBarHeight = null,Object? showThumbList = null,Object? paddingTop = null,Object? paddingBottom = null,Object? autoRead = null,Object? loadCompleteIndexSet = null,}) {
-  return _then(_self.copyWith(
+  return _then(ReadState(
 showAppBar: null == showAppBar ? _self.showAppBar : showAppBar // ignore: cast_nullable_to_non_nullable
 as bool,topBarOffset: null == topBarOffset ? _self.topBarOffset : topBarOffset // ignore: cast_nullable_to_non_nullable
 as double,bottomBarOffset: null == bottomBarOffset ? _self.bottomBarOffset : bottomBarOffset // ignore: cast_nullable_to_non_nullable
@@ -217,7 +223,7 @@ return $default(_that.showAppBar,_that.topBarOffset,_that.bottomBarOffset,_that.
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _ReadState extends ReadState {
-  const _ReadState({this.showAppBar = false, this.topBarOffset = 0.0, this.bottomBarOffset = 0.0, this.bottomBarHeight = 0.0, this.showThumbList = false, this.paddingTop = 0.0, this.paddingBottom = 0.0, this.autoRead = false, final  Set<int> loadCompleteIndexSet = const {}}): _loadCompleteIndexSet = loadCompleteIndexSet,super._();
+  const _ReadState({this.showAppBar = false, this.topBarOffset = 0.0, this.bottomBarOffset = 0.0, this.bottomBarHeight = 0.0, this.showThumbList = false, this.paddingTop = 0.0, this.paddingBottom = 0.0, this.autoRead = false,  Set<int> loadCompleteIndexSet = const {}}): _loadCompleteIndexSet = loadCompleteIndexSet,super._();
   factory _ReadState.fromJson(Map<String, dynamic> json) => _$ReadStateFromJson(json);
 
 @override@JsonKey() final  bool showAppBar;
@@ -249,16 +255,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReadState&&(identical(other.showAppBar, showAppBar) || other.showAppBar == showAppBar)&&(identical(other.topBarOffset, topBarOffset) || other.topBarOffset == topBarOffset)&&(identical(other.bottomBarOffset, bottomBarOffset) || other.bottomBarOffset == bottomBarOffset)&&(identical(other.bottomBarHeight, bottomBarHeight) || other.bottomBarHeight == bottomBarHeight)&&(identical(other.showThumbList, showThumbList) || other.showThumbList == showThumbList)&&(identical(other.paddingTop, paddingTop) || other.paddingTop == paddingTop)&&(identical(other.paddingBottom, paddingBottom) || other.paddingBottom == paddingBottom)&&(identical(other.autoRead, autoRead) || other.autoRead == autoRead)&&const DeepCollectionEquality().equals(other._loadCompleteIndexSet, _loadCompleteIndexSet));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReadState&&(identical(other.showAppBar, showAppBar) || other.showAppBar == showAppBar)&&(identical(other.topBarOffset, topBarOffset) || other.topBarOffset == topBarOffset)&&(identical(other.bottomBarOffset, bottomBarOffset) || other.bottomBarOffset == bottomBarOffset)&&(identical(other.bottomBarHeight, bottomBarHeight) || other.bottomBarHeight == bottomBarHeight)&&(identical(other.showThumbList, showThumbList) || other.showThumbList == showThumbList)&&(identical(other.paddingTop, paddingTop) || other.paddingTop == paddingTop)&&(identical(other.paddingBottom, paddingBottom) || other.paddingBottom == paddingBottom)&&(identical(other.autoRead, autoRead) || other.autoRead == autoRead)&&const DeepCollectionEquality().equals(other.loadCompleteIndexSet, _loadCompleteIndexSet));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,showAppBar,topBarOffset,bottomBarOffset,bottomBarHeight,showThumbList,paddingTop,paddingBottom,autoRead,const DeepCollectionEquality().hash(_loadCompleteIndexSet));
+int get hashCode {
+    return Object.hash(runtimeType,showAppBar,topBarOffset,bottomBarOffset,bottomBarHeight,showThumbList,paddingTop,paddingBottom,autoRead,const DeepCollectionEquality().hash(_loadCompleteIndexSet));
+}
 
 @override
 String toString() {
-  return 'ReadState(showAppBar: $showAppBar, topBarOffset: $topBarOffset, bottomBarOffset: $bottomBarOffset, bottomBarHeight: $bottomBarHeight, showThumbList: $showThumbList, paddingTop: $paddingTop, paddingBottom: $paddingBottom, autoRead: $autoRead, loadCompleteIndexSet: $loadCompleteIndexSet)';
+    return 'ReadState(showAppBar: $showAppBar, topBarOffset: $topBarOffset, bottomBarOffset: $bottomBarOffset, bottomBarHeight: $bottomBarHeight, showThumbList: $showThumbList, paddingTop: $paddingTop, paddingBottom: $paddingBottom, autoRead: $autoRead, loadCompleteIndexSet: $loadCompleteIndexSet)';
 }
 
 

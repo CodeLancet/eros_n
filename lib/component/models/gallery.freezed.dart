@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'gallery.dart';
@@ -9,6 +9,7 @@ part of 'gallery.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $GalleryCopyWith<Gallery> get copyWith => _$GalleryCopyWithImpl<Gallery>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Gallery&&(identical(other.gid, gid) || other.gid == gid)&&(identical(other.mediaId, mediaId) || other.mediaId == mediaId)&&(identical(other.title, title) || other.title == title)&&(identical(other.images, images) || other.images == images)&&(identical(other.scanlator, scanlator) || other.scanlator == scanlator)&&(identical(other.uploadDate, uploadDate) || other.uploadDate == uploadDate)&&(identical(other.numPages, numPages) || other.numPages == numPages)&&(identical(other.numFavorites, numFavorites) || other.numFavorites == numFavorites)&&const DeepCollectionEquality().equals(other.tags, tags)&&const DeepCollectionEquality().equals(other.simpleTags, simpleTags)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.viewTime, viewTime) || other.viewTime == viewTime)&&const DeepCollectionEquality().equals(other.comments, comments)&&const DeepCollectionEquality().equals(other.moreLikeGallerys, moreLikeGallerys)&&(identical(other.currentPageIndex, currentPageIndex) || other.currentPageIndex == currentPageIndex)&&(identical(other.isFavorited, isFavorited) || other.isFavorited == isFavorited)&&(identical(other.uploadedDateTime, uploadedDateTime) || other.uploadedDateTime == uploadedDateTime)&&(identical(other.csrfToken, csrfToken) || other.csrfToken == csrfToken));
+  final _this = this as Gallery;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Gallery&&(identical(other.gid, _this.gid) || other.gid == _this.gid)&&(identical(other.mediaId, _this.mediaId) || other.mediaId == _this.mediaId)&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.images, _this.images) || other.images == _this.images)&&(identical(other.scanlator, _this.scanlator) || other.scanlator == _this.scanlator)&&(identical(other.uploadDate, _this.uploadDate) || other.uploadDate == _this.uploadDate)&&(identical(other.numPages, _this.numPages) || other.numPages == _this.numPages)&&(identical(other.numFavorites, _this.numFavorites) || other.numFavorites == _this.numFavorites)&&const DeepCollectionEquality().equals(other.tags, _this.tags)&&const DeepCollectionEquality().equals(other.simpleTags, _this.simpleTags)&&(identical(other.languageCode, _this.languageCode) || other.languageCode == _this.languageCode)&&(identical(other.viewTime, _this.viewTime) || other.viewTime == _this.viewTime)&&const DeepCollectionEquality().equals(other.comments, _this.comments)&&const DeepCollectionEquality().equals(other.moreLikeGallerys, _this.moreLikeGallerys)&&(identical(other.currentPageIndex, _this.currentPageIndex) || other.currentPageIndex == _this.currentPageIndex)&&(identical(other.isFavorited, _this.isFavorited) || other.isFavorited == _this.isFavorited)&&(identical(other.uploadedDateTime, _this.uploadedDateTime) || other.uploadedDateTime == _this.uploadedDateTime)&&(identical(other.csrfToken, _this.csrfToken) || other.csrfToken == _this.csrfToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,gid,mediaId,title,images,scanlator,uploadDate,numPages,numFavorites,const DeepCollectionEquality().hash(tags),const DeepCollectionEquality().hash(simpleTags),languageCode,viewTime,const DeepCollectionEquality().hash(comments),const DeepCollectionEquality().hash(moreLikeGallerys),currentPageIndex,isFavorited,uploadedDateTime,csrfToken);
+int get hashCode {
+  final _this = this as Gallery;
+  return Object.hash(runtimeType,_this.gid,_this.mediaId,_this.title,_this.images,_this.scanlator,_this.uploadDate,_this.numPages,_this.numFavorites,const DeepCollectionEquality().hash(_this.tags),const DeepCollectionEquality().hash(_this.simpleTags),_this.languageCode,_this.viewTime,const DeepCollectionEquality().hash(_this.comments),const DeepCollectionEquality().hash(_this.moreLikeGallerys),_this.currentPageIndex,_this.isFavorited,_this.uploadedDateTime,_this.csrfToken);
+}
 
 @override
 String toString() {
-  return 'Gallery(gid: $gid, mediaId: $mediaId, title: $title, images: $images, scanlator: $scanlator, uploadDate: $uploadDate, numPages: $numPages, numFavorites: $numFavorites, tags: $tags, simpleTags: $simpleTags, languageCode: $languageCode, viewTime: $viewTime, comments: $comments, moreLikeGallerys: $moreLikeGallerys, currentPageIndex: $currentPageIndex, isFavorited: $isFavorited, uploadedDateTime: $uploadedDateTime, csrfToken: $csrfToken)';
+  final _this = this as Gallery;
+  return 'Gallery(gid: ${_this.gid}, mediaId: ${_this.mediaId}, title: ${_this.title}, images: ${_this.images}, scanlator: ${_this.scanlator}, uploadDate: ${_this.uploadDate}, numPages: ${_this.numPages}, numFavorites: ${_this.numFavorites}, tags: ${_this.tags}, simpleTags: ${_this.simpleTags}, languageCode: ${_this.languageCode}, viewTime: ${_this.viewTime}, comments: ${_this.comments}, moreLikeGallerys: ${_this.moreLikeGallerys}, currentPageIndex: ${_this.currentPageIndex}, isFavorited: ${_this.isFavorited}, uploadedDateTime: ${_this.uploadedDateTime}, csrfToken: ${_this.csrfToken})';
 }
 
 
@@ -66,7 +72,7 @@ class _$GalleryCopyWithImpl<$Res>
 /// Create a copy of Gallery
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? gid = null,Object? mediaId = freezed,Object? title = null,Object? images = null,Object? scanlator = freezed,Object? uploadDate = freezed,Object? numPages = freezed,Object? numFavorites = freezed,Object? tags = null,Object? simpleTags = null,Object? languageCode = freezed,Object? viewTime = freezed,Object? comments = null,Object? moreLikeGallerys = null,Object? currentPageIndex = null,Object? isFavorited = freezed,Object? uploadedDateTime = freezed,Object? csrfToken = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(Gallery(
 gid: null == gid ? _self.gid : gid // ignore: cast_nullable_to_non_nullable
 as int,mediaId: freezed == mediaId ? _self.mediaId : mediaId // ignore: cast_nullable_to_non_nullable
 as String?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -244,7 +250,7 @@ return $default(_that.gid,_that.mediaId,_that.title,_that.images,_that.scanlator
 @JsonSerializable()
 
 class _Gallery extends Gallery {
-  const _Gallery({@JsonKey(name: 'id') this.gid = 0, @JsonKey(name: 'media_id') this.mediaId, this.title = const GalleryTitle(), this.images = const GalleryImages(), this.scanlator, @JsonKey(name: 'upload_date') this.uploadDate, @JsonKey(name: 'num_pages') this.numPages, @JsonKey(name: 'num_favorites') this.numFavorites, final  List<Tag> tags = const <Tag>[], @JsonKey(includeFromJson: false, includeToJson: false) final  List<Tag> simpleTags = const <Tag>[], @JsonKey(includeFromJson: false, includeToJson: false) this.languageCode, @JsonKey(includeFromJson: false, includeToJson: false) this.viewTime, @JsonKey(includeFromJson: false, includeToJson: false) final  List<Comment> comments = const <Comment>[], @JsonKey(includeFromJson: false, includeToJson: false) final  List<Gallery> moreLikeGallerys = const <Gallery>[], @JsonKey(includeFromJson: false, includeToJson: false) this.currentPageIndex = 0, @JsonKey(includeFromJson: false, includeToJson: false) this.isFavorited, @JsonKey(includeFromJson: false, includeToJson: false) this.uploadedDateTime, @JsonKey(includeFromJson: false, includeToJson: false) this.csrfToken}): _tags = tags,_simpleTags = simpleTags,_comments = comments,_moreLikeGallerys = moreLikeGallerys,super._();
+  const _Gallery({@JsonKey(name: 'id') this.gid = 0, @JsonKey(name: 'media_id') this.mediaId, this.title = const GalleryTitle(), this.images = const GalleryImages(), this.scanlator, @JsonKey(name: 'upload_date') this.uploadDate, @JsonKey(name: 'num_pages') this.numPages, @JsonKey(name: 'num_favorites') this.numFavorites,  List<Tag> tags = const <Tag>[], @JsonKey(includeFromJson: false, includeToJson: false)  List<Tag> simpleTags = const <Tag>[], @JsonKey(includeFromJson: false, includeToJson: false) this.languageCode, @JsonKey(includeFromJson: false, includeToJson: false) this.viewTime, @JsonKey(includeFromJson: false, includeToJson: false)  List<Comment> comments = const <Comment>[], @JsonKey(includeFromJson: false, includeToJson: false)  List<Gallery> moreLikeGallerys = const <Gallery>[], @JsonKey(includeFromJson: false, includeToJson: false) this.currentPageIndex = 0, @JsonKey(includeFromJson: false, includeToJson: false) this.isFavorited, @JsonKey(includeFromJson: false, includeToJson: false) this.uploadedDateTime, @JsonKey(includeFromJson: false, includeToJson: false) this.csrfToken}): _tags = tags,_simpleTags = simpleTags,_comments = comments,_moreLikeGallerys = moreLikeGallerys,super._();
   factory _Gallery.fromJson(Map<String, dynamic> json) => _$GalleryFromJson(json);
 
 @override@JsonKey(name: 'id') final  int gid;
@@ -303,16 +309,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Gallery&&(identical(other.gid, gid) || other.gid == gid)&&(identical(other.mediaId, mediaId) || other.mediaId == mediaId)&&(identical(other.title, title) || other.title == title)&&(identical(other.images, images) || other.images == images)&&(identical(other.scanlator, scanlator) || other.scanlator == scanlator)&&(identical(other.uploadDate, uploadDate) || other.uploadDate == uploadDate)&&(identical(other.numPages, numPages) || other.numPages == numPages)&&(identical(other.numFavorites, numFavorites) || other.numFavorites == numFavorites)&&const DeepCollectionEquality().equals(other._tags, _tags)&&const DeepCollectionEquality().equals(other._simpleTags, _simpleTags)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.viewTime, viewTime) || other.viewTime == viewTime)&&const DeepCollectionEquality().equals(other._comments, _comments)&&const DeepCollectionEquality().equals(other._moreLikeGallerys, _moreLikeGallerys)&&(identical(other.currentPageIndex, currentPageIndex) || other.currentPageIndex == currentPageIndex)&&(identical(other.isFavorited, isFavorited) || other.isFavorited == isFavorited)&&(identical(other.uploadedDateTime, uploadedDateTime) || other.uploadedDateTime == uploadedDateTime)&&(identical(other.csrfToken, csrfToken) || other.csrfToken == csrfToken));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Gallery&&(identical(other.gid, gid) || other.gid == gid)&&(identical(other.mediaId, mediaId) || other.mediaId == mediaId)&&(identical(other.title, title) || other.title == title)&&(identical(other.images, images) || other.images == images)&&(identical(other.scanlator, scanlator) || other.scanlator == scanlator)&&(identical(other.uploadDate, uploadDate) || other.uploadDate == uploadDate)&&(identical(other.numPages, numPages) || other.numPages == numPages)&&(identical(other.numFavorites, numFavorites) || other.numFavorites == numFavorites)&&const DeepCollectionEquality().equals(other.tags, _tags)&&const DeepCollectionEquality().equals(other.simpleTags, _simpleTags)&&(identical(other.languageCode, languageCode) || other.languageCode == languageCode)&&(identical(other.viewTime, viewTime) || other.viewTime == viewTime)&&const DeepCollectionEquality().equals(other.comments, _comments)&&const DeepCollectionEquality().equals(other.moreLikeGallerys, _moreLikeGallerys)&&(identical(other.currentPageIndex, currentPageIndex) || other.currentPageIndex == currentPageIndex)&&(identical(other.isFavorited, isFavorited) || other.isFavorited == isFavorited)&&(identical(other.uploadedDateTime, uploadedDateTime) || other.uploadedDateTime == uploadedDateTime)&&(identical(other.csrfToken, csrfToken) || other.csrfToken == csrfToken));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,gid,mediaId,title,images,scanlator,uploadDate,numPages,numFavorites,const DeepCollectionEquality().hash(_tags),const DeepCollectionEquality().hash(_simpleTags),languageCode,viewTime,const DeepCollectionEquality().hash(_comments),const DeepCollectionEquality().hash(_moreLikeGallerys),currentPageIndex,isFavorited,uploadedDateTime,csrfToken);
+int get hashCode {
+    return Object.hash(runtimeType,gid,mediaId,title,images,scanlator,uploadDate,numPages,numFavorites,const DeepCollectionEquality().hash(_tags),const DeepCollectionEquality().hash(_simpleTags),languageCode,viewTime,const DeepCollectionEquality().hash(_comments),const DeepCollectionEquality().hash(_moreLikeGallerys),currentPageIndex,isFavorited,uploadedDateTime,csrfToken);
+}
 
 @override
 String toString() {
-  return 'Gallery(gid: $gid, mediaId: $mediaId, title: $title, images: $images, scanlator: $scanlator, uploadDate: $uploadDate, numPages: $numPages, numFavorites: $numFavorites, tags: $tags, simpleTags: $simpleTags, languageCode: $languageCode, viewTime: $viewTime, comments: $comments, moreLikeGallerys: $moreLikeGallerys, currentPageIndex: $currentPageIndex, isFavorited: $isFavorited, uploadedDateTime: $uploadedDateTime, csrfToken: $csrfToken)';
+    return 'Gallery(gid: $gid, mediaId: $mediaId, title: $title, images: $images, scanlator: $scanlator, uploadDate: $uploadDate, numPages: $numPages, numFavorites: $numFavorites, tags: $tags, simpleTags: $simpleTags, languageCode: $languageCode, viewTime: $viewTime, comments: $comments, moreLikeGallerys: $moreLikeGallerys, currentPageIndex: $currentPageIndex, isFavorited: $isFavorited, uploadedDateTime: $uploadedDateTime, csrfToken: $csrfToken)';
 }
 
 

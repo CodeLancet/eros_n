@@ -3,18 +3,18 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  dynamic_color
+  dynamic_system_colors
   objectbox_flutter_libs
   screen_retriever_windows
   share_plus
   url_launcher_windows
-  webview_flutter_windows
-  webview_windows
+  webview_all_windows
   window_manager
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
   jni
+  proxy_getter
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

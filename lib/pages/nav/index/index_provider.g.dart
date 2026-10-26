@@ -47,7 +47,7 @@ abstract class _$IndexNotifier extends $Notifier<IndexState> {
   IndexState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<IndexState, IndexState>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$IndexNotifier extends $Notifier<IndexState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

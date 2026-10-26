@@ -47,7 +47,7 @@ abstract class _$DownloadNotifier extends $Notifier<Map<int, DownloadTask>> {
   Map<int, DownloadTask> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref =
         this.ref as $Ref<Map<int, DownloadTask>, Map<int, DownloadTask>>;
     final element =
@@ -58,6 +58,6 @@ abstract class _$DownloadNotifier extends $Notifier<Map<int, DownloadTask>> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

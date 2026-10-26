@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'comment.dart';
@@ -9,6 +9,7 @@ part of 'comment.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -27,23 +28,29 @@ $CommentCopyWith<Comment> get copyWith => _$CommentCopyWithImpl<Comment>(this as
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as Comment;
   properties
     ..add(DiagnosticsProperty('type', 'Comment'))
-    ..add(DiagnosticsProperty('commentId', commentId))..add(DiagnosticsProperty('gid', gid))..add(DiagnosticsProperty('postDate', postDate))..add(DiagnosticsProperty('commentText', commentText))..add(DiagnosticsProperty('poster', poster));
+    ..add(DiagnosticsProperty('commentId', _this.commentId))..add(DiagnosticsProperty('gid', _this.gid))..add(DiagnosticsProperty('postDate', _this.postDate))..add(DiagnosticsProperty('commentText', _this.commentText))..add(DiagnosticsProperty('poster', _this.poster));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Comment&&(identical(other.commentId, commentId) || other.commentId == commentId)&&(identical(other.gid, gid) || other.gid == gid)&&(identical(other.postDate, postDate) || other.postDate == postDate)&&(identical(other.commentText, commentText) || other.commentText == commentText)&&(identical(other.poster, poster) || other.poster == poster));
+  final _this = this as Comment;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Comment&&(identical(other.commentId, _this.commentId) || other.commentId == _this.commentId)&&(identical(other.gid, _this.gid) || other.gid == _this.gid)&&(identical(other.postDate, _this.postDate) || other.postDate == _this.postDate)&&(identical(other.commentText, _this.commentText) || other.commentText == _this.commentText)&&(identical(other.poster, _this.poster) || other.poster == _this.poster));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,commentId,gid,postDate,commentText,poster);
+int get hashCode {
+  final _this = this as Comment;
+  return Object.hash(runtimeType,_this.commentId,_this.gid,_this.postDate,_this.commentText,_this.poster);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'Comment(commentId: $commentId, gid: $gid, postDate: $postDate, commentText: $commentText, poster: $poster)';
+  final _this = this as Comment;
+  return 'Comment(commentId: ${_this.commentId}, gid: ${_this.gid}, postDate: ${_this.postDate}, commentText: ${_this.commentText}, poster: ${_this.poster})';
 }
 
 
@@ -72,7 +79,7 @@ class _$CommentCopyWithImpl<$Res>
 /// Create a copy of Comment
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? commentId = freezed,Object? gid = freezed,Object? postDate = freezed,Object? commentText = freezed,Object? poster = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(Comment(
 commentId: freezed == commentId ? _self.commentId : commentId // ignore: cast_nullable_to_non_nullable
 as int?,gid: freezed == gid ? _self.gid : gid // ignore: cast_nullable_to_non_nullable
 as int?,postDate: freezed == postDate ? _self.postDate : postDate // ignore: cast_nullable_to_non_nullable
@@ -252,23 +259,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'Comment'))
     ..add(DiagnosticsProperty('commentId', commentId))..add(DiagnosticsProperty('gid', gid))..add(DiagnosticsProperty('postDate', postDate))..add(DiagnosticsProperty('commentText', commentText))..add(DiagnosticsProperty('poster', poster));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Comment&&(identical(other.commentId, commentId) || other.commentId == commentId)&&(identical(other.gid, gid) || other.gid == gid)&&(identical(other.postDate, postDate) || other.postDate == postDate)&&(identical(other.commentText, commentText) || other.commentText == commentText)&&(identical(other.poster, poster) || other.poster == poster));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Comment&&(identical(other.commentId, commentId) || other.commentId == commentId)&&(identical(other.gid, gid) || other.gid == gid)&&(identical(other.postDate, postDate) || other.postDate == postDate)&&(identical(other.commentText, commentText) || other.commentText == commentText)&&(identical(other.poster, poster) || other.poster == poster));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,commentId,gid,postDate,commentText,poster);
+int get hashCode {
+    return Object.hash(runtimeType,commentId,gid,postDate,commentText,poster);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'Comment(commentId: $commentId, gid: $gid, postDate: $postDate, commentText: $commentText, poster: $poster)';
+    return 'Comment(commentId: $commentId, gid: $gid, postDate: $postDate, commentText: $commentText, poster: $poster)';
 }
 
 

@@ -85,7 +85,7 @@ abstract class _$GalleryNotifier extends $Notifier<Gallery> {
   Gallery build(int gid);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<Gallery, Gallery>;
     final element =
         ref.element
@@ -95,7 +95,7 @@ abstract class _$GalleryNotifier extends $Notifier<Gallery> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }
 
@@ -182,7 +182,7 @@ abstract class _$PageState extends $Notifier<GalleryViewState> {
   GalleryViewState build(int gid);
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<GalleryViewState, GalleryViewState>;
     final element =
         ref.element
@@ -192,7 +192,7 @@ abstract class _$PageState extends $Notifier<GalleryViewState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, () => build(_$args));
+    return element.handleCreate(ref, () => build(_$args));
   }
 }
 
@@ -235,7 +235,7 @@ abstract class _$ThumbHeroTagPrefix extends $Notifier<String> {
   String build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<String, String>;
     final element =
         ref.element
@@ -245,6 +245,6 @@ abstract class _$ThumbHeroTagPrefix extends $Notifier<String> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

@@ -917,7 +917,7 @@ class _ReadScaffoldState extends ConsumerState<ReadScaffold> {
     return LiquidGlassScope(
       child: Stack(
         children: [
-          GlassRefractionSource(
+          GlassBackgroundSource(
             child: Listener(
               onPointerMove: (event) {
                 final w = MediaQuery.of(context).size.width;

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'gallery_page_state.dart';
@@ -9,6 +9,7 @@ part of 'gallery_page_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $GalleryViewStateCopyWith<GalleryViewState> get copyWith => _$GalleryViewStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GalleryViewState&&(identical(other.pageStatus, pageStatus) || other.pageStatus == pageStatus)&&(identical(other.appBartTansparent, appBartTansparent) || other.appBartTansparent == appBartTansparent));
+  final _this = this as GalleryViewState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GalleryViewState&&(identical(other.pageStatus, _this.pageStatus) || other.pageStatus == _this.pageStatus)&&(identical(other.appBartTansparent, _this.appBartTansparent) || other.appBartTansparent == _this.appBartTansparent));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,pageStatus,appBartTansparent);
+int get hashCode {
+  final _this = this as GalleryViewState;
+  return Object.hash(runtimeType,_this.pageStatus,_this.appBartTansparent);
+}
 
 @override
 String toString() {
-  return 'GalleryViewState(pageStatus: $pageStatus, appBartTansparent: $appBartTansparent)';
+  final _this = this as GalleryViewState;
+  return 'GalleryViewState(pageStatus: ${_this.pageStatus}, appBartTansparent: ${_this.appBartTansparent})';
 }
 
 
@@ -63,7 +69,7 @@ class _$GalleryViewStateCopyWithImpl<$Res>
 /// Create a copy of GalleryViewState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? pageStatus = freezed,Object? appBartTansparent = null,}) {
-  return _then(_self.copyWith(
+  return _then(GalleryViewState(
 pageStatus: freezed == pageStatus ? _self.pageStatus : pageStatus // ignore: cast_nullable_to_non_nullable
 as PageStatus?,appBartTansparent: null == appBartTansparent ? _self.appBartTansparent : appBartTansparent // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -223,16 +229,18 @@ _$GalleryViewStateCopyWith<_GalleryViewState> get copyWith => __$GalleryViewStat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GalleryViewState&&(identical(other.pageStatus, pageStatus) || other.pageStatus == pageStatus)&&(identical(other.appBartTansparent, appBartTansparent) || other.appBartTansparent == appBartTansparent));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GalleryViewState&&(identical(other.pageStatus, pageStatus) || other.pageStatus == pageStatus)&&(identical(other.appBartTansparent, appBartTansparent) || other.appBartTansparent == appBartTansparent));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,pageStatus,appBartTansparent);
+int get hashCode {
+    return Object.hash(runtimeType,pageStatus,appBartTansparent);
+}
 
 @override
 String toString() {
-  return 'GalleryViewState(pageStatus: $pageStatus, appBartTansparent: $appBartTansparent)';
+    return 'GalleryViewState(pageStatus: $pageStatus, appBartTansparent: $appBartTansparent)';
 }
 
 

@@ -3,11 +3,9 @@ import 'dart:io';
 
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/l10n/generated/app_localizations.dart';
-import 'package:eros_n/pages/webview/webview.dart' show inAppWebViewSettings;
 import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/material.dart';
-import 'package:zikzak_inappwebview/zikzak_inappwebview.dart' hide Cookie;
-import 'package:webview_flutter_windows/webview_flutter_windows.dart';
+import 'package:webview_all/webview_all.dart';
 
 class WebViewCookieInfo {
   const WebViewCookieInfo({
@@ -39,9 +37,6 @@ class WebViewCookieInfo {
 }
 
 typedef WebViewCallback = Function(WebViewCookieInfo);
-
-/// Host part of [NHConst.baseUrl] without scheme, used for cookie domain matching.
-final String _hostFromBase = WebUri(NHConst.baseUrl).host;
 
 /// Build the URL we should land on first inside the cookie-fetching WebView.
 /// Callers may pass either [NHConst.baseUrl] (no path) or [NHConst.loginUrl]
@@ -77,12 +72,31 @@ List<Cookie> _parseDocumentCookie(String raw) {
   return result;
 }
 
-class MobileWebView extends StatefulWidget {
-  const MobileWebView({
+WebViewCookie? _findCookie(List<WebViewCookie> cookies, String name) {
+  for (final c in cookies) {
+    if (c.name == name) {
+      return c;
+    }
+  }
+  return null;
+}
+
+/// Single WebView implementation for every platform, backed by `webview_all`.
+///
+/// There used to be two parallel implementations — InAppWebView on
+/// Android/iOS and webview_flutter_windows on Windows. Both packages are now
+/// replaced by one API surface, so the cookie-sync and challenge-detection
+/// logic lives in a single place.
+///
+/// Note: `webview_all`'s cross-platform cookie model only carries
+/// name/value/domain/path (no expires/httpOnly/secure), so cookies handed to
+/// [WebViewCallback] lose those attributes.
+class WebView extends StatefulWidget {
+  const WebView({
     super.key,
     required this.url,
     this.callback,
-    this.deletedCookie = false,
+    this.deletedCookie = true,
   });
 
   final WebViewCallback? callback;
@@ -90,136 +104,197 @@ class MobileWebView extends StatefulWidget {
   final bool deletedCookie;
 
   @override
-  State<MobileWebView> createState() => _MobileWebViewState();
+  State<WebView> createState() => WebViewState();
 }
 
-class _MobileWebViewState extends State<MobileWebView> {
-  late CookieManager cookieManager;
-  bool initOk = false;
+class WebViewState extends State<WebView> {
+  late final WebViewController _controller;
+  final WebViewCookieManager _cookieManager = WebViewCookieManager();
+
+  bool _initialized = false;
+  String url = '';
 
   Timer? anomalyTimer;
 
   @override
   void initState() {
-    initWebView();
     super.initState();
+    _controller = WebViewController(
+      onPermissionRequest: _onPermissionRequested,
+    );
+    _initWebView();
     if (widget.callback != null) {
       anomalyTimer = Timer.periodic(const Duration(seconds: 1), anomalyMonitor);
     }
   }
 
   Future<void> anomalyMonitor(Timer timer) async {
-    if (mounted && initOk && _controller != null) {
+    if (mounted && _initialized) {
       callbackChallengeInfo();
     }
   }
 
-  Future<void> initWebView() async {
-    cookieManager = CookieManager.instance();
+  Future<void> _initWebView() async {
     if (widget.deletedCookie) {
-      await cookieManager.deleteAllCookies();
+      try {
+        await _cookieManager.clearCookies();
+      } catch (e) {
+        logger.d('clearCookies failed: $e');
+      }
     }
+    _controller
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setUserAgent(NHConst.userAgent)
+      ..setBackgroundColor(Colors.transparent)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onNavigationRequest: (request) async {
+            url = request.url;
+            return NavigationDecision.navigate;
+          },
+          onPageStarted: (pageUrl) {
+            url = pageUrl;
+          },
+          onPageFinished: (pageUrl) async {
+            url = pageUrl;
+            await _onPageLoaded();
+          },
+          onWebResourceError: (error) {
+            logger.w(
+              '[WebView] onWebResourceError ${error.description} '
+              'url=${error.url}',
+            );
+          },
+        ),
+      )
+      ..setOnConsoleMessage((msg) {
+        logger.t('[WebView console] ${msg.level}: ${msg.message}');
+      });
     if (!mounted) {
       return;
     }
-    setState(() {
-      initOk = true;
-    });
+    setState(() => _initialized = true);
+    await _controller.loadRequest(Uri.parse(_resolveLoginEntryUrl(widget.url)));
+  }
+
+  /// Runs once the page finishes loading: kill any Service Worker that may
+  /// be intercepting requests, probe whether the WebView holds a live
+  /// cf_clearance, and sync cookies to the callback.
+  Future<void> _onPageLoaded() async {
+    try {
+      await _controller.runJavaScriptReturningResult('''
+(async function() {
+  try {
+    if (navigator.serviceWorker) {
+      const rs = await navigator.serviceWorker.getRegistrations();
+      for (const r of rs) { await r.unregister(); }
+    }
+    if (window.caches) {
+      const ks = await caches.keys();
+      for (const k of ks) { await caches.delete(k); }
+    }
+  } catch(e) {}
+})();
+''');
+    } catch (_) {}
+
+    // Probe whether the WebView actually has a working cf_clearance by
+    // hitting a real API that requires it.
+    try {
+
+      final probe = await _controller.callAsyncJavaScript('''
+          try {
+            const r = await fetch('/api/galleries/all?page=1', {credentials:'include'});
+            return JSON.stringify({status:r.status});
+          } catch(e) { return 'err:'+e.toString(); }
+        ''');
+      logger.d('cfProbe=$probe');
+    } catch (e) {
+      logger.e('cfProbe threw: $e');
+    }
+
+    // Try to fish out cf_clearance via a few URL/path variants.
+    for (final u in [
+      'https://nhentai.net/',
+      'https://nhentai.net',
+      'http://nhentai.net/',
+      'https://.nhentai.net/',
+      'https://www.nhentai.net/',
+    ]) {
+      try {
+        final cookies = await _cookieManager.getCookies(domain: Uri.parse(u));
+        final c = _findCookie(cookies, 'cf_clearance');
+        logger.d(
+          'cfClearance@$u => ${c?.value != null ? "FOUND len=${c!.value.length}" : "null"}',
+        );
+        if (c != null) {
+          break;
+        }
+      } catch (e) {
+        logger.d('cfClearance@$u failed: $e');
+      }
+    }
+    // Force a sync from the native cookie manager so newly-issued Set-Cookie
+    // headers from the page load are visible.
+    try {
+      await _cookieManager.getCookies(domain: Uri.parse('${NHConst.baseUrl}/'));
+    } catch (_) {}
+    callbackChallengeInfo();
+  }
+
+  /// Merge the native cookie manager's cookies with anything visible via
+  /// `document.cookie` (some servers issue cookies through JS-set headers
+  /// the native manager fails to enumerate).
+  Future<List<Cookie>> _readCookies() async {
+    final rawCookies = await _cookieManager.getCookies(
+      domain: Uri.parse('${NHConst.baseUrl}/'),
+    );
+    final ioCookies = rawCookies
+        .map(
+          (e) => Cookie(e.name, e.value)
+            ..domain = e.domain
+            ..path = e.path,
+        )
+        .toList();
+
+    final raw = await _controller.runJavaScriptReturningResult(
+      'document.cookie',
+    );
+    if (raw is String && raw.isNotEmpty) {
+      final existing = ioCookies.map((e) => e.name).toSet();
+      for (final c in _parseDocumentCookie(raw)) {
+        if (!existing.contains(c.name)) {
+          ioCookies.add(c);
+        }
+      }
+    }
+    return ioCookies;
   }
 
   Future callbackChallengeInfo() async {
-    if (_controller == null) {
+    if (!_initialized) {
       return;
     }
-    // First-pass: ask CookieManager for the target host's cookies.
-    // The url parameter actually filters by exact host/path match, so
-    // pass the trailing slash variant too just in case.
-    final List<dynamic> rawCookies = await cookieManager.getCookies(
-      url: WebUri('${NHConst.baseUrl}/'),
-      webViewController: _controller,
+    final ioCookies = await _readCookies();
+    final currentUrl = await _controller.currentUrl();
+    final pageInfo = await _controller.runJavaScriptReturningResult(
+      '(function(){return JSON.stringify({title:document.title,bodyLen:(document.body&&document.body.innerText||"").length,readyState:document.readyState,hasCookie:document.cookie.length>0,docCookie:document.cookie});})()',
     );
-
-    // Fallback: if zero, also enumerate every cookie the WebView knows
-    // and filter by the target host (handles cases where the cookie
-    // is stored with a leading-dot domain that the host filter misses).
-    List<dynamic> filtered = rawCookies.toList();
-    String allCookieDump = '';
-    try {
-      final allDyn = await (cookieManager as dynamic).getAllCookies();
-      if (allDyn is List) {
-        allCookieDump = allDyn
-            .map((c) {
-              try {
-                return '${(c as dynamic).domain}|${(c as dynamic).name}';
-              } catch (_) {
-                return '?';
-              }
-            })
-            .join(',');
-        if (filtered.isEmpty) {
-          for (final c in allDyn) {
-            try {
-              final dom = (c as dynamic).domain as String?;
-              if (dom != null &&
-                  (dom.endsWith(_hostFromBase) ||
-                      _hostFromBase.endsWith(
-                        dom.startsWith('.') ? dom.substring(1) : dom,
-                      ))) {
-                filtered.add(c);
-              }
-            } catch (_) {}
-          }
-        }
-      }
-    } catch (_) {}
-    logger.d('allCookies=[$allCookieDump]');
-
-    var ioCookies = filtered
-        .map((e) => Cookie(e.name as String, '${(e as dynamic).value}'))
-        .toList();
-
-    // Always read `document.cookie` so we can merge any non-HttpOnly
-    // cookies the WebView received (some servers also set csrftoken via
-    // a JS Set-Cookie header that CookieManager fails to enumerate).
-    String jsCookie = '';
-    final raw = await _controller!.evaluateJavascript(
-      source: 'document.cookie',
-    );
-    if (raw is String) {
-      jsCookie = raw;
-      if (raw.isNotEmpty) {
-        final existing = ioCookies.map((e) => e.name).toSet();
-        for (final c in _parseDocumentCookie(raw)) {
-          if (!existing.contains(c.name)) {
-            ioCookies.add(c);
-          }
-        }
-      }
-    }
-    final currentUrl = await _controller!.getUrl();
-    final pageInfo = await _controller!.evaluateJavascript(
-      source:
-          '(function(){return JSON.stringify({title:document.title,bodyLen:(document.body&&document.body.innerText||"").length,readyState:document.readyState,hasCookie:document.cookie.length>0,docCookie:document.cookie});})()',
+    final ua = await _controller.runJavaScriptReturningResult(
+      'navigator.userAgent',
     );
     logger.d(
       'callbackChallengeInfo url=$currentUrl, '
-      'nativeCount=${rawCookies.length}, '
-      'filteredCount=${filtered.length}, '
       'finalCount=${ioCookies.length}, '
-      'jsCookieLen=${jsCookie.length}, '
       'cookieNames=[${ioCookies.map((e) => e.name).join(",")}], '
       'page=$pageInfo',
     );
-    final ua = await _controller!.evaluateJavascript(
-      source: 'navigator.userAgent',
-    );
-    final userAgent = ua is String ? ua : '';
     widget.callback?.call(
       WebViewCookieInfo(
         url: NHConst.baseUrl,
-        currentUrl: currentUrl?.toString(),
+        currentUrl: currentUrl,
         cookies: ioCookies,
-        userAgent: userAgent,
+        userAgent: ua is String ? ua : '',
         // Only show the WebView UI when interaction is actually required
         // (DOM has visible challenge widgets), or when JS challenge has been
         // running for too long without resolving.
@@ -231,12 +306,11 @@ class _MobileWebViewState extends State<MobileWebView> {
   }
 
   Future<bool> getManualRequired() async {
-    if (_controller != null) {
-      // Only return true when we're actually on a Cloudflare challenge page.
-      // Detect by document.title ("Just a moment..."), URL path
-      // (/cdn-cgi/challenge-platform/), or known challenge containers.
-      final manualRequiredText = await _controller!.evaluateJavascript(
-        source: '''
+    // Only return true when we're actually on a Cloudflare challenge page.
+    // Detect by document.title ("Just a moment..."), URL path
+    // (/cdn-cgi/challenge-platform/), or known challenge containers.
+    final manualRequiredText = await _controller.runJavaScriptReturningResult(
+      '''
           (function() {
             var onChallengePage = document.title.indexOf('Just a moment') !== -1
               || document.title.indexOf('Please Wait') !== -1
@@ -253,351 +327,70 @@ class _MobileWebViewState extends State<MobileWebView> {
             return needsClick ? 'true' : null;
           })()
         ''',
-      );
-      return manualRequiredText == 'true';
-    }
-    return false;
+    );
+    return manualRequiredText == 'true';
   }
 
   Future<String?> getChallengeMessage() async {
-    if (_controller != null) {
-      final String msg =
-          await _controller!.evaluateJavascript(
-                source:
-                    '(document.querySelector("#challenge-body-text") != null) ? document.querySelector("#challenge-body-text").textContent : ""',
-              )
-              as String;
-      return msg.trim();
-    }
-    return null;
+    final String msg =
+        await _controller.runJavaScriptReturningResult(
+              '(document.querySelector("#challenge-body-text") != null) ? document.querySelector("#challenge-body-text").textContent : ""',
+            )
+            as String;
+    return msg.trim();
   }
 
-  InAppWebViewController? _controller;
+  Future<void> _onPermissionRequested(WebViewPermissionRequest request) async {
+    final resourceNames = request.types.map((t) => t.name).join(', ');
+    try {
+      final allow = await showDialog<bool>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: Text(AppLocalizations.of(context).webview_permission_title),
+          content: Text(
+            AppLocalizations.of(
+              context,
+            ).webview_permission_content(resourceNames),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: Text(AppLocalizations.of(context).deny),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: Text(AppLocalizations.of(context).allow),
+            ),
+          ],
+        ),
+      );
+      if (allow == true) {
+        await request.grant();
+      } else {
+        await request.deny();
+      }
+    } catch (e) {
+      logger.d('permission request handling failed: $e');
+    }
+  }
 
   Future reload() async {
-    await _controller?.reload();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (initOk) {
-      return InAppWebView(
-        // Use the login path: it's outside the SvelteKit Service-Worker
-        // precache, so the request always hits the origin and Cloudflare
-        // can issue a fresh cf_clearance cookie.
-        initialUrlRequest: URLRequest(
-          url: WebUri(_resolveLoginEntryUrl(widget.url)),
-        ),
-        initialSettings: inAppWebViewSettings,
-        onWebViewCreated: (controller) async {
-          _controller = controller;
-          try {
-            await InAppWebViewController.clearAllCache();
-          } catch (_) {}
-          if (Platform.isAndroid) {
-            try {
-              await ServiceWorkerController.instance().setServiceWorkerClient(
-                null,
-              );
-            } catch (_) {}
-          }
-        },
-        shouldOverrideUrlLoading: (controller, navigationAction) async {
-          return NavigationActionPolicy.ALLOW;
-        },
-        onTitleChanged: (controller, title) async {
-          _controller = controller;
-          callbackChallengeInfo();
-        },
-        onLoadStop: (controller, uri) async {
-          _controller = controller;
-          // Aggressively kill any Service Worker that may be intercepting
-          // requests so subsequent reloads always hit the network.
-          try {
-            await controller.evaluateJavascript(
-              source: '''
-                (async function() {
-                  try {
-                    if (navigator.serviceWorker) {
-                      const rs = await navigator.serviceWorker.getRegistrations();
-                      for (const r of rs) { await r.unregister(); }
-                    }
-                    if (window.caches) {
-                      const ks = await caches.keys();
-                      for (const k of ks) { await caches.delete(k); }
-                    }
-                  } catch(e) {}
-                })();
-              ''',
-            );
-          } catch (_) {}
-          // Probe whether the WebView actually has a working cf_clearance
-          // by hitting a real API that requires it. If status is non-403/503
-          // the cookie is alive even if document.cookie can't see it.
-          try {
-            final probe = await controller.callAsyncJavaScript(
-              functionBody: '''
-                try {
-                  const r = await fetch('/api/galleries/all?page=1', {credentials:'include'});
-                  return JSON.stringify({status:r.status});
-                } catch(e) { return 'err:'+e.toString(); }
-              ''',
-            );
-            logger.d('cfProbe=${probe?.value}, err=${probe?.error}');
-          } catch (e) {
-            logger.e('cfProbe threw: $e');
-          }
-          // Try to fish out cf_clearance via a few URL/path variants.
-          for (final u in [
-            'https://nhentai.net/',
-            'https://nhentai.net',
-            'http://nhentai.net/',
-            'https://.nhentai.net/',
-            'https://www.nhentai.net/',
-          ]) {
-            try {
-              final c = await CookieManager.instance().getCookie(
-                url: WebUri(u),
-                name: 'cf_clearance',
-                webViewController: controller,
-              );
-              logger.d(
-                'cfClearance@$u => ${c?.value != null ? "FOUND len=${c!.value.toString().length}" : "null"}',
-              );
-              if (c != null) {
-                break;
-              }
-            } catch (e) {
-              logger.d('cfClearance@$u failed: $e');
-            }
-          }
-          // Force a sync from native CookieManager → make sure newly-issued
-          // Set-Cookie headers from the page load are visible.
-          try {
-            await CookieManager.instance().getCookies(
-              url: WebUri('${NHConst.baseUrl}/'),
-              webViewController: controller,
-            );
-          } catch (_) {}
-          callbackChallengeInfo();
-        },
-        // onLoadStop: (InAppWebViewController controller, Uri? uri) async {
-        //   if (uri == null) {
-        //     return;
-        //   }
-        //   final cookies = await cookieManager.getCookies(url: uri);
-        //   final ioCookies =
-        //       cookies.map((e) => Cookie(e.name, '${e.value}')).toList();
-        //   final ua = await controller.evaluateJavascript(
-        //       source: 'navigator.userAgent');
-        //   if (widget.callback != null) {
-        //     widget.callback!(WebViewCookieInfo(
-        //         url: uri.toString(),
-        //         cookies: ioCookies,
-        //         userAgent: ua as String,
-        //         completed: true));
-        //   }
-        // },
-      );
+    try {
+      await _controller.reload();
+    } catch (e) {
+      logger.d('reload failed: $e');
     }
-    return Container();
-  }
-}
-
-class WindowsWebView extends StatefulWidget {
-  const WindowsWebView({super.key, required this.url, this.callback});
-
-  final WebViewCallback? callback;
-  final String url;
-
-  @override
-  State<WindowsWebView> createState() => _WindowsWebViewState();
-}
-
-class _WindowsWebViewState extends State<WindowsWebView> {
-  final _controller = WebviewController();
-  final List<StreamSubscription> _subscriptions = [];
-
-  Timer? anomalyTimer;
-
-  Future reload() {
-    return _controller.reload();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-    if (widget.callback != null) {
-      anomalyTimer = Timer.periodic(const Duration(seconds: 1), anomalyMonitor);
-    }
-  }
-
-  Future<void> anomalyMonitor(Timer timer) async {
-    if (!mounted || !_controller.value.isInitialized) {
-      return;
-    }
-    callbackChallengeInfo();
-  }
-
-  Future<bool> getManualRequired() async {
-    if (_controller.value.isInitialized) {
-      final manualRequiredText = await _controller.executeScript('''
-        (function() {
-          var onChallengePage = document.title.indexOf('Just a moment') !== -1
-            || document.title.indexOf('Please Wait') !== -1
-            || document.querySelector('#challenge-form') != null
-            || document.querySelector('#challenge-stage') != null
-            || document.querySelector('#cf-challenge-running') != null;
-          if (!onChallengePage) return null;
-          var needsClick = document.querySelector('#challenge-stage input[type=checkbox]') != null
-            || document.querySelector('.pow-button') != null
-            || document.querySelector('.captcha-prompt') != null
-            || document.querySelector('iframe[src*="challenges.cloudflare.com"]') != null;
-          return needsClick ? 'true' : null;
-        })()
-      ''');
-      return manualRequiredText == 'true';
-    }
-    return false;
-  }
-
-  Future<String?> getChallengeMessage() async {
-    if (_controller.value.isInitialized) {
-      final String msg =
-          await _controller.executeScript(
-                '(document.querySelector("#challenge-body-text") != null) ? document.querySelector("#challenge-body-text").textContent : ""',
-              )
-              as String;
-      return msg.trim();
-    }
-    return null;
-  }
-
-  Future<String> getUserAgent() async {
-    if (_controller.value.isInitialized) {
-      final value = await _controller.executeScript('navigator.userAgent');
-      return value is String ? value : '';
-    }
-    return '';
-  }
-
-  Future<List<Cookie>> getCookies() async {
-    if (_controller.value.isInitialized) {
-      final cookies = await _controller.getCookies(widget.url);
-
-      return cookies.map((e) {
-        final expires = e.expires;
-        final maxAge = expires?.difference(DateTime.now()).inSeconds;
-        return Cookie(e.name, e.value)
-          ..domain = e.domain
-          ..path = e.path
-          ..httpOnly = e.isHttpOnly
-          ..secure = e.isSecure
-          ..maxAge = maxAge
-          ..expires = expires;
-      }).toList();
-    }
-    return [];
   }
 
   @override
   void dispose() {
-    for (final s in _subscriptions) {
-      s.cancel();
-    }
     anomalyTimer?.cancel();
-    _controller.dispose();
     super.dispose();
-  }
-
-  String url = '';
-
-  Future callbackChallengeInfo() async {
-    if (_controller.value.isInitialized) {
-      widget.callback?.call(
-        WebViewCookieInfo(
-          url: NHConst.baseUrl,
-          cookies: await getCookies(),
-          userAgent: await getUserAgent(),
-          manualRequired:
-              (anomalyTimer?.tick ?? 0) >= 30 || await getManualRequired(),
-          message: await getChallengeMessage(),
-        ),
-      );
-    }
-  }
-
-  Future<void> initPlatformState() async {
-    url = widget.url;
-    await _controller.initialize();
-    _subscriptions.add(
-      _controller.url.listen((url) {
-        this.url = url;
-      }),
-    );
-    _subscriptions.add(
-      _controller.loadingState.listen((state) async {
-        if (state == LoadingState.navigationCompleted ||
-            state == LoadingState.loading) {
-          if (widget.callback != null) {
-            callbackChallengeInfo();
-          }
-        }
-      }),
-    );
-
-    await _controller.clearCookies();
-    await _controller.setBackgroundColor(Colors.transparent);
-    await _controller.setPopupWindowPolicy(WebviewPopupWindowPolicy.deny);
-    await _controller.loadUrl(url);
-
-    if (!mounted) {
-      return;
-    }
-    setState(() {});
-  }
-
-  Future<WebviewPermissionDecision> _onPermissionRequested(
-    String url,
-    WebviewPermissionKind kind,
-    bool isUserInitiated,
-  ) async {
-    final decision = await showDialog<WebviewPermissionDecision>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text(AppLocalizations.of(context).webview_permission_title),
-        content: Text(
-          AppLocalizations.of(context).webview_permission_content(kind.toString()),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () =>
-                Navigator.pop(context, WebviewPermissionDecision.deny),
-            child: Text(AppLocalizations.of(context).deny),
-          ),
-          TextButton(
-            onPressed: () =>
-                Navigator.pop(context, WebviewPermissionDecision.allow),
-            child: Text(AppLocalizations.of(context).allow),
-          ),
-        ],
-      ),
-    );
-
-    return decision ?? WebviewPermissionDecision.none;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (!_controller.value.isInitialized) {
-      return Text(
-        AppLocalizations.of(context).not_initialized,
-        style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.w900),
-      );
-    } else {
-      return Webview(_controller, permissionRequested: _onPermissionRequested);
-    }
+    return WebViewWidget(controller: _controller);
   }
 }
 
@@ -618,36 +411,19 @@ class GetCookieWebView extends StatefulWidget {
 }
 
 class GetCookieWebViewState extends State<GetCookieWebView> {
-  // ignore: library_private_types_in_public_api
-  GlobalKey<_MobileWebViewState> mobileState = GlobalKey();
-  // ignore: library_private_types_in_public_api
-  GlobalKey<_WindowsWebViewState> windowsState = GlobalKey();
+  final GlobalKey<WebViewState> webViewState = GlobalKey();
 
   Future reload() async {
-    await mobileState.currentState?.reload();
-    await windowsState.currentState?.reload();
+    await webViewState.currentState?.reload();
   }
 
   @override
   Widget build(BuildContext context) {
-    switch (Platform.operatingSystem) {
-      case 'ios':
-      case 'android':
-      case 'ohos':
-        return MobileWebView(
-          key: mobileState,
-          url: widget.url,
-          callback: widget.callback,
-          deletedCookie: widget.deletedCookie,
-        );
-      case 'windows':
-        return WindowsWebView(
-          key: windowsState,
-          url: widget.url,
-          callback: widget.callback,
-        );
-      default:
-        throw UnimplementedError();
-    }
+    return WebView(
+      key: webViewState,
+      url: widget.url,
+      callback: widget.callback,
+      deletedCookie: widget.deletedCookie,
+    );
   }
 }

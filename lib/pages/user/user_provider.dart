@@ -8,8 +8,8 @@ import 'package:eros_n/network/app_dio/pdio.dart';
 import 'package:eros_n/network/request.dart';
 import 'package:eros_n/network/webview_proxy/hidden_webview_proxy.dart';
 import 'package:eros_n/utils/logger.dart';
-import 'package:zikzak_inappwebview/zikzak_inappwebview.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:webview_all/webview_all.dart';
 
 part 'user_provider.g.dart';
 
@@ -87,7 +87,7 @@ class UserNotifier extends _$UserNotifier {
 
   void logout() {
     Global.cookieJar.deleteAll();
-    CookieManager.instance().deleteAllCookies();
+    WebViewCookieManager().clearCookies();
     state = const User();
     hiveHelper.setUser(state);
   }
@@ -111,20 +111,23 @@ class UserNotifier extends _$UserNotifier {
 
     final fromWebView = <io.Cookie>[];
     try {
-      final cm = CookieManager.instance();
+      final cm = WebViewCookieManager();
       for (final url in [
         '${NHConst.baseUrl}/',
         NHConst.baseUrl,
         'https://nhentai.net/',
       ]) {
+        // webview_all exposes one getCookies(domain:) call per URL instead
+        // of inwebappview per-name getCookie; filter the list by name here.
+        final cookies = await cm.getCookies(domain: Uri.parse(url));
         for (final name in _authCookieNames) {
           try {
-            final c = await cm.getCookie(url: WebUri(url), name: name);
-            final v = c?.value?.toString();
-            if (v == null || v.isEmpty) {
+            if (fromWebView.any((x) => x.name == name)) {
               continue;
             }
-            if (fromWebView.any((x) => x.name == name)) {
+            final match = cookies.firstWhereOrNull((c) => c.name == name);
+            final v = match?.value;
+            if (v == null || v.isEmpty) {
               continue;
             }
             fromWebView.add(io.Cookie(name, v));
@@ -132,7 +135,7 @@ class UserNotifier extends _$UserNotifier {
         }
       }
     } catch (e) {
-      logger.w('failed to read auth cookies from CookieManager: $e');
+      logger.w('failed to read auth cookies from WebViewCookieManager: $e');
     }
 
     if (fromWebView.isNotEmpty) {

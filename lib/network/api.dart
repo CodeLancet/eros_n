@@ -1,5 +1,5 @@
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
-import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
+import 'package:http_cache_hive_store/http_cache_hive_store.dart';
 
 class Api {
   // Shared cache store initialised once during Global.init() via
@@ -23,7 +23,7 @@ class Api {
       store: sharedCacheStore,
       policy: CachePolicy.forceCache,
       maxStale: const Duration(hours: 6),
-      hitCacheOnErrorExcept: [401, 403, 503],
+      hitCacheOnErrorCodes: [401, 403, 503],
       priority: CachePriority.normal,
       cipher: null,
       keyBuilder: CacheOptions.defaultCacheKeyBuilder,

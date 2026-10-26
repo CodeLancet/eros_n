@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tag.dart';
@@ -9,6 +9,7 @@ part of 'tag.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -27,23 +28,29 @@ $TagCopyWith<Tag> get copyWith => _$TagCopyWithImpl<Tag>(this as Tag, _$identity
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as Tag;
   properties
     ..add(DiagnosticsProperty('type', 'Tag'))
-    ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('type', type))..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('url', url))..add(DiagnosticsProperty('count', count))..add(DiagnosticsProperty('translatedName', translatedName));
+    ..add(DiagnosticsProperty('id', _this.id))..add(DiagnosticsProperty('type', _this.type))..add(DiagnosticsProperty('name', _this.name))..add(DiagnosticsProperty('url', _this.url))..add(DiagnosticsProperty('count', _this.count))..add(DiagnosticsProperty('translatedName', _this.translatedName));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Tag&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.url, url) || other.url == url)&&(identical(other.count, count) || other.count == count)&&(identical(other.translatedName, translatedName) || other.translatedName == translatedName));
+  final _this = this as Tag;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Tag&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.type, _this.type) || other.type == _this.type)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.url, _this.url) || other.url == _this.url)&&(identical(other.count, _this.count) || other.count == _this.count)&&(identical(other.translatedName, _this.translatedName) || other.translatedName == _this.translatedName));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,type,name,url,count,translatedName);
+int get hashCode {
+  final _this = this as Tag;
+  return Object.hash(runtimeType,_this.id,_this.type,_this.name,_this.url,_this.count,_this.translatedName);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'Tag(id: $id, type: $type, name: $name, url: $url, count: $count, translatedName: $translatedName)';
+  final _this = this as Tag;
+  return 'Tag(id: ${_this.id}, type: ${_this.type}, name: ${_this.name}, url: ${_this.url}, count: ${_this.count}, translatedName: ${_this.translatedName})';
 }
 
 
@@ -72,7 +79,7 @@ class _$TagCopyWithImpl<$Res>
 /// Create a copy of Tag
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? type = freezed,Object? name = freezed,Object? url = freezed,Object? count = freezed,Object? translatedName = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(Tag(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -242,23 +249,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'Tag'))
     ..add(DiagnosticsProperty('id', id))..add(DiagnosticsProperty('type', type))..add(DiagnosticsProperty('name', name))..add(DiagnosticsProperty('url', url))..add(DiagnosticsProperty('count', count))..add(DiagnosticsProperty('translatedName', translatedName));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Tag&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.url, url) || other.url == url)&&(identical(other.count, count) || other.count == count)&&(identical(other.translatedName, translatedName) || other.translatedName == translatedName));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Tag&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.url, url) || other.url == url)&&(identical(other.count, count) || other.count == count)&&(identical(other.translatedName, translatedName) || other.translatedName == translatedName));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,type,name,url,count,translatedName);
+int get hashCode {
+    return Object.hash(runtimeType,id,type,name,url,count,translatedName);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'Tag(id: $id, type: $type, name: $name, url: $url, count: $count, translatedName: $translatedName)';
+    return 'Tag(id: $id, type: $type, name: $name, url: $url, count: $count, translatedName: $translatedName)';
 }
 
 

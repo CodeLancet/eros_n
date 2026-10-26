@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:eros_n/component/models/index.dart';
 import 'package:eros_n/utils/logger.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 
 const String configBox = 'config_box';
 

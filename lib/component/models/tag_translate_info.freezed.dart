@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tag_translate_info.dart';
@@ -9,6 +9,7 @@ part of 'tag_translate_info.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -27,23 +28,29 @@ $TagTranslateInfoCopyWith<TagTranslateInfo> get copyWith => _$TagTranslateInfoCo
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  final _this = this as TagTranslateInfo;
   properties
     ..add(DiagnosticsProperty('type', 'TagTranslateInfo'))
-    ..add(DiagnosticsProperty('version', version))..add(DiagnosticsProperty('remoteVersion', remoteVersion))..add(DiagnosticsProperty('lastReleaseUrl', lastReleaseUrl))..add(DiagnosticsProperty('nhTagVersion', nhTagVersion))..add(DiagnosticsProperty('isUpdating', isUpdating));
+    ..add(DiagnosticsProperty('version', _this.version))..add(DiagnosticsProperty('remoteVersion', _this.remoteVersion))..add(DiagnosticsProperty('lastReleaseUrl', _this.lastReleaseUrl))..add(DiagnosticsProperty('nhTagVersion', _this.nhTagVersion))..add(DiagnosticsProperty('isUpdating', _this.isUpdating));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TagTranslateInfo&&(identical(other.version, version) || other.version == version)&&(identical(other.remoteVersion, remoteVersion) || other.remoteVersion == remoteVersion)&&(identical(other.lastReleaseUrl, lastReleaseUrl) || other.lastReleaseUrl == lastReleaseUrl)&&(identical(other.nhTagVersion, nhTagVersion) || other.nhTagVersion == nhTagVersion)&&(identical(other.isUpdating, isUpdating) || other.isUpdating == isUpdating));
+  final _this = this as TagTranslateInfo;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TagTranslateInfo&&(identical(other.version, _this.version) || other.version == _this.version)&&(identical(other.remoteVersion, _this.remoteVersion) || other.remoteVersion == _this.remoteVersion)&&(identical(other.lastReleaseUrl, _this.lastReleaseUrl) || other.lastReleaseUrl == _this.lastReleaseUrl)&&(identical(other.nhTagVersion, _this.nhTagVersion) || other.nhTagVersion == _this.nhTagVersion)&&(identical(other.isUpdating, _this.isUpdating) || other.isUpdating == _this.isUpdating));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,version,remoteVersion,lastReleaseUrl,nhTagVersion,isUpdating);
+int get hashCode {
+  final _this = this as TagTranslateInfo;
+  return Object.hash(runtimeType,_this.version,_this.remoteVersion,_this.lastReleaseUrl,_this.nhTagVersion,_this.isUpdating);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'TagTranslateInfo(version: $version, remoteVersion: $remoteVersion, lastReleaseUrl: $lastReleaseUrl, nhTagVersion: $nhTagVersion, isUpdating: $isUpdating)';
+  final _this = this as TagTranslateInfo;
+  return 'TagTranslateInfo(version: ${_this.version}, remoteVersion: ${_this.remoteVersion}, lastReleaseUrl: ${_this.lastReleaseUrl}, nhTagVersion: ${_this.nhTagVersion}, isUpdating: ${_this.isUpdating})';
 }
 
 
@@ -72,7 +79,7 @@ class _$TagTranslateInfoCopyWithImpl<$Res>
 /// Create a copy of TagTranslateInfo
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? version = freezed,Object? remoteVersion = freezed,Object? lastReleaseUrl = freezed,Object? nhTagVersion = freezed,Object? isUpdating = null,}) {
-  return _then(_self.copyWith(
+  return _then(TagTranslateInfo(
 version: freezed == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as String?,remoteVersion: freezed == remoteVersion ? _self.remoteVersion : remoteVersion // ignore: cast_nullable_to_non_nullable
 as String?,lastReleaseUrl: freezed == lastReleaseUrl ? _self.lastReleaseUrl : lastReleaseUrl // ignore: cast_nullable_to_non_nullable
@@ -240,23 +247,25 @@ Map<String, dynamic> toJson() {
 }
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-  properties
+    properties
     ..add(DiagnosticsProperty('type', 'TagTranslateInfo'))
     ..add(DiagnosticsProperty('version', version))..add(DiagnosticsProperty('remoteVersion', remoteVersion))..add(DiagnosticsProperty('lastReleaseUrl', lastReleaseUrl))..add(DiagnosticsProperty('nhTagVersion', nhTagVersion))..add(DiagnosticsProperty('isUpdating', isUpdating));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TagTranslateInfo&&(identical(other.version, version) || other.version == version)&&(identical(other.remoteVersion, remoteVersion) || other.remoteVersion == remoteVersion)&&(identical(other.lastReleaseUrl, lastReleaseUrl) || other.lastReleaseUrl == lastReleaseUrl)&&(identical(other.nhTagVersion, nhTagVersion) || other.nhTagVersion == nhTagVersion)&&(identical(other.isUpdating, isUpdating) || other.isUpdating == isUpdating));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _TagTranslateInfo&&(identical(other.version, version) || other.version == version)&&(identical(other.remoteVersion, remoteVersion) || other.remoteVersion == remoteVersion)&&(identical(other.lastReleaseUrl, lastReleaseUrl) || other.lastReleaseUrl == lastReleaseUrl)&&(identical(other.nhTagVersion, nhTagVersion) || other.nhTagVersion == nhTagVersion)&&(identical(other.isUpdating, isUpdating) || other.isUpdating == isUpdating));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,version,remoteVersion,lastReleaseUrl,nhTagVersion,isUpdating);
+int get hashCode {
+    return Object.hash(runtimeType,version,remoteVersion,lastReleaseUrl,nhTagVersion,isUpdating);
+}
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'TagTranslateInfo(version: $version, remoteVersion: $remoteVersion, lastReleaseUrl: $lastReleaseUrl, nhTagVersion: $nhTagVersion, isUpdating: $isUpdating)';
+    return 'TagTranslateInfo(version: $version, remoteVersion: $remoteVersion, lastReleaseUrl: $lastReleaseUrl, nhTagVersion: $nhTagVersion, isUpdating: $isUpdating)';
 }
 
 

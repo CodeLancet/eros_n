@@ -22,7 +22,8 @@ abstract class _$TagTranslateCWProxy {
   TagTranslate id(int id);
 
   /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TagTranslate(...).copyWith.fieldName(value)`.
+  /// Omitted fields keep their values; explicit `null` clears nullable fields.
+  /// The public API rejects `null` for non-nullable fields. To update a single field use `TagTranslate(...).copyWith.fieldName(value)`.
   ///
   /// Example:
   /// ```dart
@@ -68,14 +69,15 @@ class _$TagTranslateCWProxyImpl implements _$TagTranslateCWProxy {
   @override
   TagTranslate id(int id) => call(id: id);
 
-  @override
   /// Creates a new instance with the provided field values.
-  /// Passing `null` to a nullable field nullifies it, while `null` for a non-nullable field is ignored. To update a single field use `TagTranslate(...).copyWith.fieldName(value)`.
+  /// Omitted fields keep their values; explicit `null` clears nullable fields.
+  /// The public API rejects `null` for non-nullable fields. To update a single field use `TagTranslate(...).copyWith.fieldName(value)`.
   ///
   /// Example:
   /// ```dart
   /// TagTranslate(...).copyWith(id: 12, name: "My name")
   /// ```
+  @override
   TagTranslate call({
     Object? namespace = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),

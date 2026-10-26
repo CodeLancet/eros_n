@@ -15,8 +15,7 @@ import 'package:eros_n/network/app_dio/http_config.dart';
 import 'package:eros_n/network/app_dio/proxy.dart';
 import 'package:eros_n/network/app_dio/webview_proxy_interceptor.dart';
 import 'package:eros_n/utils/logger.dart';
-import 'package:system_network_proxy/system_network_proxy.dart';
-import 'package:system_proxy/system_proxy.dart';
+import 'package:proxy_getter/proxy_getter.dart' as proxy_getter;
 
 export 'http_config.dart';
 
@@ -127,23 +126,11 @@ class AppDio with DioMixin implements Dio {
   // }
 
   Future<String> getSystemProxy() async {
-    if (Platform.isAndroid || Platform.isIOS) {
-      Map<String, String>? systemProxy = await SystemProxy.getProxySettings();
-      if (systemProxy != null) {
-        return 'PROXY ${systemProxy['host']}:${systemProxy['port']}';
-      }
-    } else if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-      SystemNetworkProxy.init();
-      final proxyEnable = await SystemNetworkProxy.getProxyEnable();
-      final proxyServer = await SystemNetworkProxy.getProxyServer();
-      logger.d('proxyEnable: $proxyEnable; proxyServer: $proxyServer');
-      if (proxyEnable && proxyServer.isNotEmpty) {
-        return 'PROXY $proxyServer';
-      }
-    } else if (Platform.isWindows) {
-      // SystemNetworkProxyWindows
+    final proxy = await proxy_getter.getSystemProxy();
+    if (!proxy.enable || proxy.host.isEmpty || proxy.port <= 0) {
+      return 'DIRECT';
     }
-    return 'DIRECT';
+    return 'PROXY ${proxy.host}:${proxy.port}';
   }
 
   /// DioMixin 没有实现下载

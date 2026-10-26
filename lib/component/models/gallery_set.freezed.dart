@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'gallery_set.dart';
@@ -9,6 +9,7 @@ part of 'gallery_set.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $GallerySetCopyWith<GallerySet> get copyWith => _$GallerySetCopyWithImpl<Gallery
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GallerySet&&const DeepCollectionEquality().equals(other.gallerys, gallerys)&&const DeepCollectionEquality().equals(other.populars, populars)&&const DeepCollectionEquality().equals(other.favorites, favorites)&&(identical(other.maxPage, maxPage) || other.maxPage == maxPage)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.fromCache, fromCache) || other.fromCache == fromCache));
+  final _this = this as GallerySet;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GallerySet&&const DeepCollectionEquality().equals(other.gallerys, _this.gallerys)&&const DeepCollectionEquality().equals(other.populars, _this.populars)&&const DeepCollectionEquality().equals(other.favorites, _this.favorites)&&(identical(other.maxPage, _this.maxPage) || other.maxPage == _this.maxPage)&&(identical(other.currentPage, _this.currentPage) || other.currentPage == _this.currentPage)&&(identical(other.fromCache, _this.fromCache) || other.fromCache == _this.fromCache));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(gallerys),const DeepCollectionEquality().hash(populars),const DeepCollectionEquality().hash(favorites),maxPage,currentPage,fromCache);
+int get hashCode {
+  final _this = this as GallerySet;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.gallerys),const DeepCollectionEquality().hash(_this.populars),const DeepCollectionEquality().hash(_this.favorites),_this.maxPage,_this.currentPage,_this.fromCache);
+}
 
 @override
 String toString() {
-  return 'GallerySet(gallerys: $gallerys, populars: $populars, favorites: $favorites, maxPage: $maxPage, currentPage: $currentPage, fromCache: $fromCache)';
+  final _this = this as GallerySet;
+  return 'GallerySet(gallerys: ${_this.gallerys}, populars: ${_this.populars}, favorites: ${_this.favorites}, maxPage: ${_this.maxPage}, currentPage: ${_this.currentPage}, fromCache: ${_this.fromCache})';
 }
 
 
@@ -66,7 +72,7 @@ class _$GallerySetCopyWithImpl<$Res>
 /// Create a copy of GallerySet
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? gallerys = freezed,Object? populars = freezed,Object? favorites = freezed,Object? maxPage = freezed,Object? currentPage = freezed,Object? fromCache = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(GallerySet(
 gallerys: freezed == gallerys ? _self.gallerys : gallerys // ignore: cast_nullable_to_non_nullable
 as List<Gallery>?,populars: freezed == populars ? _self.populars : populars // ignore: cast_nullable_to_non_nullable
 as List<Gallery>?,favorites: freezed == favorites ? _self.favorites : favorites // ignore: cast_nullable_to_non_nullable
@@ -214,7 +220,7 @@ return $default(_that.gallerys,_that.populars,_that.favorites,_that.maxPage,_tha
 @JsonSerializable()
 
 class _GallerySet implements GallerySet {
-  const _GallerySet({final  List<Gallery>? gallerys, final  List<Gallery>? populars, final  List<Gallery>? favorites, this.maxPage, this.currentPage, this.fromCache}): _gallerys = gallerys,_populars = populars,_favorites = favorites;
+  const _GallerySet({ List<Gallery>? gallerys,  List<Gallery>? populars,  List<Gallery>? favorites, this.maxPage, this.currentPage, this.fromCache}): _gallerys = gallerys,_populars = populars,_favorites = favorites;
   factory _GallerySet.fromJson(Map<String, dynamic> json) => _$GallerySetFromJson(json);
 
  final  List<Gallery>? _gallerys;
@@ -261,16 +267,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GallerySet&&const DeepCollectionEquality().equals(other._gallerys, _gallerys)&&const DeepCollectionEquality().equals(other._populars, _populars)&&const DeepCollectionEquality().equals(other._favorites, _favorites)&&(identical(other.maxPage, maxPage) || other.maxPage == maxPage)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.fromCache, fromCache) || other.fromCache == fromCache));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GallerySet&&const DeepCollectionEquality().equals(other.gallerys, _gallerys)&&const DeepCollectionEquality().equals(other.populars, _populars)&&const DeepCollectionEquality().equals(other.favorites, _favorites)&&(identical(other.maxPage, maxPage) || other.maxPage == maxPage)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage)&&(identical(other.fromCache, fromCache) || other.fromCache == fromCache));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_gallerys),const DeepCollectionEquality().hash(_populars),const DeepCollectionEquality().hash(_favorites),maxPage,currentPage,fromCache);
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_gallerys),const DeepCollectionEquality().hash(_populars),const DeepCollectionEquality().hash(_favorites),maxPage,currentPage,fromCache);
+}
 
 @override
 String toString() {
-  return 'GallerySet(gallerys: $gallerys, populars: $populars, favorites: $favorites, maxPage: $maxPage, currentPage: $currentPage, fromCache: $fromCache)';
+    return 'GallerySet(gallerys: $gallerys, populars: $populars, favorites: $favorites, maxPage: $maxPage, currentPage: $currentPage, fromCache: $fromCache)';
 }
 
 

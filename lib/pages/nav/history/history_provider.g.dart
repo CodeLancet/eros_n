@@ -47,7 +47,7 @@ abstract class _$HistoryNotifier extends $Notifier<ListViewState> {
   ListViewState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<ListViewState, ListViewState>;
     final element =
         ref.element
@@ -57,7 +57,7 @@ abstract class _$HistoryNotifier extends $Notifier<ListViewState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -99,7 +99,7 @@ abstract class _$HistoryGallerys extends $Notifier<List<GalleryHistory>> {
   List<GalleryHistory> build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<List<GalleryHistory>, List<GalleryHistory>>;
     final element =
         ref.element
@@ -109,7 +109,7 @@ abstract class _$HistoryGallerys extends $Notifier<List<GalleryHistory>> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }
 
@@ -198,7 +198,7 @@ abstract class _$SearchKey extends $Notifier<String> {
   String build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<String, String>;
     final element =
         ref.element
@@ -208,6 +208,6 @@ abstract class _$SearchKey extends $Notifier<String> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

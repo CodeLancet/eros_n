@@ -6,7 +6,7 @@ import 'dart:typed_data';
 import 'package:eros_n/common/const/const.dart';
 import 'package:eros_n/utils/logger.dart';
 import 'package:flutter/widgets.dart';
-import 'package:zikzak_inappwebview/zikzak_inappwebview.dart';
+import 'package:webview_all/webview_all.dart';
 
 /// A response returned by [HiddenWebViewProxy.request], roughly mirroring a
 /// `Fetch` response so it can be lifted into a Dio [Response] downstream.
@@ -61,7 +61,7 @@ class HiddenWebViewProxy {
 
   static final HiddenWebViewProxy instance = HiddenWebViewProxy._();
 
-  InAppWebViewController? _controller;
+  WebViewController? _controller;
   Completer<void> _ready = Completer<void>();
 
   /// Future that completes once the proxy webview has loaded its bootstrap
@@ -70,9 +70,9 @@ class HiddenWebViewProxy {
 
   bool get isReady => _ready.isCompleted;
 
-  /// Called by [HiddenWebViewProxyHost] when the underlying [InAppWebView]
+  /// Called by [HiddenWebViewProxyHost] when the underlying [WebViewWidget]
   /// is created.
-  void attachController(InAppWebViewController controller) {
+  void attachController(WebViewController controller) {
     _controller = controller;
     logger.d('[WebViewProxy] controller attached');
   }
@@ -114,9 +114,7 @@ class HiddenWebViewProxy {
 
     try {
       _ready = Completer<void>();
-      await controller.loadUrl(
-        urlRequest: URLRequest(url: WebUri('${NHConst.baseUrl}/')),
-      );
+      await controller.loadRequest(Uri.parse('${NHConst.baseUrl}/'));
       await ready.timeout(
         timeout,
         onTimeout: () {
@@ -144,8 +142,8 @@ class HiddenWebViewProxy {
       return null;
     }
     try {
-      final cookie = await controller.evaluateJavascript(
-        source: 'document.cookie',
+      final cookie = await controller.runJavaScriptReturningResult(
+        'document.cookie',
       );
       if (cookie is String) {
         final match = RegExp(
@@ -276,18 +274,13 @@ try {
 }
 ''';
 
-    final result = await controller
-        .callAsyncJavaScript(functionBody: script, arguments: args)
-        .timeout(timeout);
+    final result = await controller.callAsyncJavaScript(
+      script,
+      arguments: args,
+      timeout: timeout,
+    );
 
-    if (result == null) {
-      throw StateError('WebViewProxy: callAsyncJavaScript returned null');
-    }
-    if (result.error != null) {
-      throw StateError('WebViewProxy JS error: ${result.error}');
-    }
-
-    final value = result.value;
+    final value = result;
     if (value is! Map) {
       throw StateError(
         'WebViewProxy: unexpected JS result type ${value.runtimeType}',
@@ -320,7 +313,7 @@ try {
   /// Polling-based alternative to [request] for platforms where
   /// callAsyncJavaScript doesn't return results (e.g. HarmonyOS).
   Future<ProxyHttpResponse> _requestViaPolling({
-    required InAppWebViewController controller,
+    required WebViewController controller,
     required String url,
     required String fetchUrl,
     required String method,
@@ -358,14 +351,16 @@ try {
 })();
 ''';
 
-    await controller.evaluateJavascript(source: startScript);
+    await controller.runJavaScriptReturningResult(startScript);
 
     final stopwatch = Stopwatch()..start();
     while (stopwatch.elapsed < timeout) {
       await Future<void>.delayed(const Duration(milliseconds: 100));
 
-      final poll = await controller.evaluateJavascript(
-        source: "JSON.stringify(window['__proxy_$id'] || {})",
+      // The platform channel can still hand back a null envelope even though
+      // the static type is non-nullable, so keep the runtime guard.
+      final dynamic poll = await controller.runJavaScriptReturningResult(
+        "JSON.stringify(window['__proxy_$id'] || {})",
       );
 
       if (poll == null || poll == '{}' || poll == 'null') {
@@ -385,8 +380,8 @@ try {
       }
 
       // Clean up
-      await controller.evaluateJavascript(
-        source: "delete window['__proxy_$id'];",
+      await controller.runJavaScriptReturningResult(
+        "delete window['__proxy_$id'];",
       );
 
       if (result['ok'] != true) {
@@ -501,17 +496,13 @@ try {
 }
 ''';
 
-    final result = await controller
-        .callAsyncJavaScript(functionBody: script, arguments: args)
-        .timeout(timeout);
+    final result = await controller.callAsyncJavaScript(
+      script,
+      arguments: args,
+      timeout: timeout,
+    );
 
-    if (result == null) {
-      throw StateError('WebViewProxy: callAsyncJavaScript returned null');
-    }
-    if (result.error != null) {
-      throw StateError('WebViewProxy JS error: ${result.error}');
-    }
-    final value = result.value;
+    final value = result;
     if (value is! Map) {
       throw StateError(
         'WebViewProxy: unexpected JS result type ${value.runtimeType}',
@@ -559,17 +550,15 @@ try {
     }
 
     Future<String> currentPath() async {
-      final uri = await controller.getUrl();
-      return uri?.path ?? '';
+      final url = await controller.currentUrl();
+      return Uri.tryParse(url ?? '')?.path ?? '';
     }
 
-    final originalUri = await controller.getUrl();
-    final returnUrl = originalUri?.toString() ?? '${NHConst.baseUrl}/';
+    final originalUrl = await controller.currentUrl();
+    final returnUrl = originalUrl ?? '${NHConst.baseUrl}/';
 
     try {
-      await controller.loadUrl(
-        urlRequest: URLRequest(url: WebUri('${NHConst.baseUrl}/login/')),
-      );
+      await controller.loadRequest(Uri.parse('${NHConst.baseUrl}/login/'));
 
       // Wait for the SvelteKit page to *hydrate*, not just render. The
       // SSR HTML already has the inputs but the framework needs an extra
@@ -579,8 +568,7 @@ try {
       var hydrated = false;
       for (var i = 0; i < 60 && !hydrated; i++) {
         await Future<void>.delayed(const Duration(milliseconds: 250));
-        final probe = await controller.evaluateJavascript(
-          source: '''
+        final probe = await controller.runJavaScriptReturningResult('''
             (function () {
               var hasForm = document.querySelector('input[name="username_or_email"]') != null
                   && document.querySelector('input[name="password"]') != null;
@@ -590,8 +578,7 @@ try {
               // similar; if any present plus hydrate finished, we're good.
               return hasForm && hasSk ? 'ready' : (hasForm ? 'form-only' : 'no-form');
             })()
-          ''',
-        );
+          ''');
         if (probe == 'ready') {
           hydrated = true;
         } else if (probe == 'form-only' && i >= 20) {
@@ -609,9 +596,8 @@ try {
       // Trigger the actual submit and let SvelteKit handle it. We track
       // outgoing fetch + XHR + form-submit traffic so debug logs show
       // exactly what endpoint the page contacted (or didn't).
-      final result = await controller
-          .callAsyncJavaScript(
-            functionBody: r'''
+      final result = await controller.callAsyncJavaScript(
+        r'''
               try {
                 if (!window.__erosFetchHook) {
                   const orig = window.fetch;
@@ -719,14 +705,14 @@ try {
                 return { ok: false, reason: String(e) };
               }
             ''',
-            arguments: <String, dynamic>{
-              'username': username,
-              'password': password,
-            },
-          )
-          .timeout(timeout);
+        arguments: <String, dynamic>{
+          'username': username,
+          'password': password,
+        },
+        timeout: timeout,
+      );
 
-      final value = result?.value;
+      final value = result;
       if (value is! Map || value['ok'] != true) {
         throw StateError(
           'login submit prepare failed: ${value is Map ? value['reason'] : value}',
@@ -750,9 +736,8 @@ try {
           // "/"), so we DON'T re-navigate — issuing another loadUrl here
           // would abort the in-flight requests that the caller (e.g.
           // `loginGetMore`) is about to make through the proxy.
-          final fetches = await controller.evaluateJavascript(
-            source:
-                'JSON.stringify(window.__erosLoginFetches || []).slice(0, 1500)',
+          final fetches = await controller.runJavaScriptReturningResult(
+            'JSON.stringify(window.__erosLoginFetches || []).slice(0, 1500)',
           );
           logger.d('[WebViewProxy] login fetches=$fetches');
           // Give the WebView a tiny grace window to flush any final
@@ -766,8 +751,7 @@ try {
       // SSR HTML is more reliable than a `document.querySelector` because
       // SvelteKit may have replaced the DOM with a hydrated version and
       // any error message could live in arbitrary class names.
-      final diag = await controller.evaluateJavascript(
-        source: r'''
+      final diag = await controller.runJavaScriptReturningResult(r'''
           (function () {
             const text = (document.body && document.body.innerText) || '';
             const fetches = window.__erosLoginFetches || [];
@@ -780,17 +764,14 @@ try {
               fetches: fetches,
             });
           })()
-        ''',
-      );
+        ''');
       logger.w('[WebViewProxy] login stayed on /login, diag=$diag');
-      await controller.loadUrl(urlRequest: URLRequest(url: WebUri(returnUrl)));
+      await controller.loadRequest(Uri.parse(returnUrl));
       return false;
     } catch (e, st) {
       logger.e('[WebViewProxy] login error', error: e, stackTrace: st);
       try {
-        await controller.loadUrl(
-          urlRequest: URLRequest(url: WebUri(returnUrl)),
-        );
+        await controller.loadRequest(Uri.parse(returnUrl));
       } catch (_) {}
       rethrow;
     }
@@ -916,16 +897,13 @@ try {
 }
 ''';
 
-    final result = await controller
-        .callAsyncJavaScript(functionBody: script, arguments: args)
-        .timeout(timeout);
+    final result = await controller.callAsyncJavaScript(
+      script,
+      arguments: args,
+      timeout: timeout,
+    );
 
-    if (result == null || result.error != null) {
-      throw StateError(
-        'WebViewProxy login JS failed: ${result?.error ?? 'null result'}',
-      );
-    }
-    final value = result.value;
+    final value = result;
     if (value is! Map || value['ok'] != true) {
       throw StateError(
         'WebViewProxy login fetch failed: ${value is Map ? value['error'] : value}',
@@ -961,7 +939,7 @@ try {
   }
 }
 
-/// Mounts a 1x1 offstage [InAppWebView] used by [HiddenWebViewProxy].
+/// Mounts a 1x1 offstage [WebViewWidget] used by [HiddenWebViewProxy].
 ///
 /// Place this near the root of the widget tree (alongside or inside the
 /// existing `BrokenShield`/`Overlay`) so the webview is created exactly once
@@ -976,16 +954,51 @@ class HiddenWebViewProxyHost extends StatefulWidget {
 }
 
 class _HiddenWebViewProxyHostState extends State<HiddenWebViewProxyHost> {
-  static final InAppWebViewSettings _settings = InAppWebViewSettings(
-    userAgent: NHConst.userAgent,
-    javaScriptEnabled: true,
-    javaScriptCanOpenWindowsAutomatically: false,
-    thirdPartyCookiesEnabled: true,
-    sharedCookiesEnabled: true,
-    transparentBackground: true,
-    isInspectable: true,
-    cacheMode: CacheMode.LOAD_DEFAULT,
-  );
+  // One controller for the lifetime of this host. webview_all has no
+  // per-webview settings equivalent; the proxy only needs the UA, JS and a
+  // transparent background — the rest (popup blocking, third-party/shared
+  // cookies, inspectability) are platform defaults or debug-only.
+  final WebViewController _controller = WebViewController();
+
+  @override
+  void initState() {
+    super.initState();
+    _configureController();
+  }
+
+  Future<void> _configureController() async {
+    _controller
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setUserAgent(NHConst.userAgent)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageFinished: (url) {
+            logger.d('[WebViewProxy] onPageFinished $url');
+            // Mark ready once we've made it past the initial Cloudflare
+            // handshake. We assume that if we landed on the origin host
+            // (not on a challenge subdomain) the page is usable.
+            final host = Uri.tryParse(url)?.host;
+            if (host != null && host.endsWith('nhentai.net')) {
+              HiddenWebViewProxy.instance.markReady();
+            }
+          },
+          onWebResourceError: (error) {
+            logger.w(
+              '[WebViewProxy] onWebResourceError ${error.description} '
+              'url=${error.url}',
+            );
+          },
+        ),
+      )
+      ..setOnConsoleMessage((msg) {
+        logger.t('[WebViewProxy console] ${msg.level}: ${msg.message}');
+      });
+    // Attach before loading so requests issued while the bootstrap page is
+    // in flight already find a controller.
+    HiddenWebViewProxy.instance.attachController(_controller);
+    await _controller.loadRequest(Uri.parse('${NHConst.baseUrl}/'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1001,35 +1014,7 @@ class _HiddenWebViewProxyHostState extends State<HiddenWebViewProxyHost> {
           child: IgnorePointer(
             child: Opacity(
               opacity: 0,
-              child: InAppWebView(
-                initialUrlRequest: URLRequest(
-                  url: WebUri('${NHConst.baseUrl}/'),
-                ),
-                initialSettings: _settings,
-                onWebViewCreated: (controller) {
-                  HiddenWebViewProxy.instance.attachController(controller);
-                },
-                onLoadStop: (controller, uri) async {
-                  logger.d('[WebViewProxy] onLoadStop $uri');
-                  // Mark ready once we've made it past the initial Cloudflare
-                  // handshake. We assume that if we landed on the origin host
-                  // (not on a challenge subdomain) the page is usable.
-                  final host = uri?.host;
-                  if (host != null && host.endsWith('nhentai.net')) {
-                    HiddenWebViewProxy.instance.markReady();
-                  }
-                },
-                onReceivedError: (controller, request, error) {
-                  logger.w(
-                    '[WebViewProxy] onReceivedError $error url=${request.url}',
-                  );
-                },
-                onConsoleMessage: (controller, msg) {
-                  logger.t(
-                    '[WebViewProxy console] ${msg.messageLevel}: ${msg.message}',
-                  );
-                },
-              ),
+              child: WebViewWidget(controller: _controller),
             ),
           ),
         ),

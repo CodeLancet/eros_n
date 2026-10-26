@@ -123,7 +123,7 @@ class _IndexPageState extends ConsumerState<IndexPage> {
                         ).colorScheme.primary;
                         return ConstrainedBox(
                           constraints: const BoxConstraints(maxWidth: 320),
-                          child: GlassBottomBar(
+                          child: GlassTabBar.bottom(
                             barHeight: 52,
                             iconSize: 22,
                             iconLabelSpacing: 2,
@@ -131,7 +131,7 @@ class _IndexPageState extends ConsumerState<IndexPage> {
                             verticalPadding: 6,
                             selectedIconColor: primaryColor,
                             unselectedIconColor: iconColor,
-                            glassSettings: LiquidGlassSettings(
+                            settings: LiquidGlassSettings(
                               blur: 10,
                               thickness: 30,
                               glassColor: isDark
@@ -139,21 +139,21 @@ class _IndexPageState extends ConsumerState<IndexPage> {
                                   : const Color.fromARGB(100, 255, 255, 255),
                             ),
                             tabs: [
-                              GlassBottomBarTab(
+                              GlassTab(
                                 label: AppLocalizations.of(context).home,
                                 icon: const Icon(Icons.home_outlined),
                                 activeIcon: const Icon(Icons.home),
                               ),
-                              GlassBottomBarTab(
+                              GlassTab(
                                 label: AppLocalizations.of(context).favorites,
                                 icon: const Icon(Icons.favorite_outline),
                                 activeIcon: const Icon(Icons.favorite),
                               ),
-                              GlassBottomBarTab(
+                              GlassTab(
                                 label: AppLocalizations.of(context).history,
                                 icon: const Icon(Icons.history),
                               ),
-                              GlassBottomBarTab(
+                              GlassTab(
                                 label: AppLocalizations.of(context).more,
                                 icon: const Icon(Icons.more_horiz),
                               ),
