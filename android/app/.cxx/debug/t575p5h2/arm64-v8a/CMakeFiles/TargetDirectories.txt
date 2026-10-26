@@ -1,2 +1,0 @@
-D:/Workspaces/Android/eros_n/android/app/.cxx/debug/t575p5h2/arm64-v8a/CMakeFiles/edit_cache.dir
-D:/Workspaces/Android/eros_n/android/app/.cxx/debug/t575p5h2/arm64-v8a/CMakeFiles/rebuild_cache.dir
